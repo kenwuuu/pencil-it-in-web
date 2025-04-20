@@ -1,44 +1,25 @@
-<ul class="list bg-base-100 rounded-box shadow-md">
-
-  <li class="p-4 pb-2 text-xs opacity-60 tracking-wide">Most played songs this week</li>
-
-  <li class="list-row" style="cursor: pointer">
-    <div class="text-4xl font-thin opacity-30 tabular-nums">April 1st</div>
-    <div><img class="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/1@94.webp"/></div>
-    <div class="list-col-grow">
-      <div>Dio Lupa</div>
-      <div class="text-xs uppercase font-semibold opacity-60">Remaining Reason</div>
+<div class="card max-w-[35rem] bg-base-100 shadow-sm">
+  <div class="card-body">
+    <div id="event-datetime" class="flex justify-between">
+      <h2 id="event-date" class="text-3xl">April 20th, 2025</h2>
+      <span id="event-time" class="badge badge-soft badge-xl badge-success">04:00pm</span>
     </div>
-    <button class="btn btn-square btn-ghost">
-      <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
-    </button>
-  </li>
-
-  <li class="list-row">
-    <div class="text-4xl font-thin opacity-30 tabular-nums">April 14th</div>
-    <div><img class="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/4@94.webp"/></div>
-    <div class="list-col-grow">
-      <div>Ellie Beilish</div>
-      <div class="text-xs uppercase font-semibold opacity-60">Bears of a fever</div>
+    <div id="title-container" class="flex">
+      <h2 id="title" class="text-2xl font-bold">ken's birthday party</h2>
     </div>
-    <button class="btn btn-square btn-ghost">
-      <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
-    </button>
-  </li>
+    <div id="event-description" class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</div>
+    <div id="participants" class="flex justify-between">
+      <span id="host-user" class="btn btn-md btn-outline btn-info">Host: Ken</span>
 
-  <li class="list-row">
-    <div class="text-4xl font-thin opacity-30 tabular-nums">03</div>
-    <div><img class="size-10 rounded-box" src="https://img.daisyui.com/images/profile/demo/3@94.webp"/></div>
-    <div class="list-col-grow">
-      <div>Sabrino Gardener</div>
-      <div class="text-xs uppercase font-semibold opacity-60">Cappuccino</div>
+      <div id="attendance" class="join">
+        <button id="yes-button" class="btn btn-md btn-outline btn-success join-item">Yes: 12</button>
+        <button id="maybe-button" class="btn btn-md btn-outline btn-warning join-item">Maybe: 22</button>
+        <button id="no-button" class="btn btn-md btn-outline btn-error join-item">No: 2</button>
+      </div>
     </div>
-    <button class="btn btn-square btn-ghost">
-      <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor"><path d="M6 3L20 12 6 21 6 3z"></path></g></svg>
-    </button>
-  </li>
+  </div>
+</div>
 
-</ul>
 <h3 class="day-header">Today, April 19, 2025</h3>
 <ul class="event-list">
   <li class="event-item">
