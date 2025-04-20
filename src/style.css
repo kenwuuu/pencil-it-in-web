@@ -1,3 +1,33 @@
 @import "tailwindcss";
-@plugin "daisyui";
+@plugin "daisyui" {
+    themes: light --default, dark --prefersdark, cupcake;
+}
 @plugin "@tailwindcss/typography";
+
+#main-container {
+    @apply mx-auto max-w-[80rem];
+}
+
+#header {
+    @apply sticky top-0;
+}
+
+#header-menu {
+    @apply navbar bg-base-100 shadow-sm;
+}
+
+#website-logo-container {
+    @apply navbar-center;
+}
+
+#navbar-logo {
+    @apply btn btn-ghost text-xl;
+}
+
+#navbar-user-icon {
+    @apply navbar-end dropdown dropdown-end;
+}
+
+.event-item {
+    @apply card;
+}

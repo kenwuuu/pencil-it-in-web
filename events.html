@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="cupcake">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
@@ -7,16 +7,16 @@
     <title>Events - Pencil It In</title>
   </head>
 
-  <div id="main-container" class="mx-auto max-w-[80rem]">
-    <header class="sticky top-0">
-  <!--  nav bar  -->
-  <!--  todo turn this into a component -->
-      <div class="navbar bg-base-100 shadow-sm">
+  <div id="main-container">
+    <header id="header">
+      <!--  nav bar  -->
+      <!--  todo turn this into a component -->
+      <div id="header-menu">
         <div class="navbar-start"></div>
-        <div id="website-logo" class="navbar-center">
-          <a class="btn btn-ghost text-xl">pencil it in</a>
+        <div id="website-logo-container">
+          <a id="navbar-logo">pencil it in</a>
         </div>
-        <div id="user-icon" class="navbar-end">
+        <div id="navbar-user-icon">
           <div class="dropdown dropdown-end">
             <div
               tabindex="0"
@@ -51,7 +51,7 @@
     <body>
       <div id="body-container" class="prose mt-10 mx-auto max-w-[60rem]">
         <h1>
-          Events
+          Upcoming Events
           <button
             hx-get="src/mocks/events_data.html"
             hx-trigger="click"
@@ -62,7 +62,7 @@
           </button>
         </h1>
 
-        <div class="events-container prose"></div>
+        <div class="events-container not-prose"></div>
       </div>
     </body>
   </div>
