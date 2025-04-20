@@ -7,64 +7,70 @@
     <title>Events - Pencil It In</title>
   </head>
 
+  <div id="main-container" class="mx-auto max-w-[80rem]">
+    <header>
   <!--  nav bar  -->
-  <header>
-    <div class="navbar bg-base-100 shadow-sm">
-      <div class="navbar-start"></div>
-      <div id="website-logo" class="navbar-center">
-        <a class="btn btn-ghost text-xl">daisyUI</a>
-      </div>
-      <div id="user-icon" class="navbar-end">
-        <div class="dropdown dropdown-end">
-          <div
-            tabindex="0"
-            role="button"
-            class="btn btn-ghost btn-circle avatar"
-          >
-            <div class="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS Navbar component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-              />
+  <!--  todo turn this into a component -->
+      <div class="navbar bg-base-100 shadow-sm">
+        <div class="navbar-start"></div>
+        <div id="website-logo" class="navbar-center">
+          <a class="btn btn-ghost text-xl">daisyUI</a>
+        </div>
+        <div id="user-icon" class="navbar-end">
+          <div class="dropdown dropdown-end">
+            <div
+              tabindex="0"
+              role="button"
+              class="btn btn-ghost btn-circle avatar"
+            >
+              <div class="w-10 rounded-full">
+                <img
+                  alt="Tailwind CSS Navbar component"
+                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                />
+              </div>
             </div>
+            <ul
+              tabindex="0"
+              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            >
+              <li>
+                <a class="justify-between">
+                  Profile
+                  <span class="badge">New</span>
+                </a>
+              </li>
+              <li><a>Settings</a></li>
+              <li><a>Logout</a></li>
+            </ul>
           </div>
-          <ul
-            tabindex="0"
-            class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-          >
-            <li>
-              <a class="justify-between">
-                Profile
-                <span class="badge">New</span>
-              </a>
-            </li>
-            <li><a>Settings</a></li>
-            <li><a>Logout</a></li>
-          </ul>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <body>
-  <div class="prose">
-    <h1>Events</h1>
-    <button
-      hx-get="src/mocks/events_data.html"
-      hx-trigger="click"
-      hx-target=".events-container"
-      class="btn btn-primary"
-    >
-      Get Events
-    </button>
-    <div class="events-container prose"></div>
+    <body>
+      <div id="body-container" class="prose mt-10 max-w-[60rem]">
+        <h1>
+          Events
+          <button
+            hx-get="src/mocks/events_data.html"
+            hx-trigger="click"
+            hx-target=".events-container"
+            class="btn btn-primary ml-6"
+          >
+            Get Events
+          </button>
+        </h1>
 
-    <script type="module" src="/src/main.ts"></script>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-    ></script>
-    <script src="libs/htmx.min.js"></script>
+        <div class="events-container prose"></div>
+      </div>
+    </body>
   </div>
-  </body>
+
+  <script type="module" src="/src/main.ts"></script>
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+  ></script>
+  <script src="libs/htmx.min.js"></script>
 </html>
