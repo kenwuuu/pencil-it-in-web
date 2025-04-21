@@ -1,6 +1,6 @@
 class SiteHeader extends HTMLElement {
-    connectedCallback() {
-        this.innerHTML = `
+  connectedCallback() {
+    this.innerHTML = `
       <header id="header">
         <!--  nav bar  -->
         <!--  todo turn this into a component -->
@@ -9,7 +9,7 @@ class SiteHeader extends HTMLElement {
           <div id="website-logo-container">
             <a id="navbar-logo">pencil it in</a>
           </div>
-          <div id="navbar-user-icon">
+          <div id="navbar-user-icon" class="mr-4">
             <div class="dropdown dropdown-end">
               <div
                 tabindex="0"
@@ -41,7 +41,7 @@ class SiteHeader extends HTMLElement {
         </div>
       </header>
     `;
-    }
+  }
 }
 
 customElements.define('site-header', SiteHeader);
