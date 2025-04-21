@@ -6,17 +6,48 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "format": "npm run format:eslint && npm run format:prettier",
+    "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
+    "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore --ignore-pattern libs/",
+    "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .gitignore",
+    "format:prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore",
+    "test": ""
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "@open-wc/eslint-config": "^12.0.3",
     "@tailwindcss/typography": "^0.5.16",
+    "commitlint": "^19.8.0",
     "daisyui": "^5.0.27",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.2",
+    "lint-staged": "^15.5.1",
     "prettier": "^3.5.3",
     "typescript": "~5.7.2",
     "vite": "^6.3.1"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.4",
+    "husky": "^9.1.7",
     "tailwindcss": "^4.1.4"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "@open-wc/eslint-config"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid"
   }
 }

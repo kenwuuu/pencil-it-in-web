@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Events - Pencil It In</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <link href="/vite.svg" rel="icon" type="image/svg+xml" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Events - Pencil It In</title>
+</head>
 
-  <body>
-    <div id="main-container mx-auto">
-      <site-header></site-header>
-      <events-container></events-container>
-    </div>
-  </body>
+<body>
+<div id="main-container mx-auto">
+  <site-header></site-header>
+  <events-container></events-container>
+</div>
+</body>
 
-  <!--  internal scripts  -->
-  <script type="module" src="/src/components/site-header.js"></script>
-  <script type="module" src="/src/components/events-container.js"></script>
-  <!--  external scripts  -->
-  <script type="module" src="/src/main.ts"></script>
-  <script
-    defer
-    src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-  ></script>
-  <script src="libs/htmx.min.js"></script>
+<!--  internal scripts  -->
+<script src="/src/components/site-header.js" type="module"></script>
+<script src="/src/components/events-container.js" type="module"></script>
+<!--  external scripts  -->
+<script src="/src/main.ts" type="module"></script>
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+></script>
+<script src="libs/htmx.min.js"></script>
 </html>
