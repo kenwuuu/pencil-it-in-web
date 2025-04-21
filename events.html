@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html data-theme="cupcake" lang="en">
 <head>
   <meta charset="UTF-8" />
   <link href="/vite.svg" rel="icon" type="image/svg+xml" />
@@ -10,14 +10,19 @@
 <body>
 <div id="main-container mx-auto">
   <site-header></site-header>
-  <events-container></events-container>
+  <div id="body-container">
+    <sidebar-menu></sidebar-menu>
+    <events-container></events-container>
+  </div>
 </div>
 </body>
 
 <!--  internal scripts  -->
 <script src="/src/components/site-header.js" type="module"></script>
+<script src="/src/components/sidebar-menu.js" type="module"></script>
 <script src="/src/components/events-container.js" type="module"></script>
 <!--  external scripts  -->
+<script src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
 <script src="/src/main.ts" type="module"></script>
 <script
   defer
