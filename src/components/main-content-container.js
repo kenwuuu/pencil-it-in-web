@@ -14,13 +14,12 @@ class MainContentContainer extends HTMLElement {
         hx-get="src/mocks/events_data.html"
         hx-trigger="load"
         hx-target=".events-agenda"
-        x-data="{ path: window.location.pathname }"
       >
         <h1>${title}</h1>
-        <events-container x-show="path === '/events.html'"></events-container>
-        <friends-container x-show="path === '/friends.html'"></friends-container>
-        <profile-container x-show="path === '/profile.html'"></profile-container>
-        <settings-container x-show="path === '/settings.html'"></settings-container>
+        <events-container x-show="page === 'events'"></events-container>
+        <friends-container x-show="page === 'friends'"></friends-container>
+        <profile-container x-show="page === 'profile'"></profile-container>
+        <settings-container x-show="page === 'settings'"></settings-container>
       </div>
     `;
   }

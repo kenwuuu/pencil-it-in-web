@@ -4,10 +4,10 @@ class SidebarMenu extends HTMLElement {
       <ul class="menu menu-xl w-80 bg-base-200 lg:menu-vertical rounded-box" x-data="{ current_page: window.location.pathname }">
         <li>
           <a 
-          href="/events.html"
+          @click="page = 'events'"
           id="menu-item-events" 
           class="sidebar-menu-item"
-          :class="current_page === '/events.html' ? 'menu-active' : ''"
+          :class="page === 'events' ? 'menu-active' : ''"
           >
             <span id="iconify-icon" class="iconify" data-icon="mdi-calendar"></span>
             Events
@@ -17,10 +17,10 @@ class SidebarMenu extends HTMLElement {
         </li>
         <li>
           <a 
-          href="/friends.html"
+          @click="page = 'friends'"
           id="menu-item-friends" 
           class="sidebar-menu-item"
-          :class="current_page === '/friends.html' ? 'menu-active' : ''"
+          :class="page === 'friends' ? 'menu-active' : ''"
           >
             <span id="iconify-icon" class="iconify" data-icon="mdi-account-group"></span>
             Friends
@@ -29,10 +29,10 @@ class SidebarMenu extends HTMLElement {
         </li>
         <li>
           <a 
-          href="/profile.html"
+          @click="page = 'profile'"
           id="menu-item-profile" 
           class="sidebar-menu-item"
-          :class="current_page === '/profile.html' ? 'menu-active' : ''"
+          :class="page === 'profile' ? 'menu-active' : ''"
           >
             <span id="iconify-icon" class="iconify" data-icon="mdi-user"></span>
             Profile
@@ -40,10 +40,10 @@ class SidebarMenu extends HTMLElement {
         </li>
         <li>
           <a 
-          href="/settings.html"
+          @click="page = 'settings'"
           id="menu-item-settings" 
           class="sidebar-menu-item"
-          :class="current_page === '/settings.html' ? 'menu-active' : ''"
+          :class="page === 'settings' ? 'menu-active' : ''"
           >
             <span id="iconify-icon" class="iconify" data-icon="mdi-settings"></span>
             Settings
