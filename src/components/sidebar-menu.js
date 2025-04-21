@@ -6,7 +6,8 @@ class SidebarMenu extends HTMLElement {
           <a id="menu-item-events" class="sidebar-menu-item">
           <span id="iconify-icon" class="iconify" data-icon="mdi-calendar"></span>
             Events
-            <span class="badge badge-xs">99+</span>
+            <span class="badge badge-xs badge-info">2</span>
+            <span class="badge badge-xs badge-warning">23</span>
           </a>
         </li>
         <li>
@@ -17,7 +18,7 @@ class SidebarMenu extends HTMLElement {
           </a>
         </li>
         <li>
-          <a id="menu-item-profile" class="sidebar-menu-item  menu-active">
+          <a id="menu-item-profile" class="sidebar-menu-item">
           <span id="iconify-icon" class="iconify" data-icon="mdi-user"></span>
             Profile
           </a>

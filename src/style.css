@@ -8,7 +8,11 @@
 @plugin "@tailwindcss/typography";
 
 #body-container {
-    @apply px-10 m-10 mx-auto max-w-[60rem];
+    @apply px-10 m-16 mx-auto max-w-[90rem] flex;
+}
+
+#events-container {
+    @apply px-16;
 }
 
 #main-container {
