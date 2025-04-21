@@ -7,6 +7,10 @@
 }
 @plugin "@tailwindcss/typography";
 
+#body-container {
+    @apply px-10 m-10 mx-auto max-w-[60rem];
+}
+
 #main-container {
     @apply mx-auto max-w-[80rem];
 }

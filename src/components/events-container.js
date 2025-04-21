@@ -3,7 +3,7 @@ class EventsContainer extends HTMLElement {
     this.innerHTML = `
       <div
         id="events-container"
-        class="prose px-10 m-10 mx-auto max-w-[60rem]"
+        class="prose"
         hx-get="src/mocks/events_data.html"
         hx-trigger="load"
         hx-target=".events-agenda"
