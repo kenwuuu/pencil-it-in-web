@@ -11,10 +11,6 @@
     @apply px-10 m-16 mx-auto max-w-[90rem] flex;
 }
 
-#events-container {
-    @apply px-16;
-}
-
 #main-container {
     @apply mx-auto max-w-[80rem];
 }
@@ -37,6 +33,10 @@
 
 #navbar-user-icon {
     @apply navbar-end dropdown dropdown-end;
+}
+
+.page-container {
+    @apply px-16;
 }
 
 .event-item {

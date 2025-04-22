@@ -2,8 +2,7 @@ class EventsContainer extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <div
-        id="events-container"
-        class="prose"
+        class="prose page-container"
         hx-get="mocks/events_data.html"
         hx-trigger="load"
         hx-target=".events-agenda"
