@@ -42,3 +42,7 @@
 .event-item {
     @apply card;
 }
+
+.fieldset-legend {
+    font-size: 20px;
+}
