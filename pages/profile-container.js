@@ -3,11 +3,11 @@ class ProfileContainer extends HTMLElement {
     this.innerHTML = `
       <div
         class="page-container"
-        hx-get="mocks/profile_data.html"
+        hx-get="mocks/friend_profile_data.html"
         hx-trigger="load"
         hx-target=".profile"
       >
-      <div class="page-container flex-1 flex justify-center">
+      <div class="flex-1 flex">
         <div class="profile"></div>
       </div>
     `;
