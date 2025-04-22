@@ -3,8 +3,11 @@ class ProfileContainer extends HTMLElement {
     this.innerHTML = `
       <div
         class="prose page-container"
+        hx-get="mocks/profile_data.html"
+        hx-trigger="load"
+        hx-target=".profile"
       >
-        <h1 x-text="capitalize(page)"></h1>
+        <div class="profile"></div>
       </div>
     `;
   }
