@@ -1,37 +1,37 @@
 <!doctype html>
 <html data-theme="cupcake" lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link href="/vite.svg" rel="icon" type="image/svg+xml" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Events - Pencil It In</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <link href="/vite.svg" rel="icon" type="image/svg+xml" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Events - Pencil It In</title>
+</head>
 
-  <body>
-    <div id="main-container mx-auto">
-      <site-header></site-header>
-      <div id="body-container" x-data="{ page: 'events' }">
-        <sidebar-menu></sidebar-menu>
-        <!--    todo fix title so that it correctly passes in 'page' from x-data -->
-        <main-content-container title="Events"></main-content-container>
-      </div>
-    </div>
-  </body>
+<body>
+<div id="main-container mx-auto">
+  <site-header></site-header>
+  <div id="body-container" x-data="{ page: 'events' }">
+    <sidebar-menu></sidebar-menu>
+    <!--    todo fix title so that it correctly passes in 'page' from x-data -->
+    <main-content-container title="Events"></main-content-container>
+  </div>
+</div>
+</body>
 
-  <link href="src/style.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css" />
 
-  <!--  internal scripts  -->
-  <script src="/src/components/site-header.js" type="module"></script>
-  <script src="/src/components/sidebar-menu.js" type="module"></script>
-  <script
-    src="/src/components/main-content-container.js"
-    type="module"
-  ></script>
-  <!--  external scripts  -->
-  <script src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
-  <script
-    defer
-    src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-  ></script>
-  <script src="libs/htmx.min.js"></script>
+<!--  internal scripts  -->
+<script src="/pages/site-header.js" type="module"></script>
+<script src="/pages/sidebar-menu.js" type="module"></script>
+<script
+  src="/pages/main-content-container.js"
+  type="module"
+></script>
+<!--  external scripts  -->
+<script src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
+<script
+  defer
+  src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+></script>
+<script src="libs/htmx.min.js"></script>
 </html>
