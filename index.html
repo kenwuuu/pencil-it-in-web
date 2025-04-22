@@ -13,7 +13,7 @@
   <div id="body-container" x-data="{ page: 'events' }">
     <sidebar-menu></sidebar-menu>
     <!--    todo fix title so that it correctly passes in 'page' from x-data -->
-    <main-content-container title="Events"></main-content-container>
+    <main-content-container></main-content-container>
   </div>
 </div>
 </body>
@@ -21,10 +21,10 @@
 <link href="style.css" rel="stylesheet" type="text/css" />
 
 <!--  internal scripts  -->
-<script src="/pages/site-header.js" type="module"></script>
-<script src="/pages/sidebar-menu.js" type="module"></script>
+<script src="/pages/page-components/site-header.js" type="module"></script>
+<script src="/pages/page-components/sidebar-menu.js" type="module"></script>
 <script
-  src="/pages/main-content-container.js"
+  src="/pages/page-components/main-content-container.js"
   type="module"
 ></script>
 <!--  external scripts  -->
