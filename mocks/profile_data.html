@@ -1,19 +1,33 @@
-<div class="profile-photo w-40">
-  <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+<div class="profile-header mb-8 not-prose">
+  <div class="profile-photo avatar relative group cursor-pointer">
+    <div class="w-40 rounded-full">
+      <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+      <div
+        class="absolute inset-0 bg-black/30 rounded-full opacity-0 group-hover:opacity-60 transition-opacity flex items-center justify-center">
+        <span class="iconify text-white text-2xl" data-icon="mdi-pencil"></span>
+      </div>
+    </div>
+
+  </div>
+  <div class="names text-center">
+    <h1 class="text-2xl font-bold">Nickname</h1>
+    <h1 class="text-xl">First</h1>
+    <h2 class="text-xl">Last</h2>
+  </div>
 </div>
-<div class="names">
-  <h1>Nickname</h1>
-  <h1>First</h1>
-  <h2>Last</h2>
-</div>
-<div class="credentials">
-  <h1>email</h1>
-  <h1>password</h1>
-</div>
-<div class="notes">
-  <h1>notes</h1>
-</div>
-<div class="actions">
-  <h1>delete account</h1>
-  <h1>remove friend</h1>
+<div class="profile-info space-y-6">
+  
+  <div class="credentials">
+    <h2>Credentials</h2>
+    <h1>email</h1>
+    <h1>password</h1>
+  </div>
+  <div class="notes">
+    <h2>Notes</h2>
+    <h1>notes</h1>
+  </div>
+  <div class="actions">
+    <h1>delete account</h1>
+    <h1>remove friend</h1>
+  </div>
 </div>
