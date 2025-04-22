@@ -2,8 +2,6 @@ class SiteHeader extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <header id="header" class="z-50">
-        <!--  nav bar  -->
-        <!--  todo turn this into a component -->
         <div id="header-menu">
           <div class="navbar-start"></div>
           <div id="website-logo-container">
