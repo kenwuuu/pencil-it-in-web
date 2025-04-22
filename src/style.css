@@ -1,44 +1,45 @@
 @import 'tailwindcss';
 
 @plugin "daisyui" {
-    themes: light --default,
+  themes:
+    light --default,
     dark --prefersdark,
     cupcake;
 }
 @plugin "@tailwindcss/typography";
 
 #body-container {
-    @apply px-10 m-16 mx-auto max-w-[90rem] flex;
+  @apply px-10 m-16 mx-auto max-w-[90rem] flex;
 }
 
 #events-container {
-    @apply px-16;
+  @apply px-16;
 }
 
 #main-container {
-    @apply mx-auto max-w-[80rem];
+  @apply mx-auto max-w-[80rem];
 }
 
 #header {
-    @apply sticky top-0;
+  @apply sticky top-0;
 }
 
 #header-menu {
-    @apply navbar bg-base-100 shadow-sm;
+  @apply navbar bg-base-100 shadow-sm;
 }
 
 #website-logo-container {
-    @apply navbar-center;
+  @apply navbar-center;
 }
 
 #navbar-logo {
-    @apply btn btn-ghost text-xl;
+  @apply btn btn-ghost text-xl;
 }
 
 #navbar-user-icon {
-    @apply navbar-end dropdown dropdown-end;
+  @apply navbar-end dropdown dropdown-end;
 }
 
 .event-item {
-    @apply card;
+  @apply card;
 }

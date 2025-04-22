@@ -1,27 +1,27 @@
 <div id="cursor-circle"></div>
 
 <style>
-    #cursor-circle {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background-color: purple;
-        position: fixed;
-        pointer-events: none;
-        transform: translate(-50%, -50%);
-    }
+  #cursor-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: purple;
+    position: fixed;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+  }
 </style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
   const cursorCircle = document.getElementById('cursor-circle');
 
-  document.addEventListener('mousemove', (event) => {
+  document.addEventListener('mousemove', event => {
     gsap.to(cursorCircle, {
       duration: 0.05, // Adjust for the smoothness of the follow effect
       x: event.clientX,
       y: event.clientY,
       overwrite: true, // Prevents animations from stacking up
-  });
+    });
   });
 </script>
