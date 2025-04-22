@@ -1,8 +1,10 @@
 class FriendsContainer extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-      <div class="prose">
-      FRIENDS
+      <div
+        class="prose"
+      >
+        <h1 x-text="capitalize(page)"></h1>
       </div>
     `;
   }

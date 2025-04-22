@@ -1,8 +1,10 @@
 class ProfileContainer extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-      <div class="prose">
-      PROFILE
+      <div
+        class="prose"
+      >
+        <h1 x-text="capitalize(page)"></h1>
       </div>
     `;
   }
