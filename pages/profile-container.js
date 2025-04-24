@@ -3,7 +3,7 @@ class ProfileContainer extends HTMLElement {
     this.innerHTML = `
       <div
         class="page-container"
-        hx-get="mocks/friend_profile_data.html"
+        hx-get="mocks/profile_data.html"
         hx-trigger="load"
         hx-target=".profile"
       >
