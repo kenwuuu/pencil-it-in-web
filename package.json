@@ -32,6 +32,7 @@
     "vite": "^6.3.1"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.49.4",
     "gsap": "^3.12.7",
     "husky": "^9.1.7",
     "tailwind": "^4.0.0",
