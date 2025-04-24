@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html class="h-full bg-white" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pencil It In</title>
+</head>
+<body class="h-full">
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <img alt="Your Company" class="mx-auto h-10 w-auto"
+         src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600">
+    <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">Log in to your account</h2>
+  </div>
+
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    <form action="#" class="space-y-6" method="POST">
+      <div>
+        <label class="block text-sm/6 font-medium text-gray-900" for="email">Email address</label>
+        <div class="mt-2">
+          <input autocomplete="email"
+                 class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                 id="email" name="email" required
+                 type="email">
+        </div>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between">
+          <label class="block text-sm/6 font-medium text-gray-900" for="password">Password</label>
+          <div class="text-sm">
+            <a class="font-semibold text-indigo-600 hover:text-indigo-500" href="#">Forgot password?</a>
+          </div>
+        </div>
+        <div class="mt-2">
+          <input autocomplete="current-password"
+                 class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                 id="password" name="password" required
+                 type="password">
+        </div>
+      </div>
+
+      <div>
+        <button
+          class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          type="submit">
+          Log in
+        </button>
+      </div>
+    </form>
+
+    <p class="mt-3 text-center text-sm/6 text-gray-500">
+      <a class="font-semibold text-indigo-600 hover:text-indigo-500" href="#">Create New Account</a>
+    </p>
+  </div>
+
+  <div class="divider">OR</div>
+
+  <div class="flex items-center justify-center gap-6">
+    <button class="btn bg-white text-black border-[#e5e5e5]">
+      <svg aria-label="Google logo" height="16" viewBox="0 0 512 512" width="16" xmlns="http://www.w3.org/2000/svg">
+        <g>
+          <path d="m0 0H512V512H0" fill="#fff"></path>
+          <path d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341" fill="#34a853"></path>
+          <path d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57" fill="#4285f4"></path>
+          <path d="m90 341a208 200 0 010-171l63 49q-12 37 0 73" fill="#fbbc02"></path>
+          <path d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55" fill="#ea4335"></path>
+        </g>
+      </svg>
+      Login with Google
+    </button>
+
+    <button class="btn bg-black text-white border-black">
+      <svg aria-label="Apple logo" height="16" viewBox="0 0 1195 1195" width="16" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M1006.933 812.8c-32 153.6-115.2 211.2-147.2 249.6-32 25.6-121.6 25.6-153.6 6.4-38.4-25.6-134.4-25.6-166.4 0-44.8 32-115.2 19.2-128 12.8-256-179.2-352-716.8 12.8-774.4 64-12.8 134.4 32 134.4 32 51.2 25.6 70.4 12.8 115.2-6.4 96-44.8 243.2-44.8 313.6 76.8-147.2 96-153.6 294.4 19.2 403.2zM802.133 64c12.8 70.4-64 224-204.8 230.4-12.8-38.4 32-217.6 204.8-230.4z"
+          fill="white"></path>
+      </svg>
+      Login with Apple
+    </button>
+  </div>
+</div>
+</body>
+
+<link href="../../style.css" rel="stylesheet" type="text/css" />
+
+</html>
