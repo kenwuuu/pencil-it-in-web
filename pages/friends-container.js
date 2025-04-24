@@ -2,9 +2,15 @@ class FriendsContainer extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <div
-        class="prose page-container"
+        class="page-container"
+        hx-get="mocks/friends.html"
+        hx-trigger="load"
+        hx-target=".friends-list"
       >
-        <h1 x-text="capitalize(page)"></h1>
+        <div class="prose mb-6">
+          <h1 x-text="capitalize(page)"></h1>
+        </div>
+        <div class="friends-list not-prose"></div>
       </div>
     `;
   }

@@ -8,11 +8,11 @@
 @plugin "@tailwindcss/typography";
 
 #body-container {
-    @apply px-10 m-16 mx-auto max-w-[90rem] flex;
+    @apply m-16 mx-auto max-w-[90rem] flex;
 }
 
 #main-container {
-    @apply mx-auto max-w-[80rem];
+    @apply mx-auto;
 }
 
 #header {
@@ -33,6 +33,10 @@
 
 #navbar-user-icon {
     @apply navbar-end dropdown dropdown-end;
+}
+
+#main-content-container {
+    @apply flex flex-1;
 }
 
 .page-container {
