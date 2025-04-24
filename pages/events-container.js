@@ -19,7 +19,7 @@ class EventsContainer extends HTMLElement {
           </div>
           <div class="events-agenda not-prose"></div>
         </div>
-        <action-menu></action-menu>
+        <action-menu src="mocks/action_menu/events.html"></action-menu>
       </div>
     `;
   }
