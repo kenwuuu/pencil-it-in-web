@@ -8,9 +8,9 @@
 </head>
 
 <body>
-<div id="main-container mx-auto">
+<div id="main-container mx-auto" x-data="{ page: 'profile' }">
   <site-header></site-header>
-  <div id="body-container" x-data="{ page: 'profile' }">
+  <div id="body-container">
     <sidebar-menu></sidebar-menu>
     <!--    todo fix title so that it correctly passes in 'page' from x-data -->
     <main-content-container

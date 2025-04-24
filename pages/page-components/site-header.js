@@ -4,8 +4,8 @@ class SiteHeader extends HTMLElement {
       <header id="header" class="z-50">
         <div id="header-menu">
           <div class="navbar-start"></div>
-          <div id="website-logo-container">
-            <a id="navbar-logo">pencil it in</a>
+          <div @click="page = 'events'" id="website-logo-container">
+            <a  id="navbar-logo">pencil it in</a>
           </div>
           <div id="navbar-user-icon" class="mr-4">
             <div class="dropdown dropdown-end">
