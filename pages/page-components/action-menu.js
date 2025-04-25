@@ -1,6 +1,7 @@
 class ActionMenu extends HTMLElement {
   connectedCallback() {
-    const endpoint = this.getAttribute('src') || 'mocks/action_menu/events.html';
+    const endpoint =
+      this.getAttribute('src') || 'mocks/action_menu/events.html';
     const filename = endpoint
       .split('/')
       .pop()
