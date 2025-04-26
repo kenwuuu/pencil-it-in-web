@@ -1,8 +1,8 @@
-import './page-components/action-menu.js';
+import './page-components/action-menu/events.js';
 
 class FriendsContainer extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `
+    connectedCallback() {
+        this.innerHTML = `
       <div class="flex">
         <div
           class="page-container"
@@ -18,7 +18,7 @@ class FriendsContainer extends HTMLElement {
         <action-menu src="mocks/action_menu/friends.html"></action-menu>
       </div>
     `;
-  }
+    }
 }
 
 customElements.define('friends-container', FriendsContainer);
