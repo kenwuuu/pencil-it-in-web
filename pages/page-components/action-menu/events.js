@@ -16,4 +16,4 @@ class Events extends HTMLElement {
     }
 }
 
-customElements.define('action-menu', Events);
+customElements.define('events-action-menu', Events);

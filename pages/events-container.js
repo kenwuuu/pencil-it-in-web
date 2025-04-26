@@ -23,8 +23,8 @@ class EventsContainer extends HTMLElement {
           <div class="events-agenda not-prose" x-show="!is_creating_new_event"></div>
           <create-event x-show="is_creating_new_event"></create-event>
         </div>
-        <action-menu 
-            ></action-menu>
+        <events-action-menu 
+            ></events-action-menu>
       </div>
     `;
     }

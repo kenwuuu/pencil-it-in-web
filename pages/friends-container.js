@@ -1,4 +1,4 @@
-import './page-components/action-menu/events.js';
+import './page-components/action-menu/friends.js';
 
 class FriendsContainer extends HTMLElement {
     connectedCallback() {
@@ -15,7 +15,7 @@ class FriendsContainer extends HTMLElement {
           </div>
           <div class="friends-list not-prose"></div>
         </div>
-        <action-menu src="mocks/action_menu/friends.html"></action-menu>
+        <friends-action-menu src="mocks/action_menu/friends.html"></friends-action-menu>
       </div>
     `;
     }
