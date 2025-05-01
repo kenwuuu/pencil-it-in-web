@@ -11,7 +11,6 @@ class EventsContainer extends HTMLElement {
           hx-get="mocks/events_data.html"
           hx-trigger="load"
           hx-target=".events-agenda"
-          
         >
           <div id="page-header" class="flex">
             <h1 x-text="capitalize(page)" class="flex-1"></h1>
