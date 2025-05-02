@@ -3,6 +3,7 @@ import './create-event.js'
 import '../services/get-upcoming-events.js'
 import {supabase} from "../services/supabase-client/supabase-client.js";
 import {format, parseISO} from 'date-fns';
+import {getUpcomingEvents} from "../services/get-upcoming-events.js";
 
 class EventsContainer extends HTMLElement {
     connectedCallback() {
@@ -227,10 +228,7 @@ function mockGetUpcomingEvents() {
 
 // on load: retrieves events from server and populates events agenda
 document.addEventListener('DOMContentLoaded', async () => {
-    // await signIn();
-
-    // let data = await getUpcomingEvents();
-    let data = mockGetUpcomingEvents()
+    let data = await getUpcomingEvents();
 
     const {template, agenda} = selectEventElements();
 
