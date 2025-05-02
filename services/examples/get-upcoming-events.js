@@ -1,9 +1,7 @@
 import {supabase} from "../supabase-client/supabase-client.js";
+import {email, password, queryingUserId} from "../../constants.js";
 
-const email = 'kenqiwu@gmail.com';
-const password = 'adsihn9';
 const stored_procedure_name = 'get_upcoming_events';
-const queryingUserId = 'f18d6f00-b861-45bd-bad9-2d3c1b772323';
 
 
 const {data: signInData, error: signInError} = await supabase.auth.signInWithPassword({

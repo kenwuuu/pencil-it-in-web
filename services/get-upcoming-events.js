@@ -1,7 +1,6 @@
 import {supabase} from "./supabase-client/supabase-client.js";
+import {queryingUserId} from "../constants.js";
 
-
-const queryingUserId = 'f18d6f00-b861-45bd-bad9-2d3c1b772323';
 
 export async function createEvent(eventData) {
 
