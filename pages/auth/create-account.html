@@ -154,7 +154,7 @@
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
-        const {user, session, error} = await signUpUser(email, password);
+        const {user, error} = await signUpUser(email, password);
 
         if (error) {
             alert(`Error: ${error.message}`);
