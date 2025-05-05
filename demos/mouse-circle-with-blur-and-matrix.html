@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>GSAP Cursor Follow with Blur</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        #container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        #circle {
+            width: 25rem;
+            height: 25rem;
+            border-radius: 50%;
+            background-color: forestgreen;
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+        }
+
+        #blur-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(100px);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        #content {
+            z-index: 3;
+            position: relative;
+            padding: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #222;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        #matrix-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            display: flex;
+            flex-wrap: wrap;
+            overflow: hidden;
+            font-family: 'Courier New', Courier, monospace;
+            color: #f0f0f0;
+            font-size: 1.2rem;
+            line-height: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="circle"></div>
+    <div id="blur-overlay"></div>
+    <div id="matrix-container"></div>
+    <div id="content">
+        <h1>Interactive Animation</h1>
+        <p>Move your mouse to see the forest green circle follow your cursor. The background has a frosted glass effect,
+            created using CSS's backdrop-filter. This effect blurs the content behind it, making the text and the moving
+            circle stand out. The circle uses GSAP for smooth, performant animation. A matrix-style display of changing
+            ASCII characters overlays the blur.</p>
+    </div>
+</div>
+<script>
+    const circle = document.getElementById('circle');
+    const container = document.getElementById('container');
+    const matrixContainer = document.getElementById('matrix-container');
+
+    // Center the circle on initial load
+    gsap.set(circle, {x: window.innerWidth / 2, y: window.innerHeight / 2});
+
+    container.addEventListener('mousemove', (event) => {
+        gsap.to(circle, {
+            x: event.clientX,
+            y: event.clientY,
+            duration: 0.5,
+            ease: 'linear'
+        });
+    });
+
+    // Make the circle pulse slightly
+    gsap.to(circle, {
+        scale: 1.2,
+        repeat: -1,
+        yoyo: true,
+        duration: 2,
+        ease: 'easeInOut'
+    });
+
+    const numCols = Math.ceil(window.innerWidth / 10);
+    const numRows = Math.ceil(window.innerHeight / 16);
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-= ";
+
+    for (let i = 0; i < numCols; i++) {
+        for (let j = 0; j < numRows; j++) {
+            const charSpan = document.createElement('span');
+            charSpan.textContent = characters[Math.floor(Math.random() * characters.length)];
+            charSpan.style.left = `${i * 10}px`;
+            charSpan.style.top = `${j * 16}px`;
+            matrixContainer.appendChild(charSpan);
+        }
+    }
+
+    function updateMatrix() {
+        const spans = matrixContainer.querySelectorAll('span');
+        spans.forEach(span => {
+            span.textContent = characters[Math.floor(Math.random() * characters.length)];
+        });
+    }
+
+    setInterval(updateMatrix, 1000);
+</script>
+</body>
+</html>
