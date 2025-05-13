@@ -1,4 +1,4 @@
-import '../../events/events-container.js';
+import '../../src/events/events-container.js';
 import '../../src/friends/friends-container.js';
 import '../../src/profile/profile-container.js';
 import '../settings-container.js';

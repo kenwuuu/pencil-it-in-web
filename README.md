@@ -66,7 +66,7 @@ The main libraries that this project uses are:
             ```html
             <div
                     class="prose page-container"
-                    hx-get="events/mock_data/events_data.html"
+                    hx-get="src/events/mock_data/events_data.html"
                     hx-trigger="load"
                     hx-target=".events-agenda"
             >
