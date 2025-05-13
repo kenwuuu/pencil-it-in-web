@@ -1,4 +1,4 @@
-import {supabase} from './supabase-client/supabase-client.js';
+import {supabase} from '../../supabase-client/supabase-client.js';
 
 /**
  * Logs in with email & password.

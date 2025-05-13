@@ -1,5 +1,5 @@
 import {supabase} from "../../supabase-client/supabase-client.js";
-import {email, password} from "../../../../constants.js";
+import {email, password} from "../../../constants.js";
 
 const edge_function_name = 'hello-world';
 

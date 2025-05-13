@@ -1,5 +1,5 @@
 import {supabase} from "../supabase-client/supabase-client.js";
-import {email, password, queryingUserId} from "../../../constants.js";
+import {email, password, queryingUserId} from "../../constants.js";
 
 const stored_procedure_name = 'get_upcoming_events';
 

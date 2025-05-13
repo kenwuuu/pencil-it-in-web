@@ -39,14 +39,6 @@ The homepage for the site is `/events.html` but the landing page is
 
 All developer code exists within `src`, anything outside of it is automatically generated.
 
-Most folders in `src` are frontend files (HTML/CSS), so yes, `auth` is related to the
-login page, not the auth service, that would be in `services`.
-
-All non-frontend folders are listed below:
-
-- All business logic exists within `services`.
-- `demos` contain some JS animation demos we're playing with.
-
 ## Frontend
 
 The main libraries that this project uses are:
