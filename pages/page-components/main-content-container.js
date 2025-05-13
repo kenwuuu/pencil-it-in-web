@@ -1,5 +1,5 @@
 import '../../events/events-container.js';
-import '../friends-container.js';
+import '../../src/friends/friends-container.js';
 import '../profile-container.js';
 import '../settings-container.js';
 

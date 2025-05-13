@@ -1,4 +1,4 @@
-import './page-components/action-menu/friends.js';
+import './friends-action-menu.js';
 
 class FriendsContainer extends HTMLElement {
     connectedCallback() {
@@ -6,7 +6,7 @@ class FriendsContainer extends HTMLElement {
       <div class="flex">
         <div
           class="page-container"
-          hx-get="src/mock_data/friends.html"
+          hx-get="src/friends/mock_data/friends.html"
           hx-trigger="load"
           hx-target=".friends-list"
         >
