@@ -1,5 +1,5 @@
 import {supabase} from "./supabase-client/supabase-client.js";
-import {queryingUserId} from "../constants.js";
+import {queryingUserId} from "../../constants.js";
 
 
 export async function createEvent(eventData) {
