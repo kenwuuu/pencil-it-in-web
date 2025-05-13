@@ -1,5 +1,5 @@
 import '../pages/page-components/action-menu/events.js';
-import './create-event.js'
+import './event-creation-component.js'
 import '../services/get-upcoming-events.js'
 import {supabase} from "../services/supabase-client/supabase-client.js";
 import {format, parseISO} from 'date-fns';

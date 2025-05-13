@@ -1,6 +1,6 @@
 import {supabase} from "../services/supabase-client/supabase-client.js";
 
-class CreateEvent extends HTMLElement {
+class EventCreationComponent extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
             <div class="page-container flex">
@@ -97,4 +97,4 @@ document.addEventListener('DOMContentLoaded', () => {
 console.log('look: ' + JSON.stringify(supabase.auth.getUser()))
 
 
-customElements.define('create-event', CreateEvent);
+customElements.define('create-event', EventCreationComponent);
