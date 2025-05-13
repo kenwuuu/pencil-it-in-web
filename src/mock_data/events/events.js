@@ -1,4 +1,4 @@
-import {Events} from "../../repositories/events.js";
+import {Events} from "../../../repositories/events.js";
 
 '../../repositories/events.js'
 
