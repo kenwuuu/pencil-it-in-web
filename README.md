@@ -1,3 +1,8 @@
+# General Knowledge
+
+- API keys in the repo are public keys so they're fine to stay out
+- Example API calls using the Supabase JS library are in `services/examples/edge-functions
+
 # Setting up
 
 Install libraries.
