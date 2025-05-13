@@ -1,4 +1,4 @@
-import '../pages/page-components/action-menu/events.js';
+import './events-action-menu.js';
 import './event-creation-component.js'
 import '../services/get-upcoming-events.js'
 import {supabase} from "../services/supabase-client/supabase-client.js";

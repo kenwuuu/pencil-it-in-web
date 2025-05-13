@@ -1,4 +1,4 @@
-class Events extends HTMLElement {
+class EventsActionMenu extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
     <ul class="menu menu-xl w-80 bg-base-200 lg:menu-vertical rounded-box"
@@ -16,4 +16,4 @@ class Events extends HTMLElement {
     }
 }
 
-customElements.define('events-action-menu', Events);
+customElements.define('events-action-menu', EventsActionMenu);
