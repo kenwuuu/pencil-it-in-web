@@ -2,6 +2,10 @@
 
 - API keys in the repo are public keys so they're fine to stay out
 - Example API calls using the Supabase JS library are in `services/examples/edge-functions
+- When renaming or moving files that use HTMX or are used by a file that uses HTMX, you have
+  to refactor manually. Jetbrains refactor doesn't catch the strings. See `friends-container.js`
+  and the mock data file `friends.html`. The JS file calls `friends.html` but if you move
+  `friends.html`, `friends-container.js doesn't get updated with the new pathname.
 
 # Setting up
 
