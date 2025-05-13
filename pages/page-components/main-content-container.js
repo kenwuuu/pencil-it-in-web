@@ -1,6 +1,6 @@
 import '../../events/events-container.js';
 import '../../src/friends/friends-container.js';
-import '../profile-container.js';
+import '../../src/profile/profile-container.js';
 import '../settings-container.js';
 
 class MainContentContainer extends HTMLElement {
