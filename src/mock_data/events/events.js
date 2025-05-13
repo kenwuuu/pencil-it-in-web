@@ -1,4 +1,4 @@
-import {Events} from "../../../repositories/events.js";
+import {EventsService} from "../../../events/eventsService.js";
 
 '../../repositories/events.js'
 
@@ -80,7 +80,7 @@ const mockEvents = [
     }
 ]
 
-export const events = new Events();
+export const events = new EventsService();
 
 events.loadMockData(mockEvents);
 

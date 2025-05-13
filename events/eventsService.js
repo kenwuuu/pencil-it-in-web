@@ -1,7 +1,7 @@
 // import {createEvent, deleteEvent, getEvents, updateEvent} from './eventService.js';
 
 
-export class Events {
+export class EventsService {
     constructor() {
         this.events = [];
 
