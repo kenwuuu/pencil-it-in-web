@@ -6,7 +6,7 @@ class FriendsContainer extends HTMLElement {
       <div class="flex">
         <div
           class="page-container"
-          hx-get="mocks/friends.html"
+          hx-get="mock_data/friends.html"
           hx-trigger="load"
           hx-target=".friends-list"
         >
@@ -15,7 +15,7 @@ class FriendsContainer extends HTMLElement {
           </div>
           <div class="friends-list not-prose"></div>
         </div>
-        <friends-action-menu src="mocks/action_menu/friends.html"></friends-action-menu>
+        <friends-action-menu src="mock_data/action_menu/friends.html"></friends-action-menu>
       </div>
     `;
     }
