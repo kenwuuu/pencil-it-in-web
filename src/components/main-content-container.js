@@ -1,7 +1,7 @@
-import '../../src/events/events-container.js';
-import '../../src/friends/friends-container.js';
-import '../../src/profile/profile-container.js';
-import '../../src/settings/settings-container.js';
+import '../events/events-container.js';
+import '../friends/friends-container.js';
+import '../profile/profile-container.js';
+import '../settings/settings-container.js';
 
 class MainContentContainer extends HTMLElement {
     connectedCallback() {
