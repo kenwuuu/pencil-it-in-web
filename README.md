@@ -26,6 +26,11 @@ npm run dev
 
 Todo: I have some linters and formatters installed. Explain how to use them.
 
+## Create an account
+
+After creating an account, navigate to `/events.html`. Todo: redirect after log in and sign up.
+Then, contact Ken for credentials to put into `constants.js`.
+
 # Project Structure
 
 This project is structured very much like a standard, vanilla HTML/CSS/JS
