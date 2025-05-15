@@ -1,3 +1,10 @@
+# pencil it in
+
+### pencil it in is the first shared calendar built for friends, not meetings.
+
+pencil it in shows your group’s real-time availability instantly—no invites,
+no back-and-forth, just instant visibility to plan hangouts fast.
+
 # General Knowledge
 
 - API keys in the repo are public keys so they're fine to stay out
@@ -97,7 +104,7 @@ The main libraries that this project uses are:
           <button class="btn btn-primary">
           ```
     - Tailwind CSS: CSS but easier. Again, usage is with class names in HTML
-      elements.
+      elements. Used for more general/specific CSS needs like spacing and sizing.
         ```html
         <div class="flex"
         ```
