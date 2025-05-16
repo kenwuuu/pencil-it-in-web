@@ -1,9 +1,9 @@
-import './page-components/action-menu/events.js';
-import './create-event.js'
-import '../services/get-upcoming-events.js'
-import {supabase} from "../services/supabase-client/supabase-client.js";
+import './events-action-menu.js';
+import './event-creation-component.js'
+import './services/get-upcoming-events.js'
+import {supabase} from "../supabase-client/supabase-client.js";
 import {format, parseISO} from 'date-fns';
-import {getUpcomingEvents} from "../services/get-upcoming-events.js";
+import {getUpcomingEvents} from "./services/get-upcoming-events.js";
 
 class EventsContainer extends HTMLElement {
     connectedCallback() {

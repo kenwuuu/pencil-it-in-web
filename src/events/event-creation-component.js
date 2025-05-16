@@ -1,4 +1,6 @@
-class CreateEvent extends HTMLElement {
+import {supabase} from "../supabase-client/supabase-client.js";
+
+class EventCreationComponent extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
             <div class="page-container flex">
@@ -57,6 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const endTime = eventForm.querySelector('#end_time').value;
         const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1wb3Vua2xuZnJjZnBrZWZpZGZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDIxODE0OTcsImV4cCI6MjA1Nzc1NzQ5N30.wZlH6_dd0WtEVC-BtMXEzcTUgSAIlegqSPnr3dyvjyA';
 
+        console.log(supabase.auth.getUser())
+
         try {
             const response = await fetch('https://mpounklnfrcfpkefidfn.supabase.co/rest/v1/events', {
                 method: 'POST',
@@ -67,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: JSON.stringify({
                     title: title,
-                    host: '584850d8-59d1-4f48-b83d-85d97bd4dee6',
+                    user_id: supabase.auth.uid,
                     start_time: startTime,
                     end_time: endTime
                 })
@@ -89,4 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-customElements.define('create-event', CreateEvent);
+
+console.log('look: ' + JSON.stringify(supabase.auth.getUser()))
+
+
+customElements.define('create-event', EventCreationComponent);

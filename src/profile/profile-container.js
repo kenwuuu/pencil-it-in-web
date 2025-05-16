@@ -1,9 +1,9 @@
 class ProfileContainer extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `
+    connectedCallback() {
+        this.innerHTML = `
       <div
         class="page-container"
-        hx-get="mocks/profile/profile_data.html"
+        hx-get="src/profile/mock_data/profile_data.html"
         hx-trigger="load"
         hx-target=".profile"
       >
@@ -11,7 +11,7 @@ class ProfileContainer extends HTMLElement {
         <div class="profile"></div>
       </div>
     `;
-  }
+    }
 }
 
 customElements.define('profile-container', ProfileContainer);

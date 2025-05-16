@@ -15,7 +15,7 @@
         <h2
                 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900"
         >
-            Log in to your account
+            Create an account
         </h2>
     </div>
 
@@ -23,10 +23,27 @@
         <form action="#" class="space-y-6" method="POST">
             <div>
                 <label class="block text-sm/6 font-medium text-gray-900" for="email"
+                >First name</label
+                >
+                <div class="mt-2">
+                    <input
+                            aria-label="First name"
+                            autocomplete="given-name"
+                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                            id="first-name"
+                            name="first_name"
+                            type="text"
+                    />
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm/6 font-medium text-gray-900" for="email"
                 >Email address</label
                 >
                 <div class="mt-2">
                     <input
+                            aria-label="Email address"
                             autocomplete="email"
                             class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                             id="email"
@@ -44,17 +61,11 @@
                             for="password"
                     >Password</label
                     >
-                    <div class="text-sm">
-                        <a
-                                class="font-semibold text-indigo-600 hover:text-indigo-500"
-                                href="#"
-                        >Forgot password?</a
-                        >
-                    </div>
                 </div>
                 <div class="mt-2">
                     <input
-                            autocomplete="current-password"
+                            aria-label="Password"
+                            autocomplete="new-password"
                             class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                             id="password"
                             name="password"
@@ -69,7 +80,7 @@
                         class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         type="submit"
                 >
-                    Log in
+                    Create Account
                 </button>
             </div>
         </form>
@@ -77,8 +88,8 @@
         <p class="mt-3 text-center text-sm/6 text-gray-500">
             <a
                     class="font-semibold text-indigo-600 hover:text-indigo-500"
-                    href="/pages/auth/create-account.html"
-            >Create New Account</a
+                    href="src/auth/login.html"
+            >Login</a
             >
         </p>
     </div>
@@ -136,22 +147,23 @@
 </div>
 </body>
 <script type="module">
-    import {loginWithEmailPassword} from "../../services/login.js";
+    import {signUpUser} from './services/signup.js';
 
     document.querySelector('form').addEventListener('submit', async (e) => {
         e.preventDefault();
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
-        const {user, session, error} = await loginWithEmailPassword(email, password);
+        const {user, error} = await signUpUser(email, password);
 
         if (error) {
             alert(`Error: ${error.message}`);
         } else {
-            alert(`Logged in as ${user.email}`);
+            alert(`Signed up as ${user.email}`);
             // redirect or show success
         }
     });
 </script>
+
 <link href="../../style.css" rel="stylesheet" type="text/css"/>
 </html>

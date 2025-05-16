@@ -1,4 +1,4 @@
-class Friends extends HTMLElement {
+class FriendsActionMenu extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
     <ul
@@ -34,4 +34,4 @@ class Friends extends HTMLElement {
     }
 }
 
-customElements.define('friends-action-menu', Friends);
+customElements.define('friends-action-menu', FriendsActionMenu);

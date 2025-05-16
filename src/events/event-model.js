@@ -1,4 +1,4 @@
-export class Event {
+export class EventModel {
     constructor(apiEvent) {
         this.id = apiEvent.id;
         this.title = apiEvent.title;
