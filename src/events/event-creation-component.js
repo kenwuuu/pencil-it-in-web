@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(supabase.auth.getUser())
 
         try {
+            const session = await supabase.auth.getSession()
             const response = await fetch('https://mpounklnfrcfpkefidfn.supabase.co/rest/v1/events', {
                 method: 'POST',
                 headers: {
@@ -71,19 +72,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: JSON.stringify({
                     title: title,
-                    user_id: supabase.auth.uid,
+                    user_id: session.data.session.user.id,
                     start_time: startTime,
                     end_time: endTime
                 })
             });
 
-            const data = await response.json();
+            const responseData = await response.json();
 
-            if (response.ok) {
-                console.log('Event created successfully:', data);
+            if (responseData.ok) {
+                console.log('Event created successfully:', responseData);
                 // Optionally display a success message or redirect the user
             } else {
-                console.error('Error creating event:', data);
+                console.error('Error creating event:', responseData);
                 // Optionally display an error message to the user
             }
         } catch (error) {
