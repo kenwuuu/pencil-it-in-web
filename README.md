@@ -13,6 +13,7 @@ no back-and-forth, just instant visibility to plan hangouts fast.
   to refactor manually. Jetbrains refactor doesn't catch the strings. See `friends-container.js`
   and the mock data file `friends.html`. The JS file calls `friends.html` but if you move
   `friends.html`, `friends-container.js doesn't get updated with the new pathname.
+- Icons are from Material Design, for a library, see: https://pictogrammers.com/library/mdi/
 
 # Setting up
 

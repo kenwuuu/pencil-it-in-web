@@ -1,6 +1,6 @@
 class SidebarMenu extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `
+    connectedCallback() {
+        this.innerHTML = `
       <ul class="menu menu-xl w-80 bg-base-200 lg:menu-vertical rounded-box" x-data="{ current_page: window.location.pathname }">
         <li>
           <a 
@@ -51,7 +51,7 @@ class SidebarMenu extends HTMLElement {
         </li>
       </ul>
     `;
-  }
+    }
 }
 
 customElements.define('sidebar-menu', SidebarMenu);
