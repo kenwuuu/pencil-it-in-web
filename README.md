@@ -10,7 +10,6 @@ no back-and-forth, just instant visibility to plan hangouts fast.
 ## General Knowledge
 
 - API keys in the repo are public keys so they're fine to stay out.
-- API keys in the repo are public keys so they're fine to stay out.
 - Example API calls using the Supabase JS library are in `services/examples/edge-functions
 - When renaming or moving files that use HTMX or are used by a file that uses HTMX, you have
   to refactor manually. Jetbrains refactor doesn't catch the strings. See `friends-container.js`
@@ -25,7 +24,7 @@ no back-and-forth, just instant visibility to plan hangouts fast.
 ### Run the Project
 
 Create `constants.js` in the root directory and fill in the appropriate
-variables, particularly `queryingUserId`. Look to `constants-example.js` for reference.
+variables. Look to `constants-example.js` for reference.
 Contact Ken for necessary credentials.
 
 Install libraries.
