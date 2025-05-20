@@ -13,6 +13,10 @@ no back-and-forth, just instant visibility to plan hangouts fast.
   to refactor manually. Jetbrains refactor doesn't catch the strings. See `friends-container.js`
   and the mock data file `friends.html`. The JS file calls `friends.html` but if you move
   `friends.html`, `friends-container.js doesn't get updated with the new pathname.
+- JetBrains IDEs don't format the HTML inside of JS functions. So if you make a new
+  (Web Component) component, format the HTML with an online formatter and then paste it back in.
+  I use [this site](https://www.freeformatter.com/html-formatter.html#before-output). I use 2
+  spaces to save space because HTML is indent-heavy.
 
 # Setting up
 
