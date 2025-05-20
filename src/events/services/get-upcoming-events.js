@@ -1,5 +1,4 @@
 import {supabase} from "../../supabase-client/supabase-client.js";
-import {queryingUserId} from "../../../constants.js";
 
 
 export async function createEvent(eventData) {
@@ -7,8 +6,10 @@ export async function createEvent(eventData) {
 }
 
 export async function getUpcomingEvents() {
+    const session = await supabase.auth.getSession()
+
     const {data: rpcData, error: rpcError} = await supabase.rpc('get_upcoming_events', {
-        querying_user_id: queryingUserId
+        querying_user_id: session.data.session.user.id
     });
 
     if (rpcError) {
@@ -25,7 +26,7 @@ export async function getUpcomingEvents() {
 
 export async function getPastEvents() {
     const {data: rpcData, error: rpcError} = await supabase.rpc('get_past_events', {
-        querying_user_id: queryingUserId
+        querying_user_id: session.data.session.user.id
     });
 
     if (rpcError) {
