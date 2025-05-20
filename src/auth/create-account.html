@@ -159,8 +159,7 @@
         if (error) {
             alert(`Error: ${error.message}`);
         } else {
-            alert(`Signed up as ${user.email}`);
-            // redirect or show success
+            window.location.href = '/events';
         }
     });
 </script>

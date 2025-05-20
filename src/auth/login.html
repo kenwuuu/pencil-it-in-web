@@ -143,13 +143,12 @@
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
-        const {user, session, error} = await loginWithEmailPassword(email, password);
+        const {error} = await loginWithEmailPassword(email, password);
 
         if (error) {
             alert(`Error: ${error.message}`);
         } else {
-            alert(`Logged in as ${user.email}`);
-            // redirect or show success
+            window.location.href = '/events';
         }
     });
 </script>
