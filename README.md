@@ -5,16 +5,27 @@
 pencil it in shows your group’s real-time availability instantly—no invites,
 no back-and-forth, just instant visibility to plan hangouts fast.
 
-# General Knowledge
+# Onboarding
 
-- API keys in the repo are public keys so they're fine to stay out
+## General Knowledge
+
+- API keys in the repo are public keys so they're fine to stay out.
 - Example API calls using the Supabase JS library are in `services/examples/edge-functions
 - When renaming or moving files that use HTMX or are used by a file that uses HTMX, you have
   to refactor manually. Jetbrains refactor doesn't catch the strings. See `friends-container.js`
   and the mock data file `friends.html`. The JS file calls `friends.html` but if you move
   `friends.html`, `friends-container.js doesn't get updated with the new pathname.
+- `queryingUserId` in `constants.js` is a private key needed to interact with the Supabase db.
+- `tsconfig.json` will throw an error since there are currently no TypeScript files in `src`.
+  You may ignore this. TODO (#44): Migrate some code over to TypeScript.
 
-# Setting up
+## Setting Up
+
+### Run the Project
+
+Create `constants.js` in the root directory and fill in the appropriate
+variables. Look to `constants-example.js` for reference.
+Contact Ken for necessary credentials.
 
 Install libraries.
 
@@ -28,30 +39,31 @@ Run the site.
 npm run dev
 ```
 
-Todo: I have some linters and formatters installed. Explain how to use them.
+The compiler will then tell you where to access the site: typically `https://localhost:5173`.
 
-## Create an account
+TODO (#50): We have some linters and formatters installed. Explain how to use them.
 
-After creating an account, navigate to `/events.html`. Todo: redirect after log in and sign up.
-Then, contact Ken for credentials to put into `constants.js`.
+### Create an account
 
-# Project Structure
+After creating an account, navigate to `/events.html`. 
+
+## Project Structure
 
 This project is structured very much like a standard, vanilla HTML/CSS/JS
 website. It shouldn't be hard to learn or painful like using React. Everything
 you remember from playing around in HTML should carry over. Below are the
 little catches and differences between this and a vanilla HTML site.
 
-## General
+### General
 
-The homepage for the site is `/events.html` but the landing page is
+The homepage for the site is `/events.html`, but the landing page is
 `/` or `index.html` which also contains the sign in button right now.
 
-## Folder structure
+### Folder structure
 
-All developer code exists within `src`, anything outside of it is automatically generated.
+All developer code exists within `src`; anything outside of it is automatically generated.
 
-## Frontend
+#### Frontend
 
 The main libraries that this project uses are:
 
@@ -94,8 +106,7 @@ The main libraries that this project uses are:
                     <create-event x-show="is_creating_new_event"></create-event>
                 </div>
             ```
-    - Vite: honestly no idea what this does. I think it makes running a local
-      server a lot easier
+    - Vite: New React Builder that doesn't require to recompile everytime you change code.
     - Svelte: potential future addition. A frontend framework that encompasses
       page navigation, state management, and components, much like React or Angular.
       But I hear it's easier and better, also faster loads.
@@ -113,12 +124,11 @@ The main libraries that this project uses are:
         <div class="flex"
         ```
 
-## Backend
+#### Backend
 
-The backend and the database are on Supabase, an open source, relational DB
+The backend and the database are on Supabase: an open source, relational DB
 alternative to Firebase. This site is mostly a frontend project since
-all it's really doing is serving a list of events to people lmao so
-I don't have much to say rn
+all it's really doing is serving a list of events to people.
 
 For testing calls to the backend, I like to just open `supabase-client.js`
 and write my JS call right underneath the client instantiation. For example,
