@@ -6,7 +6,7 @@ class FriendsContainer extends HTMLElement {
         this.innerHTML = `
       <main class="flex" x-data=" { is_searching_for_friends: false }">
         <div
-          class="page-container flex-1"
+          class="page-container flex-1 px-8 sm:px-16"
           hx-get="src/friends/mock_data/friends.html"
           hx-trigger="load"
           hx-target=".friends-list"

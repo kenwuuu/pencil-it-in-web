@@ -3,7 +3,7 @@ import {supabase} from "../supabase-client/supabase-client.js";
 class EventCreationComponent extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-            <div class="page-container flex">
+            <div class="page-container flex px-8 sm:px-16">
                 <button class="btn btn-lg mr-4"
                         x-on:click=" is_creating_new_event = !is_creating_new_event ">
                     <span class="iconify" data-icon="mdi-arrow-left-thick"></span>

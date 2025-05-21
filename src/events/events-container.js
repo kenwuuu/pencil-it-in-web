@@ -11,7 +11,7 @@ class EventsContainer extends HTMLElement {
         <div class="flex"
           x-data=" { is_creating_new_event: false  }">
           <div
-            class="page-container flex-1"
+            class="page-container flex-1 px-8 sm:px-16"
             hx-trigger="load"
             hx-target=".events-agenda"
             >
