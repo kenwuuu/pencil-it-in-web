@@ -65,7 +65,7 @@ class EventsContainer extends HTMLElement {
                 </div>
               </div>
             </template>
-            <create-event x-show="is_creating_new_event"></create-event>
+            <event-creation-component x-show="is_creating_new_event"></event-creation-component>
           </div>
           <events-action-menu></events-action-menu>
         </div>

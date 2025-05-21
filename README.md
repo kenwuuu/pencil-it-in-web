@@ -48,7 +48,7 @@ TODO (#50): We have some linters and formatters installed. Explain how to use th
 
 ### Create an account
 
-After creating an account, navigate to `/events.html`. 
+After creating an account, navigate to `/events.html`.
 
 ## Project Structure
 
@@ -102,11 +102,11 @@ The main libraries that this project uses are:
       For example,
       it lets us hide HTML elements based on navbar menu selections. Normally,
       that would be something that would require us to use JS.
-        - The code below from `events-container.js` shows the `<create-event>`
+        - The code below from `events-container.js` shows the `<event-creation-component>`
           component if `is_creating_new_event` is true.
             ```html
                 <div class="flex" x-data=" { is_creating_new_event: false  }">
-                    <create-event x-show="is_creating_new_event"></create-event>
+                    <event-creation-component x-show="is_creating_new_event"></event-creation-component>
                 </div>
             ```
     - Vite: New React Builder that doesn't require to recompile everytime you change code.
