@@ -46,9 +46,33 @@ The compiler will then tell you where to access the site: typically `https://loc
 
 TODO (#50): We have some linters and formatters installed. Explain how to use them.
 
+### View locally hosted site on phone
+
+**1. Get Your Computer’s Local IP Address**
+
+- **macOS/Linux**: Run in terminal:
+  `ifconfig | grep inet`
+
+  Look for something like `192.168.x.x` under `en0` or `wlan0`.
+- **Windows**: Run in Command Prompt:
+  `ipconfig`
+
+  Look for IPv4 Address — something like `192.168.1.42`
+
+**2. Start Your Server to Bind to 0.0.0.0**
+
+`npx vite --host`
+
+**3. Access on Phone**
+
+Navigate to: `http://<your-computer-ip>:<port>`
+Example: `http://192.168.1.42:5173`
+
 ### Create an account
 
-After creating an account, navigate to `/events.html`. 
+Create an account at `/index.html`.
+
+After creating an account, navigate to `/events.html`.
 
 ## Project Structure
 
