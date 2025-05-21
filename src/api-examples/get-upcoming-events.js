@@ -1,10 +1,17 @@
+/**
+ * @file get-upcoming-events.js
+ * @description Script to call the `get_upcoming_events` stored procedure
+ *              in Supabase using the given email and password. Should list
+ *              out that user's upcoming events, with related info.
+ */
+
+import 'dotenv/config';
 import {supabase} from "../supabase-client/supabase-client.js";
-import {email, password} from "../../constants.js";
+import {email, password} from "./credentials.js";
 
 const stored_procedure_name = 'get_upcoming_events';
 
-
-const {data: signInData, error: signInError} = await supabase.auth.signInWithPassword({
+const { error: signInError } = await supabase.auth.signInWithPassword({
     email: email,
     password: password,
 });

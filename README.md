@@ -26,8 +26,8 @@ no back-and-forth, just instant visibility to plan hangouts fast.
 
 ### Run the Project
 
-Create `constants.js` in the root directory and fill in the appropriate
-variables. Look to `constants-example.js` for reference.
+Create `.env` in the root directory and fill in the appropriate
+values. Look to `.env.example` for reference.
 Contact Ken for necessary credentials.
 
 Install libraries.
@@ -152,3 +152,6 @@ export async function signUpUser(email, password) {
 
 const {user, session, error} = signUpUser('matriax1@gmail.com', 'password');
 ```
+
+We also have some api calls in `src/api-examples` that you can use to directly run stored 
+procedures in Supabase. Read `src/api-examples/README.md` for more info.
