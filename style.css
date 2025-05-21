@@ -1,53 +1,49 @@
 @import 'tailwindcss';
 
 @plugin "daisyui" {
-  themes:
-    light --default,
+    themes: light --default,
     dark --prefersdark,
     cupcake;
 }
 @plugin "@tailwindcss/typography";
 
-#body-container {
-  @apply m-16 mx-auto max-w-[90rem] flex;
-}
 
 #main-container {
-  @apply mx-auto;
+    @apply mx-auto;
 }
 
 #header {
-  @apply sticky top-0;
+    @apply sticky top-0;
 }
 
 #header-menu {
-  @apply navbar bg-base-100 shadow-sm;
+    @apply navbar bg-base-100 shadow-sm;
 }
 
 #website-logo-container {
-  @apply navbar-center;
+    @apply navbar-center;
 }
 
 #navbar-logo {
-  @apply btn btn-ghost text-xl;
+    @apply btn btn-ghost text-xl;
 }
 
 #navbar-user-icon {
-  @apply navbar-end dropdown dropdown-end;
+    @apply navbar-end dropdown dropdown-end;
 }
 
 #main-content-container {
-  @apply flex flex-1;
+    @apply flex flex-1;
 }
 
 .page-container {
-  @apply px-16;
+    @apply px-16;
 }
 
 .event-item {
-  @apply card;
+    @apply card;
 }
 
 .fieldset-legend {
-  font-size: 20px;
+    font-size: 20px;
 }

@@ -8,23 +8,23 @@ import {getUpcomingEvents} from "./services/get-upcoming-events.js";
 class EventsContainer extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-        <div class="flex" 
+        <div class="flex"
           x-data=" { is_creating_new_event: false  }">
           <div
-            class="prose page-container"
+            class="page-container flex-1"
             hx-trigger="load"
             hx-target=".events-agenda"
             >
-            <div id="page-header" class="flex">
+            <header class="prose flex">
               <h1 x-text="capitalize(page)" class="flex-1"></h1>
               <div class="join">
                 <button class="btn join-item">All Events</button>
                 <button class="btn join-item">My Events</button>
               </div>
-            </div>
-            <div class="events-agenda not-prose" x-show="!is_creating_new_event"></div>
+            </header>
+            <div class="events-agenda not-prose flex-1" x-show="!is_creating_new_event"></div>
             <template class="event-card-template">
-              <div class="card w-[32rem] bg-base-100 shadow-sm mb-5">
+              <div class="card min-w-[32rem] bg-base-100 shadow-sm mb-5">
                 <div class="card-body">
                   <div class="event-datetime flex justify-between">
                     <h2 class="event-date text-3xl">April 20th, 2025</h2>
@@ -65,7 +65,7 @@ class EventsContainer extends HTMLElement {
                 </div>
               </div>
             </template>
-            <event-creation-component x-show="is_creating_new_event"></event-creation-component>
+            <event-creation-component class="flex-1" x-show="is_creating_new_event"></event-creation-component>
           </div>
           <events-action-menu></events-action-menu>
         </div>
