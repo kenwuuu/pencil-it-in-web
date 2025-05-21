@@ -38,6 +38,7 @@
     "@capacitor/ios": "^7.2.0",
     "@supabase/supabase-js": "^2.49.4",
     "date-fns": "^4.1.0",
+    "dotenv": "^16.5.0",
     "gsap": "^3.12.7",
     "husky": "^9.1.7",
     "tailwind": "^4.0.0",

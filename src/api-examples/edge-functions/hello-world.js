@@ -1,17 +1,13 @@
+/**
+ * @file hello-world.js
+ * @description Script to call the `hello-world` stored procedure
+ *              in Supabase. Just a test procedure.
+ */
+
+import 'dotenv/config';
 import {supabase} from "../../supabase-client/supabase-client.js";
-import {email, password} from "../../../constants.js";
 
 const edge_function_name = 'hello-world';
-
-
-const {data: signInData, error: signInError} = await supabase.auth.signInWithPassword({
-    email: email,
-    password: password,
-});
-
-if (signInError) {
-    console.error('Sign-in error:', signInError);
-}
 
 const {data: rpcData, error: rpcError} = await supabase.functions.invoke(edge_function_name, {
     body: {name: "ken"}
