@@ -32,10 +32,6 @@
     @apply navbar-end dropdown dropdown-end;
 }
 
-#main-content-container {
-    @apply flex flex-1;
-}
-
 .page-container {
     @apply px-16;
 }

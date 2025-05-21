@@ -1,25 +1,26 @@
 <!doctype html>
 <html data-theme="cupcake" lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <link href="/vite.svg" rel="icon" type="image/svg+xml"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Events - Pencil It In</title>
+  <meta charset="UTF-8"/>
+  <link href="/vite.svg" rel="icon" type="image/svg+xml"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Events - Pencil It In</title>
 </head>
 
 <body>
 <div id="main-container mx-auto" x-data="{ page: 'friends' }">
-    <site-header></site-header>
-    <div class="m-16 mx-auto max-w-[90rem] flex" id="body-container">
-        <bottom-menu class="block md:hidden"></bottom-menu>
-        <sidebar-menu class="hidden md:block"></sidebar-menu>
-        <!--    todo fix title so that it correctly passes in 'page' from x-data -->
-        <main-content-container
-                id="main-content-container"
-                x-data="{ capitalize(str) { return str.charAt(0).toUpperCase() + str.slice(1) } }"
-        >
-        </main-content-container>
-    </div>
+  <site-header></site-header>
+  <div class="sm:m-16 m-4 mx-auto max-w-[90rem] flex" id="body-container">
+    <bottom-menu class="block md:hidden"></bottom-menu>
+    <sidebar-menu class="hidden md:block"></sidebar-menu>
+    <!--    todo fix title so that it correctly passes in 'page' from x-data -->
+    <main-content-container
+        class="flex flex-1"
+        id="main-content-container"
+        x-data="{ capitalize(str) { return str.charAt(0).toUpperCase() + str.slice(1) } }"
+    >
+    </main-content-container>
+  </div>
 </div>
 </body>
 
@@ -30,14 +31,14 @@
 <script src="/src/components/sidebar-menu.js" type="module"></script>
 <script src="/src/components/bottom-menu.js" type="module"></script>
 <script
-        src="/src/components/main-content-container.js"
-        type="module"
+    src="/src/components/main-content-container.js"
+    type="module"
 ></script>
 <!--  external scripts  -->
 <script src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
 <script
-        defer
-        src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    defer
+    src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
 ></script>
 <script src="libs/htmx.min.js"></script>
 </html>
