@@ -95,7 +95,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-console.log('look: ' + JSON.stringify(supabase.auth.getUser()))
-
-
 customElements.define('event-creation-component', EventCreationComponent);
