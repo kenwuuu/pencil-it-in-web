@@ -24,16 +24,16 @@ class EventsContainer extends HTMLElement {
             </header>
             <div class="events-agenda not-prose flex-1" x-show="!is_creating_new_event"></div>
             <template class="event-card-template">
-              <div class="card min-w-[32rem] bg-base-100 shadow-sm mb-5">
+              <div class="card bg-base-100 shadow-sm mb-5">
                 <div class="card-body">
                   <div class="event-datetime flex justify-between">
-                    <h2 class="event-date text-3xl">April 20th, 2025</h2>
-                    <span class="event-time badge badge-soft badge-xl badge-success"
+                    <h2 class="event-date sm:text-3xl text-xl">April 20th, 2025</h2>
+                    <span class="event-time badge badge-soft badge-lg sm:badge-xl badge-success"
                       >4:00pm</span
                       >
                   </div>
                   <div class="title-container flex">
-                    <h2 class="title text-2xl font-bold">
+                    <h2 class="title text-xl sm:text-xl font-bold">
                       an obnoxiously long title because people suck and try to make my life
                       hard
                     </h2>
@@ -44,20 +44,20 @@ class EventsContainer extends HTMLElement {
                     veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
                     commodo consequat
                   </div>
-                  <div class="participants flex justify-between">
-                    <span class="host-user btn btn-md btn-outline btn-info"
+                  <div class="participants sm:flex justify-between">
+                    <span class="host-user btn btn-md btn-outline btn-info mb-2 sm:mb-0"
                       >Host: Francesca</span
                       >
-                    <div class="attendance join">
-                      <button class="yes-button btn btn-md btn-outline btn-success join-item">
+                    <div class="attendance join flex">
+                      <button class="yes-button btn flex-1/4 sm:flex-none btn-md btn-outline btn-success join-item">
                       Yes: 12
                       </button>
                       <button
-                        class="maybe-button btn btn-md btn-outline btn-warning join-item"
+                        class="maybe-button btn flex-1/3 sm:flex-none btn-md btn-outline btn-warning join-item"
                         >
                       Maybe: 22
                       </button>
-                      <button class="no-button btn btn-md btn-outline btn-error join-item">
+                      <button class="no-button flex-1/4 sm:flex-none block btn btn-md btn-outline btn-error join-item">
                       No: 2
                       </button>
                     </div>
