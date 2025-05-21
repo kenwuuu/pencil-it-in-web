@@ -1,5 +1,5 @@
 import {supabase} from "../supabase-client/supabase-client.js";
-import {email, password, queryingUserId} from "../../constants.js";
+import {email, password} from "../../constants.js";
 
 const stored_procedure_name = 'get_upcoming_events';
 
@@ -13,8 +13,10 @@ if (signInError) {
     console.error('Sign-in error:', signInError);
 }
 
+const session = await supabase.auth.getSession()
+
 const {data: rpcData, error: rpcError} = await supabase.rpc(stored_procedure_name, {
-    querying_user_id: queryingUserId
+    querying_user_id: session.data.session.user.id
 });
 
 if (rpcError) {
