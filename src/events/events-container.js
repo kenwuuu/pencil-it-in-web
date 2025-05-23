@@ -44,8 +44,8 @@ class EventsContainer extends HTMLElement {
                     veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
                     commodo consequat
                   </div>
-                  <div class="participants sm:flex justify-between">
-                    <span class="host-user btn btn-md btn-outline btn-info mb-2 sm:mb-0"
+                  <div class="participants md:flex justify-between">
+                    <span class="host-user btn btn-md btn-outline btn-info mb-2 md:mb-0"
                       >Host: Francesca</span
                       >
                     <div class="attendance join flex">
