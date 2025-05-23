@@ -15,7 +15,7 @@ class EventsContainer extends HTMLElement {
             hx-trigger="load"
             hx-target=".events-agenda"
             >
-            <header class="space-y-4">
+            <header class="space-y-4 my-4">
               <div class="flex">
                 <div class="prose">
                   <h1 x-text="capitalize(page)"></h1>
