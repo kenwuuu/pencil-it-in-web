@@ -16,7 +16,10 @@ class EventsContainer extends HTMLElement {
             hx-target=".events-agenda"
             >
             <header class="prose">
-              <h1 x-text="capitalize(page)"></h1>
+              <div class="flex">
+                <h1 x-text="capitalize(page)"></h1>
+                <events-action-menu class="ml-auto block md:hidden"></events-action-menu>
+              </div>
               <div class="join mb-4 w-full">
                 <button class="btn join-item flex-1">All Events</button>
                 <button class="btn join-item flex-1">My Events</button>
@@ -67,7 +70,7 @@ class EventsContainer extends HTMLElement {
             </template>
             <event-creation-component class="flex-1" x-show="is_creating_new_event"></event-creation-component>
           </div>
-          <events-action-menu class="hidden sm:block"></events-action-menu>
+          <events-action-menu class="hidden md:block"></events-action-menu>
         </div>
     `;
     }
