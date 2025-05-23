@@ -23,7 +23,7 @@ class FriendsActionMenu extends HTMLElement {
           New Requests
         </a>
       </li>
-      <li>
+      <li x-on:click=" is_searching_for_friends = true ">
         <a class="sidebar-menu-item">
           <span class="iconify" data-icon="mdi-search"></span>
           Search

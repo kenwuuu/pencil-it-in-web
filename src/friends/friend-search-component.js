@@ -1,11 +1,11 @@
 import {supabase} from "../supabase-client/supabase-client.js";
 
-class EventCreationComponent extends HTMLElement {
+class FriendSearchComponent extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
             <div class="page-container flex">
                 <button class="btn btn-lg mr-4"
-                        x-on:click=" is_creating_new_event = !is_creating_new_event ">
+                        x-on:click=" is_searching_for_friends = !is_searching_for_friends ">
                     <span class="iconify" data-icon="mdi-arrow-left-thick"></span>
                 </button>
                 <div class="container mx-auto p-6 bg-white shadow-md rounded-md w-96">
@@ -95,4 +95,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-customElements.define('event-creation-component', EventCreationComponent);
+customElements.define('friend-search-component', FriendSearchComponent);
