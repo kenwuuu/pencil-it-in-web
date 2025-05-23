@@ -15,11 +15,11 @@ class EventsContainer extends HTMLElement {
             hx-trigger="load"
             hx-target=".events-agenda"
             >
-            <header class="prose flex">
-              <h1 x-text="capitalize(page)" class="flex-1"></h1>
-              <div class="join">
-                <button class="btn join-item">All Events</button>
-                <button class="btn join-item">My Events</button>
+            <header class="prose">
+              <h1 x-text="capitalize(page)"></h1>
+              <div class="join mb-4 w-full">
+                <button class="btn join-item flex-1">All Events</button>
+                <button class="btn join-item flex-1">My Events</button>
               </div>
             </header>
             <div class="events-agenda not-prose flex-1" x-show="!is_creating_new_event"></div>
