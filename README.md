@@ -26,8 +26,8 @@ no back-and-forth, just instant visibility to plan hangouts fast.
 
 ### Run the Project
 
-Create `constants.js` in the root directory and fill in the appropriate
-variables. Look to `constants-example.js` for reference.
+Create `.env` in the root directory and fill in the appropriate
+values. Look to `.env.example` for reference.
 Contact Ken for necessary credentials.
 
 Install libraries.
@@ -46,7 +46,31 @@ The compiler will then tell you where to access the site: typically `https://loc
 
 TODO (#50): We have some linters and formatters installed. Explain how to use them.
 
+### View locally hosted site on phone
+
+**1. Get Your Computer’s Local IP Address**
+
+- **macOS/Linux**: Run in terminal:
+  `ifconfig | grep inet`
+
+  Look for something like `192.168.x.x` under `en0` or `wlan0`.
+- **Windows**: Run in Command Prompt:
+  `ipconfig`
+
+  Look for IPv4 Address — something like `192.168.1.42`
+
+**2. Start Your Server to Bind to 0.0.0.0**
+
+`npx vite --host`
+
+**3. Access on Phone**
+
+Navigate to: `http://<your-computer-ip>:<port>`
+Example: `http://192.168.1.42:5173`
+
 ### Create an account
+
+Create an account at `/index.html`.
 
 After creating an account, navigate to `/events.html`.
 
@@ -152,3 +176,6 @@ export async function signUpUser(email, password) {
 
 const {user, session, error} = signUpUser('matriax1@gmail.com', 'password');
 ```
+
+We also have some api calls in `src/api-examples` that you can use to directly run stored 
+procedures in Supabase. Read `src/api-examples/README.md` for more info.

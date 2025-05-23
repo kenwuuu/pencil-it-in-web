@@ -22,4 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-constants.js
+.env
+src/api-examples/credentials.js
