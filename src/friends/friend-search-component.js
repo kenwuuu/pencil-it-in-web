@@ -3,7 +3,7 @@ import {supabase} from "../supabase-client/supabase-client.js";
 class FriendSearchComponent extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-            <div class="page-container flex px-8 sm:px-16">
+            <div class="page-container flex">
                 <button class="btn btn-lg mr-4"
                         x-on:click=" is_searching_for_friends = !is_searching_for_friends ">
                     <span class="iconify" data-icon="mdi-arrow-left-thick"></span>

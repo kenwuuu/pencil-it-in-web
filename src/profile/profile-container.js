@@ -2,7 +2,7 @@ class ProfileContainer extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
       <div
-        class="page-container px-8 sm:px-16"
+        class="page-container"
         hx-get="src/profile/mock_data/profile_data.html"
         hx-trigger="load"
         hx-target=".profile"

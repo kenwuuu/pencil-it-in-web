@@ -32,6 +32,10 @@
     @apply navbar-end dropdown dropdown-end;
 }
 
+.page-container {
+    @apply px-8 md:px-16;
+}
+
 .event-item {
     @apply card;
 }
