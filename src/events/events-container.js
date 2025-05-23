@@ -67,7 +67,7 @@ class EventsContainer extends HTMLElement {
             </template>
             <event-creation-component class="flex-1" x-show="is_creating_new_event"></event-creation-component>
           </div>
-          <events-action-menu></events-action-menu>
+          <events-action-menu class="hidden sm:block"></events-action-menu>
         </div>
     `;
     }
