@@ -8,8 +8,7 @@ import {getUpcomingEvents} from "./services/get-upcoming-events.js";
 class EventsContainer extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-        <div class="flex"
-          x-data=" { is_creating_new_event: false  }">
+        <div class="flex" x-data=" { is_creating_new_event: false }">
           <div
             class="page-container flex-1"
             hx-trigger="load"
@@ -20,7 +19,7 @@ class EventsContainer extends HTMLElement {
                 <div class="prose">
                   <h1 x-text="capitalize(page)"></h1>
                 </div>
-                <events-action-menu class="ml-auto block xl:hidden"></events-action-menu>
+                <events-action-menu class="action-menu-header-component"></events-action-menu>
               </div>
               <div class="join mb-4 w-full">
                 <button class="btn join-item flex-1">All Events</button>
@@ -72,7 +71,7 @@ class EventsContainer extends HTMLElement {
             </template>
             <event-creation-component class="flex-1" x-show="is_creating_new_event"></event-creation-component>
           </div>
-          <events-action-menu class="hidden xl:block"></events-action-menu>
+          <events-action-menu class="action-menu-side-component"></events-action-menu>
         </div>
     `;
     }
