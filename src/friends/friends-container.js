@@ -21,7 +21,7 @@ class FriendsContainer extends HTMLElement {
           <section class="friends-list" x-show="!is_searching_for_friends"></section>
           <friend-search-component x-show="is_searching_for_friends"></friend-search-component>
         </div>
-        <friends-action-menu src="src/mock_data/action_menu/friends.html" class="hidden xl:block"></friends-action-menu>
+        <friends-action-menu class="action-menu-side-component" src="src/mock_data/action_menu/friends.html" class="hidden xl:block"></friends-action-menu>
       </main>
     `;
   }

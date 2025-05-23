@@ -5,7 +5,7 @@ class EventsActionMenu extends HTMLElement {
         <button class="btn">Create Event</button>
     </div>
     <div class="hidden xl:block">
-        <ul class="menu menu-xl w-80 bg-base-200 menu-vertical rounded-box"
+        <ul class="action-menu"
         x-data="{ current_page: window.location.pathname }">
             <li x-on:click=" is_creating_new_event = true ">
                 <a class="sidebar-menu-item">

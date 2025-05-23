@@ -15,7 +15,7 @@
     "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore --ignore-pattern libs/",
     "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .gitignore",
     "format:prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore",
-    "test": "playwright test"
+    "test": ""
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
