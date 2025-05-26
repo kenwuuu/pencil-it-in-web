@@ -9,32 +9,37 @@ import { downloadICS } from './services/calendar.js';
 class EventsContainer extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-        <div class="flex" 
+        <div class="flex"
           x-data=" { is_creating_new_event: false  }">
           <div
-            class="prose page-container"
+            class="page-container flex-1"
             hx-trigger="load"
             hx-target=".events-agenda"
             >
-            <div id="page-header" class="flex">
-              <h1 x-text="capitalize(page)" class="flex-1"></h1>
-              <div class="join">
-                <button class="btn join-item">All Events</button>
-                <button class="btn join-item">My Events</button>
+            <header class="space-y-4 my-4">
+              <div class="flex">
+                <div class="prose">
+                  <h1 x-text="capitalize(page)"></h1>
+                </div>
+                <events-action-menu class="ml-auto block xl:hidden"></events-action-menu>
               </div>
-            </div>
-            <div class="events-agenda not-prose" x-show="!is_creating_new_event"></div>
+              <div class="join mb-4 w-full">
+                <button class="btn join-item flex-1">All Events</button>
+                <button class="btn join-item flex-1">My Events</button>
+              </div>
+            </header>
+            <div class="events-agenda not-prose flex-1" x-show="!is_creating_new_event"></div>
             <template class="event-card-template">
-              <div class="card w-[32rem] bg-base-100 shadow-sm mb-5">
+              <div class="card bg-base-100 shadow-sm mb-5">
                 <div class="card-body">
                   <div class="event-datetime flex justify-between">
-                    <h2 class="event-date text-3xl">April 20th, 2025</h2>
-                    <span class="event-time badge badge-soft badge-xl badge-success"
+                    <h2 class="event-date sm:text-3xl text-xl">April 20th, 2025</h2>
+                    <span class="event-time badge badge-soft badge-lg sm:badge-xl badge-success"
                       >4:00pm</span
                       >
                   </div>
                   <div class="title-container flex">
-                    <h2 class="title text-2xl font-bold">
+                    <h2 class="title text-xl sm:text-xl font-bold">
                       an obnoxiously long title because people suck and try to make my life
                       hard
                     </h2>
@@ -45,20 +50,20 @@ class EventsContainer extends HTMLElement {
                     veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
                     commodo consequat
                   </div>
-                  <div class="participants flex justify-between">
-                    <span class="host-user btn btn-md btn-outline btn-info"
+                  <div class="participants sm:flex justify-between">
+                    <span class="host-user btn btn-md btn-outline btn-info mb-2 md:mb-0"
                       >Host: Francesca</span
                       >
-                    <div class="attendance join">
-                      <button class="yes-button btn btn-md btn-outline btn-success join-item">
+                    <div class="attendance join flex">
+                      <button class="yes-button btn flex-1/4 sm:flex-none btn-md btn-outline btn-success join-item">
                       Yes: 12
                       </button>
                       <button
-                        class="maybe-button btn btn-md btn-outline btn-warning join-item"
+                        class="maybe-button btn flex-1/3 sm:flex-none btn-md btn-outline btn-warning join-item"
                         >
                       Maybe: 22
                       </button>
-                      <button class="no-button btn btn-md btn-outline btn-error join-item">
+                      <button class="no-button flex-1/4 sm:flex-none block btn btn-md btn-outline btn-error join-item">
                       No: 2
                       </button>
                     </div>
@@ -69,9 +74,9 @@ class EventsContainer extends HTMLElement {
                 </div>
               </div>
             </template>
-            <create-event x-show="is_creating_new_event"></create-event>
+            <event-creation-component class="flex-1" x-show="is_creating_new_event"></event-creation-component>
           </div>
-          <events-action-menu></events-action-menu>
+          <events-action-menu class="hidden xl:block"></events-action-menu>
         </div>
     `;
     }

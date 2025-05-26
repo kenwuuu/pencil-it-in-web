@@ -21,6 +21,14 @@ no back-and-forth, just instant visibility to plan hangouts fast.
   spaces to save space because HTML is indent-heavy.
 - `tsconfig.json` will throw an error since there are currently no TypeScript files in `src`.
   You may ignore this. TODO (#44): Migrate some code over to TypeScript.
+- If you want to have mocks show up in prod build, we currently just put them into `public` because Vite bundles those
+  without any hassle on our end. We should find a way to just bundle all `mock_data` folders though.
+    - Then you just point HTMX to root, like `hx-get="/friends.html"`
+- To test API with Postman:
+    - POST to `https://mpounklnfrcfpkefidfn.supabase.co/auth/v1/token?grant_type=password`
+    - Headers: `apikey` must be our anon/public key
+      `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1wb3Vua2xuZnJjZnBrZWZpZGZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDIxODE0OTcsImV4cCI6MjA1Nzc1NzQ5N30.wZlH6_dd0WtEVC-BtMXEzcTUgSAIlegqSPnr3dyvjyA`
+    - Body: {"email": "email@gmail.com","password": "password"}
 
 ## Setting Up
 
@@ -126,11 +134,11 @@ The main libraries that this project uses are:
       For example,
       it lets us hide HTML elements based on navbar menu selections. Normally,
       that would be something that would require us to use JS.
-        - The code below from `events-container.js` shows the `<create-event>`
+        - The code below from `events-container.js` shows the `<event-creation-component>`
           component if `is_creating_new_event` is true.
             ```html
                 <div class="flex" x-data=" { is_creating_new_event: false  }">
-                    <create-event x-show="is_creating_new_event"></create-event>
+                    <event-creation-component x-show="is_creating_new_event"></event-creation-component>
                 </div>
             ```
     - Vite: New React Builder that doesn't require to recompile everytime you change code.
