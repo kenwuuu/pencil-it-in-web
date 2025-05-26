@@ -4,6 +4,7 @@ import './services/get-upcoming-events.js'
 import {supabase} from "../supabase-client/supabase-client.js";
 import {format, parseISO} from 'date-fns';
 import {getUpcomingEvents} from "./services/get-upcoming-events.js";
+import { downloadICS } from './services/calendar.js';
 
 class EventsContainer extends HTMLElement {
     connectedCallback() {
@@ -61,6 +62,9 @@ class EventsContainer extends HTMLElement {
                       No: 2
                       </button>
                     </div>
+                    <button class="download-calendar-btn btn btn-sm btn-outline">
+                        <i class="icon-calendar"></i> Download
+                    </button>
                   </div>
                 </div>
               </div>
@@ -135,6 +139,11 @@ function populateEventElementsWithData(template, event, agenda) {
     const noButtonElem = templateClone.querySelector('.no-button');
     if (noButtonElem) {
         noButtonElem.textContent = `No: ${event.attendance_no_count}` || 'No: 0';
+    }
+
+    const downloadBtn = templateClone.querySelector('.download-calendar-btn');
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', () => downloadICS(event));
     }
 
     agenda.appendChild(templateClone);
