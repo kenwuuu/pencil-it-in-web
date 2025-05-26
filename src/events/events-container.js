@@ -4,7 +4,7 @@ import './services/get-upcoming-events.js'
 import {supabase} from "../supabase-client/supabase-client.js";
 import {format, parseISO} from 'date-fns';
 import {getUpcomingEvents} from "./services/get-upcoming-events.js";
-import { downloadICS } from './services/calendar.js';
+import {downloadICS} from './services/calendar.js';
 
 class EventsContainer extends HTMLElement {
     connectedCallback() {
@@ -51,9 +51,9 @@ class EventsContainer extends HTMLElement {
                     commodo consequat
                   </div>
                   <div class="participants sm:flex justify-between">
-                    <span class="host-user btn btn-md btn-outline btn-info mb-2 md:mb-0"
-                      >Host: Francesca</span
-                      >
+                    <span class="host-user btn btn-md btn-outline btn-info mb-2 md:mb-0">
+                      Host: Francesca
+                    </span>
                     <div class="attendance join flex">
                       <button class="yes-button btn flex-1/4 sm:flex-none btn-md btn-outline btn-success join-item">
                       Yes: 12
@@ -67,8 +67,8 @@ class EventsContainer extends HTMLElement {
                       No: 2
                       </button>
                     </div>
-                    <button class="download-calendar-btn btn btn-sm btn-outline">
-                        <i class="icon-calendar"></i> Download
+                    <button class="download-calendar-btn btn btn-ghost p-1">
+                      <span class="iconify text-3xl sm:text-2xl" data-icon="mdi-calendar-export"></span>
                     </button>
                   </div>
                 </div>
