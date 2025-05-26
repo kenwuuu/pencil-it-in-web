@@ -2,6 +2,7 @@ import { createEvent } from 'ics';
 
 export function downloadICS(event) {
   const start = new Date(event.start_time);
+  const end = new Date(event.start_time);
 
   const icsEvent = {
     title: event.title,
@@ -21,7 +22,7 @@ export function downloadICS(event) {
       end.getUTCMinutes()
     ],
     location: event.location || '',
-    url: event.url || '',
+    url: /^https?:\/\//.test(event.url) ? event.url : undefined,
     status: 'CONFIRMED',
     busyStatus: 'BUSY',
     organizer: { 
