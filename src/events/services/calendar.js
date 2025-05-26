@@ -13,13 +13,19 @@ export function downloadICS(event) {
       start.getUTCHours(),
       start.getUTCMinutes()
     ],
-    duration: { hours: 1 },
+    end: [
+      end.getUTCFullYear(),
+      end.getUTCMonth() + 1,
+      end.getUTCDate(),
+      end.getUTCHours(),
+      end.getUTCMinutes()
+    ],
     location: event.location || '',
-    url: window.location.href,
+    url: event.url || '',
     status: 'CONFIRMED',
     busyStatus: 'BUSY',
     organizer: { 
-      name: event.host?.[0]?.first_name || 'Host', 
+      name: `${event.host?.[0]?.first_name ?? ''} ${event.host?.[0]?.last_name ?? ''}`.trim() || 'Pencil It In',
       email: 'noreply@pencil-it-in.com' 
     },
     productId: 'PencilItIn/Calendar'
