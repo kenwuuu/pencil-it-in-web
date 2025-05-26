@@ -51,9 +51,14 @@ class EventsContainer extends HTMLElement {
                     commodo consequat
                   </div>
                   <div class="participants sm:flex justify-between">
-                    <span class="host-user btn btn-md btn-outline btn-info mb-2 md:mb-0">
-                      Host: Francesca
-                    </span>
+                    <div class="flex justify-between">
+                        <span class="host-user btn btn-md btn-outline btn-info mb-2 md:mb-0">
+                          Host: Francesca
+                        </span>
+                        <button class="download-calendar-btn btn btn-ghost p-1 block sm:hidden">
+                          <span class="iconify text-3xl sm:text-2xl" data-icon="mdi-calendar-export"></span>
+                        </button>
+                    </div>
                     <div class="attendance join flex">
                       <button class="yes-button btn flex-1/4 sm:flex-none btn-md btn-outline btn-success join-item">
                       Yes: 12
@@ -67,7 +72,7 @@ class EventsContainer extends HTMLElement {
                       No: 2
                       </button>
                     </div>
-                    <button class="download-calendar-btn btn btn-ghost p-1">
+                    <button class="download-calendar-btn btn btn-ghost p-1 hidden sm:block">
                       <span class="iconify text-3xl sm:text-2xl" data-icon="mdi-calendar-export"></span>
                     </button>
                   </div>
@@ -146,10 +151,10 @@ function populateEventElementsWithData(template, event, agenda) {
         noButtonElem.textContent = `No: ${event.attendance_no_count}` || 'No: 0';
     }
 
-    const downloadBtn = templateClone.querySelector('.download-calendar-btn');
-    if (downloadBtn) {
-        downloadBtn.addEventListener('click', () => downloadICS(event));
-    }
+    const downloadBtns = templateClone.querySelectorAll('.download-calendar-btn');
+    downloadBtns.forEach(btn => {
+        btn.addEventListener('click', () => downloadICS(event));
+    });
 
     agenda.appendChild(templateClone);
 }
