@@ -151,6 +151,7 @@ function populateEventElementsWithData(template, event, agenda) {
         noButtonElem.textContent = `No: ${event.attendance_no_count}` || 'No: 0';
     }
 
+    // querySelectorAll because we have two buttons that hide/show based on screen size
     const downloadBtns = templateClone.querySelectorAll('.download-calendar-btn');
     downloadBtns.forEach(btn => {
         btn.addEventListener('click', () => downloadICS(event));
@@ -245,7 +246,7 @@ function mockGetUpcomingEvents() {
     ];
 }
 
-// on load: retrieves events from server and populates events agenda
+// on load: retrieves events from server and populates Agenda container with Event cards
 document.addEventListener('DOMContentLoaded', async () => {
     let data = await getUpcomingEvents();
 
