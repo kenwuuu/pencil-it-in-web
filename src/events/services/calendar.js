@@ -1,10 +1,26 @@
 import {createEvent} from 'ics';
 
-export function downloadICS(event) {
+function getEventUrl(event) {
+    // test for valid url, returns itself if valid, returns nothing if invalid
+    return /^https?:\/\//.test(event.url)
+        ? event.url
+        : undefined;
+}
+
+function getHostName(event) {
+    // formats host name, uses Pencil It In as fallback
+    const firstName = event.host?.[0]?.first_name ?? '';
+    const lastName = event.host?.[0]?.last_name ?? '';
+    const fullName = `${firstName} ${lastName}`.trim();
+
+    return fullName || 'Pencil It In';
+}
+
+function buildIcsEventData(event) {
     const start = new Date(event.start_time);
     const end = new Date(event.end_time);
 
-    const icsEvent = {
+    return {
         title: event.title,
         description: event.description || 'Event created via Pencil It In',
         start: [
@@ -22,15 +38,28 @@ export function downloadICS(event) {
             end.getUTCMinutes()
         ],
         location: event.location || '',
-        url: /^https?:\/\//.test(event.url) ? event.url : undefined,
+        url: getEventUrl(event),
         status: 'CONFIRMED',
         busyStatus: 'BUSY',
         organizer: {
-            name: `${event.host?.[0]?.first_name ?? ''} ${event.host?.[0]?.last_name ?? ''}`.trim() || 'Pencil It In',
+            name: getHostName(event),
             email: 'noreply@pencil-it-in.com'
         },
         productId: 'PencilItIn/Calendar'
     };
+}
+
+function startAutomaticDownload(url, event) {
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${event.title.replace(/[^a-z0-9]/gi, '_')}.ics`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+
+export function downloadICS(event) {
+    const icsEvent = buildIcsEventData(event);
 
     const {error, value} = createEvent(icsEvent);
 
@@ -43,12 +72,8 @@ export function downloadICS(event) {
     const blob = new Blob([value], {type: 'text/calendar;charset=utf-8'});
     const url = URL.createObjectURL(blob);
 
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${event.title.replace(/[^a-z0-9]/gi, '_')}.ics`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    startAutomaticDownload(url, event);
 
+    // Clean up object URL to prevent memory leaks
     setTimeout(() => URL.revokeObjectURL(url), 100);
 }
