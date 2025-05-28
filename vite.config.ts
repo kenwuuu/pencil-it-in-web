@@ -1,6 +1,9 @@
 import {defineConfig} from 'vite';
-import {resolve} from 'path';
+import {dirname, resolve} from 'path';
 import tailwindcss from '@tailwindcss/vite';
+import {fileURLToPath} from 'node:url'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
   plugins: [tailwindcss()],
