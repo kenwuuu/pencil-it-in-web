@@ -2,7 +2,7 @@
 export default {
     content: [
         "./index.html",
-        "./events.html",
+        "./index1.html",
         "./src/**/*.{js,ts,jsx,tsx,html}",
     ],
     theme: {
