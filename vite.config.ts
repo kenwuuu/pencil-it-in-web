@@ -7,8 +7,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        index: resolve(__dirname, 'index.html'),
-        events: resolve(__dirname, 'events.html'), // Assuming app.html is in the root
+        index: resolve(__dirname, 'src/index.html'),
+        events: resolve(__dirname, 'src/events.html'), // Assuming app.html is in the root
         login: resolve(__dirname, 'src/auth/login.html'), // <--- Add this line for login.html
         main_content_container: 'src/components/main-content-container.js',
         sidebar_menu: 'src/components/sidebar-menu.js',
