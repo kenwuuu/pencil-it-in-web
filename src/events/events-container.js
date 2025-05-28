@@ -11,6 +11,7 @@ class EventsContainer extends HTMLElement {
         this.innerHTML = `
         <div class="flex"
           x-data=" { is_creating_new_event: false  }">
+          <p>hello there</p>
           <div
             class="page-container flex-1"
             hx-trigger="load"
