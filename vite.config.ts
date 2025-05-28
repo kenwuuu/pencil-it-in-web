@@ -7,22 +7,15 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
   plugins: [tailwindcss()],
+  // root: 'src',
   build: {
+    outDir: 'dist',
     rollupOptions: {
       input: {
-        index: resolve(__dirname, 'index.html'),
-        events: resolve(__dirname, 'events.html'), // Assuming app.html is in the root
+        index1: resolve(__dirname, 'index1.html'),
+        index: resolve(__dirname, 'index.html'), // Assuming app.html is in the root
         login: resolve(__dirname, 'src/auth/login.html'), // <--- Add this line for login.html
-        main_content_container: 'src/components/main-content-container.js',
-        sidebar_menu: 'src/components/sidebar-menu.js',
-        events_container: 'src/events/events-container.js',
-        friends_container: 'src/friends/friends-container.js',
-        profile_container: 'src/profile/profile-container.js',
-        settings_container: 'src/settings/settings-container.js',
-
-        // Add any other top-level HTML files here
       },
     },
   },
-
 });
