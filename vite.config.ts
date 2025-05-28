@@ -8,7 +8,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         index: resolve(__dirname, 'index.html'),
-        events: resolve(__dirname, 'events.html'),
+        index1: resolve(__dirname, 'index1.html'),
         login: resolve(__dirname, 'src/auth/login.html'),
       },
       // Ensure all JS modules are properly bundled
