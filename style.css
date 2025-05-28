@@ -1,13 +1,5 @@
 @import 'tailwindcss';
 
-@plugin "daisyui" {
-    themes: light --default,
-    dark --prefersdark,
-    cupcake;
-}
-@plugin "@tailwindcss/typography";
-
-
 #main-container {
     @apply mx-auto;
 }
