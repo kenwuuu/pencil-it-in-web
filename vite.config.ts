@@ -7,7 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
   plugins: [tailwindcss()],
-  // root: 'src',
+
   build: {
     outDir: 'dist',
     rollupOptions: {
