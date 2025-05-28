@@ -15,7 +15,10 @@ export default defineConfig({
         bottom_menu: resolve(__dirname, 'src/components/bottom-menu.js'),
         sidebar_menu: resolve(__dirname, 'src/components/sidebar-menu.js'),
         site_header: resolve(__dirname, 'src/components/site-header.js'),
+        //events
         events_container: resolve(__dirname, 'src/events/events-container.js'),
+        event_creation_component: resolve(__dirname, 'src/events/event-creation-component.js'),
+        event_action_menu: resolve(__dirname, 'src/events/events-action-menu.js'),
         profile: resolve(__dirname, 'src/profile/profile-container.js'),
         settings: resolve(__dirname, 'src/settings/settings-container.js'),
         friends: resolve(__dirname, 'src/friends/friends-container.js'),
