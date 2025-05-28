@@ -2,7 +2,7 @@ import '../events/events-container.js';
 import '../friends/friends-container.js';
 import '../profile/profile-container.js';
 import '../settings/settings-container.js';
-import '../../style.css'
+
 
 class MainContentContainer extends HTMLElement {
     connectedCallback() {
