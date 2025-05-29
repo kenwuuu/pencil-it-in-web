@@ -29,6 +29,7 @@ no back-and-forth, just instant visibility to plan hangouts fast.
     - Headers: `apikey` must be our anon/public key
       `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1wb3Vua2xuZnJjZnBrZWZpZGZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDIxODE0OTcsImV4cCI6MjA1Nzc1NzQ5N30.wZlH6_dd0WtEVC-BtMXEzcTUgSAIlegqSPnr3dyvjyA`
     - Body: {"email": "email@gmail.com","password": "password"}
+- The three lines of AlpineJS in `main.js` are just necessary. IDK why, their docs just say to do that.
 
 ## Setting Up
 
@@ -172,18 +173,18 @@ library, and then calls that function.
 
 ```javascript
 export async function signUpUser(email, password) {
-    const {
-        data: {user, session},
-        error,
-    } = await supabase.auth.signUp({
-        email,
-        password,
-    });
-    return {user, session, error};
+  const {
+    data: { user, session },
+    error,
+  } = await supabase.auth.signUp({
+    email,
+    password,
+  });
+  return { user, session, error };
 }
 
-const {user, session, error} = signUpUser('matriax1@gmail.com', 'password');
+const { user, session, error } = signUpUser('matriax1@gmail.com', 'password');
 ```
 
-We also have some api calls in `src/api-examples` that you can use to directly run stored 
+We also have some api calls in `src/api-examples` that you can use to directly run stored
 procedures in Supabase. Read `src/api-examples/README.md` for more info.
