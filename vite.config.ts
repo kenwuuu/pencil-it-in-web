@@ -1,5 +1,5 @@
-import {defineConfig} from 'vite';
-import {resolve} from 'path';
+import { defineConfig } from 'vite';
+import { resolve } from 'path';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
@@ -7,10 +7,14 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'main.js'),
+        // main HTML entry points
         events: resolve(__dirname, 'events.html'),
         index: resolve(__dirname, 'index.html'),
         login: resolve(__dirname, 'src/auth/login.html'),
+        // main JS file
+        main: resolve(__dirname, 'main.js'),
+        // top level services, constants, misc, etc
+        constants: resolve(__dirname, 'constants.js'),
         // supabase
         supabase: resolve(__dirname, 'src/supabase-client/supabase-client.js'),
         // components folder
@@ -28,20 +32,20 @@ export default defineConfig({
         // settings
         settings: resolve(__dirname, 'src/settings/settings-container.js'),
         // friends
-        friends: resolve(__dirname, 'src/friends/friends-container.js'),
+        friends: resolve(__dirname, 'src/friends/friends-container.js')
       },
       // Ensure all JS modules are properly bundled
-      external: [],
+      external: []
     },
     // Make sure assets are copied correctly
-    assetsDir: 'assets',
+    assetsDir: 'assets'
   },
   // Important for component loading
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'),
-    },
+      '@': resolve(__dirname, 'src')
+    }
   },
   // Ensure proper serving of static assets
-  publicDir: 'public',
+  publicDir: 'public'
 });
