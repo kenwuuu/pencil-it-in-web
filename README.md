@@ -33,11 +33,7 @@ no back-and-forth, just instant visibility to plan hangouts fast.
 
 ## Setting Up
 
-### Run the Project
-
-Create `.env` in the root directory and fill in the appropriate
-values. Look to `.env.example` for reference.
-Contact Ken for necessary credentials.
+### Run the project
 
 Install libraries.
 
@@ -51,11 +47,13 @@ Run the site.
 npm run dev
 ```
 
+#### View dev site on computer
+
 The compiler will then tell you where to access the site: typically `https://localhost:5173`.
 
 TODO (#50): We have some linters and formatters installed. Explain how to use them.
 
-### View locally hosted site on phone
+#### View locally hosted site on phone
 
 **1. Get Your Computer’s Local IP Address**
 
