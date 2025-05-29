@@ -7,7 +7,6 @@ import '../settings/settings-container.js';
 class MainContentContainer extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-      <p>another hello</p>
       <events-container class="flex-1" x-show="page === 'events'"></events-container>
       <friends-container class="flex-1" x-show="page === 'friends'"></friends-container>
       <profile-container class="flex-1" x-show="page === 'profile'"></profile-container>
