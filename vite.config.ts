@@ -7,6 +7,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
+        main: resolve(__dirname, 'main.js'),
         events: resolve(__dirname, 'events.html'),
         index: resolve(__dirname, 'index.html'),
         login: resolve(__dirname, 'src/auth/login.html'),
@@ -22,7 +23,6 @@ export default defineConfig({
         profile: resolve(__dirname, 'src/profile/profile-container.js'),
         settings: resolve(__dirname, 'src/settings/settings-container.js'),
         friends: resolve(__dirname, 'src/friends/friends-container.js'),
-
       },
       // Ensure all JS modules are properly bundled
       external: [],
