@@ -1,15 +1,19 @@
 import { expect, test } from "@playwright/test";
 import fs from "fs/promises";
 
-test.use({ storageState: "tests/playwright.auth.json" });
+test("testEventsContainerIsVisible", async ({ page }) => {
+  await page.goto("/events.html");
+  await expect(page.getByRole("heading", { name: "Events" })).toBeVisible();
+});
+
 
 test("testCalendarExportButtonIsVisible", async ({ page }) => {
-  await page.goto("/events");
+  await page.goto("/events.html");
   await expect(page.locator(".participants > button").first()).toBeVisible();
 });
 
 test("testCalendarExportButtonStartsDownload", async ({ page }) => {
-  await page.goto("/events");
+  await page.goto("/events.html");
   const downloadPromise = page.waitForEvent("download");
   await page.locator(".participants > button").first().click();
   const download = await downloadPromise;
@@ -35,7 +39,7 @@ test("testCalendarExportButtonStartsDownload", async ({ page }) => {
 });
 
 test("testEventCreationComponentIsVisible", async ({ page }) => {
-  await page.goto("/events");
+  await page.goto("/events.html");
   await page
     .getByRole("listitem")
     .filter({ hasText: "Create Event" })

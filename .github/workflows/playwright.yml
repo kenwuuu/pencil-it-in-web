@@ -26,7 +26,7 @@ jobs:
       - name: Check BASE_URL
         env:
           BASE_URL: ${{ github.event.deployment_status.environment_url }}
-        run: echo "URL is BASE_URL"
+        run: echo "URL is $BASE_URL"
       - name: Run Playwright tests
         env:
           BASE_URL: ${{ github.event.deployment_status.environment_url }}
