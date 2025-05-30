@@ -1,10 +1,9 @@
 import { chromium } from "@playwright/test";
-import { PENCIL_IT_IN_EMAIL, PENCIL_IT_IN_PASSWORD } from "../constants.ts";
 
 const isCI = process.env.CI === "true" || process.env.CI === "1" || process.env.CI === "TRUE" || process.env.CI === "TRUE";
 
-const EMAIL = isCI ? process.env.PLAYWRIGHT_KEN_EMAIL : PENCIL_IT_IN_EMAIL;
-const PASSWORD = isCI ? process.env.PLAYWRIGHT_KEN_PASSWORD : PENCIL_IT_IN_PASSWORD;
+const EMAIL = isCI ? process.env.PLAYWRIGHT_KEN_EMAIL : process.env.PENCIL_IT_IN_EMAIL;
+const PASSWORD = isCI ? process.env.PLAYWRIGHT_KEN_PASSWORD : process.env.PENCIL_IT_IN_PASSWORD;
 
 (async () => {
   const browser = await chromium.launch();
