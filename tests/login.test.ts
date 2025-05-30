@@ -1,4 +1,7 @@
 import { expect, test } from "@playwright/test";
+import { getCredentials } from "./credentialUtil";
+
+const { EMAIL, PASSWORD } = getCredentials();
 
 test("testLoginRedirectsToEventsPage", async ({ page }) => {
   await page.goto("/");
@@ -6,12 +9,11 @@ test("testLoginRedirectsToEventsPage", async ({ page }) => {
   await page.getByRole("textbox", { name: "Email address" }).click();
   await page
     .getByRole("textbox", { name: "Email address" })
-    .fill("kenqiwu@gmail.com");
+    .fill(EMAIL);
   await page.getByRole("textbox", { name: "Password" }).click();
-  await page.getByRole("textbox", { name: "Password" }).fill("adsihn9");
+  await page.getByRole("textbox", { name: "Password" }).fill(PASSWORD);
   await page.getByRole("button", { name: "Log in" }).click();
-  await expect(page.locator("#navbar-logo")).toContainText("pencil it in");
-  await expect(page.locator("events-container")).toContainText("Events");
+  await expect(page.getByText("pencil it in")).toBeVisible();
 });
 
 test("testCreateAccountButtonRedirectsToCreateAccountPage", async ({

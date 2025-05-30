@@ -98,6 +98,8 @@ Using Playwright.
 
 **Run Playwright tests**: `npx playwright test`
 
+**Run Playwright tests with UI**: `npx playwright test --ui`
+
 **Create tests from recording interactions**: `npx playwright codegen [url]`, e.g.
 `npx playwright codegen http://localhost:5173`
 
