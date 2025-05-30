@@ -46,53 +46,83 @@ class EventCreationComponent extends HTMLElement {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('eventCreated') === 'true') {
+        // Show the toast
+        showToast("success");
+
+        // Remove the flag so it doesn't show again on future reloads
+        localStorage.removeItem('eventCreated');
+    }
+
     document.querySelector('.container').addEventListener('submit', async (event) => {
-        const eventForm = event.target; // Get the specific form that was submitted
-        if (!eventForm.matches('#eventForm')) {
-            return; // Only process submissions from the eventForm
-        }
+        const eventForm = event.target;
+        if (!eventForm.matches('#eventForm')) return;
+
         event.preventDefault();
-        console.log('submit');
 
         const title = eventForm.querySelector('#title').value;
         const startTime = eventForm.querySelector('#start_time').value;
         const endTime = eventForm.querySelector('#end_time').value;
-        const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1wb3Vua2xuZnJjZnBrZWZpZGZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDIxODE0OTcsImV4cCI6MjA1Nzc1NzQ5N30.wZlH6_dd0WtEVC-BtMXEzcTUgSAIlegqSPnr3dyvjyA';
-
-        console.log(supabase.auth.getUser())
 
         try {
-            const session = await supabase.auth.getSession()
-            const response = await fetch('https://mpounklnfrcfpkefidfn.supabase.co/rest/v1/events', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'apikey': apiKey,
-                    'Authorization': `Bearer ${apiKey}`
-                },
-                body: JSON.stringify({
+            console.log("THIS code IS running")
+            const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+            if (sessionError || !sessionData.session) {
+                console.error('Session error:', sessionError);
+                return;
+            }
+
+            const userId = sessionData.session.user.id;
+
+            const { data, error } = await supabase.from('events').insert([
+                {
                     title: title,
-                    user_id: session.data.session.user.id,
+                    user_id: userId,
                     start_time: startTime,
                     end_time: endTime
-                })
-            });
+                }
+            ]);
 
-            const responseData = await response.json();
-
-            if (responseData.ok) {
-                console.log('Event created successfully:', responseData);
-                // Optionally display a success message or redirect the user
+            if (error) {
+                console.error('Error creating event:', error);
+                showToast("error");
             } else {
-                console.error('Error creating event:', responseData);
-                // Optionally display an error message to the user
+                console.log('Event created successfully:', data);
+
+                // Set flag to show toast popup after reload
+                localStorage.setItem('eventCreated', 'true');
+
+                // Reload
+                location.reload();
+
             }
         } catch (error) {
-            console.error('There was an error sending the request:', error);
-            // Optionally display a network error message
+            console.error('Unexpected error:', error);
         }
     });
 });
 
+function showToast(status) {
+    const toastContainer = document.createElement('div');
+    toastContainer.className = 'toast toast-end fixed bottom-4 right-4 z-50';
+    let message = (status == "success" ? "Event Created!" : "Error");
+
+    const alert = document.createElement('div');
+    status == "success" ? alert.className = `alert alert-success` : alert.className = `alert alert-error`;
+    alert.innerHTML = `<span>${message}</span>`;
+
+    toastContainer.appendChild(alert);
+    document.body.appendChild(toastContainer);
+
+    // Auto remove after 2 seconds
+    setTimeout(() => {
+        toast.classList.add('fade-out');
+
+        toast.addEventListener('animationend', () => {
+            toast.remove();
+        });
+        toastContainer.remove();
+    }, 2000);
+}
 
 customElements.define('event-creation-component', EventCreationComponent);

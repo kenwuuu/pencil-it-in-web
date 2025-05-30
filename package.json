@@ -23,7 +23,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.7",
     "commitlint": "^19.8.0",
-    "daisyui": "^5.0.27",
+    "daisyui": "^5.0.42",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.1.2",
     "lint-staged": "^15.5.1",

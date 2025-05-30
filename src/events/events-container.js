@@ -118,7 +118,7 @@ function populateEventElementsWithData(template, event, agenda) {
 
     const hostElem = templateClone.querySelector('.host-user');
     if (hostElem) {
-        hostElem.textContent = `Host: ${event.host[0].first_name}`;
+        hostElem.textContent = `Host: ${event.host?.[0]?.first_name ?? 'Host' }`;
     }
 
     const descElem = templateClone.querySelector('.event-description');
