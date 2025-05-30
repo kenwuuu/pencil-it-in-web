@@ -4,12 +4,12 @@ import fs from "fs/promises";
 test.use({ storageState: "tests/playwright.auth.json" });
 
 test("testCalendarExportButtonIsVisible", async ({ page }) => {
-  await page.goto("http://localhost:5173/events");
+  await page.goto("/events");
   await expect(page.locator(".participants > button").first()).toBeVisible();
 });
 
 test("testCalendarExportButtonStartsDownload", async ({ page }) => {
-  await page.goto("http://localhost:5173/events");
+  await page.goto("/events");
   const downloadPromise = page.waitForEvent("download");
   await page.locator(".participants > button").first().click();
   const download = await downloadPromise;
@@ -36,7 +36,7 @@ test("testCalendarExportButtonStartsDownload", async ({ page }) => {
 });
 
 test("testEventCreationComponentIsVisible", async ({ page }) => {
-  await page.goto("http://localhost:5173/events");
+  await page.goto("/events");
   await page
     .getByRole("listitem")
     .filter({ hasText: "Create Event" })

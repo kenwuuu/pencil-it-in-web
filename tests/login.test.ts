@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test("testLoginRedirectsToEventsPage", async ({ page }) => {
-  await page.goto("http://localhost:5173/");
+  await page.goto("/");
   await page.getByRole("link", { name: "Log In" }).click();
   await page.getByRole("textbox", { name: "Email address" }).click();
   await page
@@ -17,7 +17,7 @@ test("testLoginRedirectsToEventsPage", async ({ page }) => {
 test("testCreateAccountButtonRedirectsToCreateAccountPage", async ({
                                                                      page
                                                                    }) => {
-  await page.goto("http://localhost:5173/src/auth/login.html#");
+  await page.goto("/src/auth/login.html#");
   await page.getByRole("link", { name: "Create New Account" }).click();
   await expect(page.getByRole("heading")).toContainText("Create an account");
 });
@@ -25,7 +25,7 @@ test("testCreateAccountButtonRedirectsToCreateAccountPage", async ({
 test("testForgotPasswordButtonRedirectsToPasswordResetPage", async ({
                                                                       page
                                                                     }) => {
-  await page.goto("http://localhost:5173/src/auth/login.html#");
+  await page.goto("/src/auth/login.html#");
   await page.getByRole("link", { name: "Forgot password?" }).click();
 
   // todo add password reset page and then remove this skip
