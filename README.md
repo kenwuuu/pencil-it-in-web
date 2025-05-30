@@ -34,7 +34,11 @@ no back-and-forth, just instant visibility to plan hangouts fast.
 
 ## Setting Up
 
-### Run the project
+### Run the Project
+
+Create `.env` in the root directory and fill in the appropriate
+values. Look to `.env.example` for reference.
+Contact Ken for necessary credentials.
 
 Install libraries.
 
