@@ -23,7 +23,13 @@ jobs:
           PLAYWRIGHT_KEN_PASSWORD: ${{ secrets.PLAYWRIGHT_KEN_PASSWORD }}
           BASE_URL: ${{ github.event.deployment_status.environment_url }}
         run: npx tsx tests/auth.setup.ts
+      - name: Check BASE_URL
+        env:
+          BASE_URL: ${{ github.event.deployment_status.environment_url }}
+        run: echo "URL is BASE_URL"
       - name: Run Playwright tests
+        env:
+          BASE_URL: ${{ github.event.deployment_status.environment_url }}
         run: npx playwright test
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
