@@ -1,5 +1,5 @@
 import { chromium } from "@playwright/test";
-import { EMAIL, PASSWORD } from "../constants";
+import { EMAIL, PASSWORD } from "../constants.ts";
 
 (async () => {
   const browser = await chromium.launch();
@@ -19,6 +19,6 @@ import { EMAIL, PASSWORD } from "../constants";
   await page.waitForURL("**/events");
 
   // Save auth state
-  await page.context().storageState({ path: "playwright.auth.json" });
+  await page.context().storageState({ path: "playwright.auth1.json" });
   await browser.close();
 })();
