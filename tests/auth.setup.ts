@@ -4,13 +4,14 @@ const isCI = process.env.CI === "true" || process.env.CI === "1" || process.env.
 
 const EMAIL = isCI ? process.env.PLAYWRIGHT_KEN_EMAIL : process.env.PENCIL_IT_IN_EMAIL;
 const PASSWORD = isCI ? process.env.PLAYWRIGHT_KEN_PASSWORD : process.env.PENCIL_IT_IN_PASSWORD;
+const BASE_URL = isCI ? process.env.BASE_URL : "http://localhost:5173/";
 
 (async () => {
   const browser = await chromium.launch();
   const page = await browser.newPage();
 
   // log in
-  await page.goto("http://localhost:5173/src/auth/login.html");
+  await page.goto(`${BASE_URL}/src/auth/login.html`);
   await page.getByRole("textbox", { name: "Email address" }).fill(EMAIL || "");
   await page.getByRole("textbox", { name: "Password" }).fill(PASSWORD || "");
   await page.getByRole("button", { name: "Log in" }).click();
