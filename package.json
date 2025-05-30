@@ -8,14 +8,14 @@
     "build": "vite build",
     "serve": "serve dist",
     "preview": "vite preview",
-    "prepare": "husky",
+    "prepare": "husky && husky install",
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier",
     "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
     "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore --ignore-pattern libs/",
     "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .gitignore",
     "format:prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore",
-    "test": ""
+    "test": "playwright test"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
@@ -30,6 +30,7 @@
     "dotenv": "^16.5.0",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.1.2",
+    "husky": "^9.1.7",
     "lint-staged": "^15.5.1",
     "prettier": "^3.5.3",
     "serve": "^14.2.4",
@@ -47,17 +48,14 @@
     "date-fns": "^4.1.0",
     "gsap": "^3.12.7",
     "htmx": "^0.0.2",
-    "husky": "^9.1.7",
     "iconify": "^1.4.0",
     "ics": "^3.8.1",
     "tailwind": "^4.0.0",
     "tailwindcss": "^4.1.7"
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "prettier --write"
-    ]
+    "*.js": "eslint --cache --fix",
+    "*.format:prettier": "prettier --write"
   },
   "eslintConfig": {
     "extends": [
