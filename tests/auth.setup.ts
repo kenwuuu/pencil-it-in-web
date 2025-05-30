@@ -17,7 +17,7 @@ const BASE_URL = isCI ? process.env.BASE_URL : "http://localhost:5173/";
   await page.getByRole("button", { name: "Log in" }).click();
 
   // Wait for navigation or some indicator of successful login
-  await page.waitForURL("**/events");
+  await page.waitForURL("**/events.html", { timeout: 2000 });
 
   // Save auth state
   await page.context().storageState({ path: "playwright.auth1.json" });
