@@ -8,7 +8,7 @@ class FriendsContainer extends HTMLElement {
       <main class="flex" x-data=" { is_searching_for_friends: false }">
         <div
           class="page-container flex-1"
-          hx-get="./mock_data/friends.html"
+          hx-get="src/friends/mock_data/friends.html"
           hx-trigger="load"
           hx-target=".friends-list"
         >
