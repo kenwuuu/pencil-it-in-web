@@ -8,7 +8,7 @@
     "build": "vite build",
     "serve": "serve dist",
     "preview": "vite preview",
-    "prepare": "husky && husky install",
+    "prepare": "husky",
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier",
     "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
