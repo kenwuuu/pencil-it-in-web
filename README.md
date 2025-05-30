@@ -101,6 +101,8 @@ Using Playwright.
 **Create tests from recording interactions**: `npx playwright codegen [url]`, e.g.
 `npx playwright codegen http://localhost:5173`
 
+#### [How to use Playwright with GitHub Actions for e2e testing of Vercel preview deployments](https://cushionapp.com/journal/how-to-use-playwright-with-github-actions-for-e2e-testing-of-vercel-preview)
+
 ## Project Structure
 
 This project is structured very much like a standard, vanilla HTML/CSS/JS
