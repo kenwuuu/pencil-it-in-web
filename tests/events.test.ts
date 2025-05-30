@@ -22,7 +22,6 @@ test("testCalendarExportButtonStartsDownload", async ({ page }) => {
 
     // assert certain hardcoded strings exist
     const content = fileBuffer.toString("utf-8");
-    console.log(content);
     expect(content).toContain("BEGIN:VEVENT");
     expect(content).toContain("PencilItIn/Calendar");
 
