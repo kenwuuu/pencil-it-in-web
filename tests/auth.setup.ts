@@ -20,6 +20,6 @@ const BASE_URL = isCI ? process.env.BASE_URL : "http://localhost:5173/";
   await page.waitForURL("**/events.html", { timeout: 2000 });
 
   // Save auth state
-  await page.context().storageState({ path: "playwright.auth1.json" });
+  await page.context().storageState({ path: "playwright.auth.json" });
   await browser.close();
 })();
