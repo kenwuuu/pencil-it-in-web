@@ -15,14 +15,6 @@ jobs:
         run: npm ci
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-      - name: Install tsx
-        run: npm i -D tsx
-      - name: Generate Auth Cookies for Playwright
-        env:
-          PLAYWRIGHT_KEN_EMAIL: ${{ secrets.PLAYWRIGHT_KEN_EMAIL }}
-          PLAYWRIGHT_KEN_PASSWORD: ${{ secrets.PLAYWRIGHT_KEN_PASSWORD }}
-          BASE_URL: ${{ github.event.deployment_status.environment_url }}
-        run: npx tsx tests/auth.setup.ts
       - name: Check BASE_URL
         env:
           BASE_URL: ${{ github.event.deployment_status.environment_url }}
