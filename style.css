@@ -1,13 +1,11 @@
 @import 'tailwindcss';
-@plugin "daisyui";
 
+@plugin "@tailwindcss/typography";
 @plugin "daisyui" {
     themes: light --default,
     dark --prefersdark,
     cupcake;
 }
-@plugin "@tailwindcss/typography";
-
 
 #main-container {
     @apply mx-auto;
@@ -43,17 +41,4 @@
 
 .fieldset-legend {
     font-size: 20px;
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-.fade-out {
-  animation: fadeOut 0.5s ease-out forwards;
 }

@@ -18,6 +18,7 @@ class SidebarMenu extends HTMLElement {
         <li>
           <a 
           @click="page = 'friends'"
+          data-testid="friends-menu-item"
           id="menu-item-friends" 
           class="sidebar-menu-item"
           :class="page === 'friends' ? 'menu-active' : ''"

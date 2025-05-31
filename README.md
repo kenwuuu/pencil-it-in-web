@@ -29,6 +29,8 @@ no back-and-forth, just instant visibility to plan hangouts fast.
     - Headers: `apikey` must be our anon/public key
       `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1wb3Vua2xuZnJjZnBrZWZpZGZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDIxODE0OTcsImV4cCI6MjA1Nzc1NzQ5N30.wZlH6_dd0WtEVC-BtMXEzcTUgSAIlegqSPnr3dyvjyA`
     - Body: {"email": "email@gmail.com","password": "password"}
+- All new JS files need to be added to `vite.config.ts` in order to be included when we build for prod.
+- The three lines of AlpineJS in `main.js` are just necessary. IDK why, their docs just say to do that.
 
 ## Setting Up
 
@@ -50,11 +52,13 @@ Run the site.
 npm run dev
 ```
 
+#### View dev site on computer
+
 The compiler will then tell you where to access the site: typically `https://localhost:5173`.
 
 TODO (#50): We have some linters and formatters installed. Explain how to use them.
 
-### View locally hosted site on phone
+#### View locally hosted site on phone
 
 **1. Get Your Computer’s Local IP Address**
 
@@ -62,6 +66,7 @@ TODO (#50): We have some linters and formatters installed. Explain how to use th
   `ifconfig | grep inet`
 
   Look for something like `192.168.x.x` under `en0` or `wlan0`.
+
 - **Windows**: Run in Command Prompt:
   `ipconfig`
 
@@ -81,6 +86,28 @@ Example: `http://192.168.1.42:5173`
 Create an account at `/index.html`.
 
 After creating an account, navigate to `/events.html`.
+
+## Testing
+
+### Unit tests (testing functions)
+
+### Integration tests (testing components with mock API data)
+
+### End-to-end tests (browser automation)
+
+Using Playwright.
+
+**Set up credentials**: Add your account credentials to `constants.ts`, see `constants.example.ts`. Run
+`[auth.setup.ts](tests/auth.setup.ts)`.
+
+**Run Playwright tests**: `npx playwright test`
+
+**Run Playwright tests with UI**: `npx playwright test --ui`
+
+**Create tests from recording interactions**: `npx playwright codegen [url]`, e.g.
+`npx playwright codegen http://localhost:5173`
+
+#### [How to use Playwright with GitHub Actions for e2e testing of Vercel preview deployments](https://cushionapp.com/journal/how-to-use-playwright-with-github-actions-for-e2e-testing-of-vercel-preview)
 
 ## Project Structure
 
@@ -103,6 +130,7 @@ All developer code exists within `src`; anything outside of it is automatically 
 The main libraries that this project uses are:
 
 - General:
+
     - Web Components: more of a way of coding than a library. And yes, the name
       is "Web Components", it's not a phrase. Basically, you take an oft reused HTML
       component, like your website header, make a JS file, make a JS function, put
@@ -113,18 +141,19 @@ The main libraries that this project uses are:
           in the first line, and the second parameter in `customElements.define`
           has to match. The first parameter will be how you call it in HTML, `<site-header>`
     - HTMX: allows us to send requests to the server without using JS.
+
         - Usages of HTMX exist inside HTML tags and are prepended with `hx`. The
           last three lines are an
           example of what HTMX looks like, from `events-container.js`:
 
-            ```html
-            <div
-                    class="prose page-container"
-                    hx-get="src/events/mock_data/events_data.html"
-                    hx-trigger="load"
-                    hx-target=".events-agenda"
-            >
-            ```
+          ```html
+          <div
+            class="prose page-container"
+            hx-get="src/events/mock_data/events_data.html"
+            hx-trigger="load"
+            hx-target=".events-agenda"
+          ></div>
+          ```
 
         - Honestly, as I've been working on this project, I've been feeling like
           HTMX should be dropped since this is turning more into a webapp than a
@@ -136,11 +165,13 @@ The main libraries that this project uses are:
       that would be something that would require us to use JS.
         - The code below from `events-container.js` shows the `<event-creation-component>`
           component if `is_creating_new_event` is true.
-            ```html
-                <div class="flex" x-data=" { is_creating_new_event: false  }">
-                    <event-creation-component x-show="is_creating_new_event"></event-creation-component>
-                </div>
-            ```
+          ```html
+          <div class="flex" x-data=" { is_creating_new_event: false  }">
+            <event-creation-component
+              x-show="is_creating_new_event"
+            ></event-creation-component>
+          </div>
+          ```
     - Vite: New React Builder that doesn't require to recompile everytime you change code.
     - Svelte: potential future addition. A frontend framework that encompasses
       page navigation, state management, and components, much like React or Angular.
@@ -150,14 +181,14 @@ The main libraries that this project uses are:
     - DaisyUI: a ready-to-use UI styling library. This covers
       most small components you'll see in the frontend.
         - Use by adding DaisyUI class names to an HTML element. Like `btn` below.
-            ```html
-          <button class="btn btn-primary">
+          ```html
+          <button class="btn btn-primary"></button>
           ```
     - Tailwind CSS: CSS but easier. Again, usage is with class names in HTML
       elements. Used for more general/specific CSS needs like spacing and sizing.
-        ```html
-        <div class="flex"
-        ```
+      ```html
+      <div class="flex"
+      ```
 
 #### Backend
 
@@ -172,18 +203,18 @@ library, and then calls that function.
 
 ```javascript
 export async function signUpUser(email, password) {
-    const {
-        data: {user, session},
-        error,
-    } = await supabase.auth.signUp({
-        email,
-        password,
-    });
-    return {user, session, error};
+  const {
+    data: { user, session },
+    error,
+  } = await supabase.auth.signUp({
+    email,
+    password,
+  });
+  return { user, session, error };
 }
 
-const {user, session, error} = signUpUser('matriax1@gmail.com', 'password');
+const { user, session, error } = signUpUser('matriax1@gmail.com', 'password');
 ```
 
-We also have some api calls in `src/api-examples` that you can use to directly run stored 
+We also have some api calls in `src/api-examples` that you can use to directly run stored
 procedures in Supabase. Read `src/api-examples/README.md` for more info.
