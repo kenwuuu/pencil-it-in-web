@@ -87,6 +87,28 @@ Create an account at `/index.html`.
 
 After creating an account, navigate to `/events.html`.
 
+### Testing API calls during development
+
+Download Postman and make an account. Ask me to share the project with
+you.
+
+#### Setting up Postman
+
+If you are me and unfortunately starting from scratch, you'll want to
+make a `pencil-it-in` **Workspace**, then two **Collections**, one named **Local**,
+and another named Remote.
+
+Make two environments, `Local` and `Remote - Prod`.
+You'll also want to create a sign in call first, save the `access_token` that it responds
+with using a post-response Script. You can see it saves it to the current `environment`.
+
+```javascript
+const response = pm.response.json();
+pm.environment.set("auth_token", response.token); // Adjust key name based on your response
+```
+
+Use the variable in `Authorization`, pick `Bearer Token`, then set token as `{{access_token}}`.
+
 ## Testing
 
 ### Unit tests (testing functions)
@@ -203,17 +225,17 @@ library, and then calls that function.
 
 ```javascript
 export async function signUpUser(email, password) {
-  const {
-    data: { user, session },
-    error,
-  } = await supabase.auth.signUp({
-    email,
-    password,
-  });
-  return { user, session, error };
+    const {
+        data: {user, session},
+        error,
+    } = await supabase.auth.signUp({
+        email,
+        password,
+    });
+    return {user, session, error};
 }
 
-const { user, session, error } = signUpUser('matriax1@gmail.com', 'password');
+const {user, session, error} = signUpUser('matriax1@gmail.com', 'password');
 ```
 
 We also have some api calls in `src/api-examples` that you can use to directly run stored
