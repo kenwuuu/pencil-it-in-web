@@ -4,7 +4,7 @@
  */
 
 import { createClient } from '@supabase/supabase-js';
-import { SUPABASE_ANON_KEY, SUPABASE_URL } from '../../constants.js';
+import { SUPABASE_ANON_KEY, SUPABASE_URL } from '../../constants.ts';
 
 export const supabase = createClient(
   SUPABASE_URL,
