@@ -116,12 +116,11 @@ function showToast(status) {
 
     // Auto remove after 2 seconds
     setTimeout(() => {
-        toast.classList.add('fade-out');
+        toastContainer.classList.add('fade-out');
 
-        toast.addEventListener('animationend', () => {
-            toast.remove();
+        toastContainer.addEventListener('animationend', () => {
+            toastContainer.remove();
         });
-        toastContainer.remove();
     }, 2000);
 }
 
