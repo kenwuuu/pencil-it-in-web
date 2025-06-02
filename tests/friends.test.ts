@@ -25,7 +25,7 @@ test('testFriendProfilePictureIsVisible', async ({page}) => {
 });
 
 test('testFriendsSearchButtonIsVisible', async ({page}) => {
-  await page.goto('http://localhost:5173/events.html');
+  await page.goto('/events.html');
   await page.getByTestId('friends-menu-item').click();
   await expect(page.getByRole('button', {name: 'Add Friend'})).toBeVisible();
 });
