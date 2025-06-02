@@ -9,6 +9,8 @@ no back-and-forth, just instant visibility to plan hangouts fast.
 
 ## General Knowledge
 
+- When running Supabase functions locally, the `anon_key` is different from the prod one, 
+so you need to change the key in certain calls, or set your env variable differently.
 - API keys in the repo are public keys so they're fine to stay out.
 - Example API calls using the Supabase JS library are in `services/examples/edge-functions
 - When renaming or moving files that use HTMX or are used by a file that uses HTMX, you have
@@ -96,7 +98,7 @@ you.
 
 If you are me and unfortunately starting from scratch, you'll want to
 make a `pencil-it-in` **Workspace**, then two **Collections**, one named **Local**,
-and another named Remote.
+and another named fwRemote.
 
 Make two environments, `Local` and `Remote - Prod`.
 You'll also want to create a sign in call first, save the `access_token` that it responds
