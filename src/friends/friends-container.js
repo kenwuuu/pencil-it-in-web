@@ -11,7 +11,7 @@ class FriendsContainer extends HTMLElement {
           hx-trigger="load"
           hx-target=".friends-list"
         >
-          <header class="mb-6 sm:flex">
+          <header class="space-y-4 my-4 sm:flex">
             <div class="prose flex-1 mb-4">
               <h1 x-text="capitalize(page)"></h1>
             </div>
