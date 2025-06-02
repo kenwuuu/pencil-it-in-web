@@ -1,18 +1,18 @@
-import { supabase } from '../../supabase-client/supabase-client.js';
+import {supabase} from '@/supabase-client/supabase-client';
 
-const edgeFunctionName = 'update-friendship';
+const edgeFunctionName = 'insert-friendship';
 
 // Function to call the edge function
 export async function insertFriendship(friendUsername: string) {
 
-  const { data: {}, error: userError } = await supabase.auth.getUser();
+  const {data: {}, error: userError} = await supabase.auth.getUser();
   if (userError) {
     console.error('Error fetching user:', userError);
     return;
   }
 
   // @ts-ignore
-  const { data, error } = await supabase.auth.getSession();
+  const {data, error} = await supabase.auth.getSession();
   let token = data?.session?.access_token; // Get the user's access token
   if (error) {
     console.error('Error fetching session:', error);
@@ -24,7 +24,7 @@ export async function insertFriendship(friendUsername: string) {
       'Authorization': `Bearer ${token}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ username: friendUsername })
+    body: JSON.stringify({username: friendUsername})
   });
 
   const result = await response.json();
