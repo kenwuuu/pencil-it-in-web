@@ -31,8 +31,8 @@ const handleCors = (req)=>{
 };
 // Helper function to validate request body
 const validateEventData = (body)=>{
-  const { title, description, start_time, end_time } = body;
-  if (!title || !start_time || !end_time) {
+  const { title, location, description, start_time, end_time } = body;
+  if (!title || !location || !start_time || !end_time) {
     return {
       isValid: false,
       error: "Missing required fields: title, start_time, end_time"
@@ -48,6 +48,7 @@ const validateEventData = (body)=>{
     isValid: true,
     data: {
       title,
+      location,
       description,
       start_time,
       end_time
@@ -80,7 +81,7 @@ const handleCreateEvent = async (req)=>{
         error: validation.error
       }, 400);
     }
-    const { title, description, start_time, end_time } = validation.data;
+    const { title, location, description, start_time, end_time } = validation.data;
     // Create authenticated Supabase client
     const supabase = createAuthenticatedClient(req);
     // Get authenticated user
@@ -99,6 +100,7 @@ const handleCreateEvent = async (req)=>{
     // Create the event
     const { data: event, error: eventError } = await supabase.from("events").insert({
       title,
+      location,
       description,
       start_time,
       end_time,
