@@ -3,7 +3,7 @@
 ### pencil it in is the first shared calendar built for friends, not meetings.
 
 pencil it in shows your group’s real-time availability instantly—no invites,
-no back-and-forth, just instant visibility to plan hangouts fast.
+no back-and-forth, just instant visibility to join hangouts fast.
 
 - Your feed shows every event that your friends want you to go to. There are no invite lists, your entire friends list
   can see every event you make.
