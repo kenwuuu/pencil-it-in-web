@@ -54,6 +54,15 @@ Deno.serve(async (req)=>{
     ]);
     if (updateError) throw updateError;
 
+    // Add friend to user's upcoming events
+    const { data: message, error: messageError } = await supabaseClient.functions.invoke(
+      'add-user-to-all-upcoming-events', {
+        body: {'friendUserId': friendUserId},
+      },
+    )
+    if (messageError) throw messageError;
+
+    console.log(message);
     // send Response to client
     return new Response(JSON.stringify({
       message: 'Friendship updated successfully'
