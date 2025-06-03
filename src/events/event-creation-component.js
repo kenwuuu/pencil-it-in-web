@@ -3,45 +3,46 @@ import {supabase} from "../supabase-client/supabase-client.js";
 class EventCreationComponent extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-            <div class="page-container flex">
-                <button class="btn btn-lg mr-4"
+            <div class="sm:page-container">
+<!--            Back button    -->
+                <button class="btn btn-lg mb-4"
                         x-on:click=" is_creating_new_event = !is_creating_new_event ">
                     <span class="iconify" data-icon="mdi-arrow-left-thick"></span>
                 </button>
-                <div class="container mx-auto p-6 bg-white shadow-md rounded-md w-96">
+                <div class="container mx-auto p-4 sm:p-6 bg-white shadow-md rounded-md max-w-96">
                     <h2 class="text-2xl font-semibold mb-4">Create New Event</h2>
-                    <form id="eventForm">
+                    <form id="eventForm"">
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="title">Title:</label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered w-full"
+                            <input class="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered "
                                    id="title" name="title"
                                    required
                                    type="text">
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="location">Location:</label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered w-full"
+                            <input class="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered "
                                    id="location" name="location"
                                    required
                                    type="text">
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="description">Description:</label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered w-full"
+                            <input class="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered "
                                    id="description" name="description"
                                    required
                                    type="text">
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="start_time">Start Time:</label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered w-full"
+                            <input class="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered "
                                    id="start_time" name="start_time"
                                    required
                                    type="datetime-local">
                         </div>
                         <div class="mb-6">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="end_time">End Time:</label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered w-full"
+                            <input class="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered "
                                    id="end_time" name="end_time"
                                    required
                                    type="datetime-local">

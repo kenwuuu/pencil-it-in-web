@@ -9,8 +9,8 @@ no back-and-forth, just instant visibility to plan hangouts fast.
 
 ## General Knowledge
 
-- When running Supabase functions locally, the `anon_key` is different from the prod one, 
-so you need to change the key in certain calls, or set your env variable differently.
+- When running Supabase functions locally, the `anon_key` is different from the prod one,
+  so you need to change the key in certain calls, or set your env variable differently.
 - API keys in the repo are public keys so they're fine to stay out.
 - Example API calls using the Supabase JS library are in `services/examples/edge-functions
 - When renaming or moving files that use HTMX or are used by a file that uses HTMX, you have
@@ -33,6 +33,8 @@ so you need to change the key in certain calls, or set your env variable differe
     - Body: {"email": "email@gmail.com","password": "password"}
 - All new JS files need to be added to `vite.config.ts` in order to be included when we build for prod.
 - The three lines of AlpineJS in `main.js` are just necessary. IDK why, their docs just say to do that.
+- To always load into Event Creation component for testing, set `x-data=" { is_creating_new_event: true }"` to true in
+  `events-container.js`
 
 ## Setting Up
 
