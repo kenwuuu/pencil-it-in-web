@@ -1,5 +1,6 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
-import { createClient } from "jsr:@supabase/supabase-js@2";
+import { createClient } from "jsr:@supabase/supabase-js@2.49.8";
+
 Deno.serve(async (req)=>{
   // request body: {"friendId": "fcad4372-b85a-468b-bd97-09014b90876e"}
 

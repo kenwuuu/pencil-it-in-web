@@ -1,5 +1,5 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
-import { createClient } from "jsr:@supabase/supabase-js@2";
+import { createClient } from "jsr:@supabase/supabase-js@2.49.8";
 
 Deno.serve(async (req: Request) => {
   if (req.method === 'OPTIONS') {

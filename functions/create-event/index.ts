@@ -1,5 +1,5 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
-import { createClient } from "jsr:@supabase/supabase-js@2";
+import { createClient } from "jsr:@supabase/supabase-js@2.49.8";
 import { config } from 'https://deno.land/x/dotenv/mod.ts';
 
 await config({export: true});
