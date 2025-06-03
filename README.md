@@ -36,6 +36,8 @@ no back-and-forth, just instant visibility to meet up with your friends fast.
     - Body: {"email": "email@gmail.com","password": "password"}
 - All new JS files need to be added to `vite.config.ts` in order to be included when we build for prod.
 - The three lines of AlpineJS in `main.js` are just necessary. IDK why, their docs just say to do that.
+- Supabase Functions common error: `JSON object requested, multiple (or no) rows returned`, this usually happens when
+  you submit bad input, and it uses that input to call the database. Check that your input exists in the database.
 
 ## Setting Up
 
