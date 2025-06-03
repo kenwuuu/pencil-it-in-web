@@ -35,6 +35,28 @@ no back-and-forth, just instant visibility to plan hangouts fast.
 - The three lines of AlpineJS in `main.js` are just necessary. IDK why, their docs just say to do that.
 - To always load into Event Creation component for testing, set `x-data=" { is_creating_new_event: true }"` to true in
   `events-container.js`
+-
+
+`[Error] Fetch API cannot load https://mpounklnfrcfpkefidfn.supabase.co/functions/v1/retrieve-user-friends due to access control checks.`
+
+- this error occurs when the edge function doesn't handle preflight and CORS. Add the following code block to the
+  top of
+  your function under `Deno.serve`.
+
+```javascript
+  // handle preflight checks and provide CORS headers
+if (req.method === 'OPTIONS') {
+    return new Response('ok', {
+        status: 200,
+        headers: {
+            "Access-Control-Allow-Origin": origin,
+            "Access-Control-Allow-Methods": "POST",
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            "Access-Control-Max-Age": "86400"
+        }
+    });
+}
+```
 
 ## Setting Up
 
