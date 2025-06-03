@@ -2,13 +2,8 @@
 
 ### pencil it in is the first shared calendar built for friends, not meetings.
 
-pencil it in shows your group’s real-time availability instantly—no invites,
-no back-and-forth, just instant visibility to join hangouts fast.
-
-- Your feed shows every event that your friends want you to go to. There are no invite lists, your entire friends list
-  can see every event you make.
-- You and your friends lead busy lives, make spontaneous plans and invite your friends to meet you at the hiking trail
-  or the mall with no pressure to attend. Or, open your feed and easily join a friend on a simple errand.
+pencil it in shows your friends’ current plans instantly—no invites,
+no back-and-forth, just instant visibility to meet up with your friends fast.
 
 - Your feed shows every event that your friends want you to go to. There are no invite lists, your entire friends list
   can see every event you make.
@@ -41,6 +36,8 @@ no back-and-forth, just instant visibility to join hangouts fast.
     - Body: {"email": "email@gmail.com","password": "password"}
 - All new JS files need to be added to `vite.config.ts` in order to be included when we build for prod.
 - The three lines of AlpineJS in `main.js` are just necessary. IDK why, their docs just say to do that.
+- Supabase Functions common error: `JSON object requested, multiple (or no) rows returned`, this usually happens when
+  you submit bad input, and it uses that input to call the database. Check that your input exists in the database.
 
 ## Setting Up
 
