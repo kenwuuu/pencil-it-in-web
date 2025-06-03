@@ -4,7 +4,7 @@ class FriendsSearchBar extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
     <div class="join min-w-full">
-      <input id="friend-input" class="input input-md join-item" placeholder="@xXdemonSlayerXx" autocomplete="first-name" />
+      <input id="friend-input" class="input input-md join-item" style="font-size: 16px" placeholder="@xXdemonSlayerXx" autocomplete="first-name" />
       <button id="add-friend-btn" class="btn btn-md join-item">Add Friend</button>
     </div>
   `;
