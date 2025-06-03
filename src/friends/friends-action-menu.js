@@ -5,10 +5,7 @@ class FriendsActionMenu extends HTMLElement {
         <button class="btn">Add Friend</button>
     </div>
     <div class="hidden xl:block">
-        <ul
-          class="action-menu"
-          x-data="{ current_page: window.location.pathname }"
-        >
+        <ul class="action-menu">
           <li>
             <a class="sidebar-menu-item">
               <span class="iconify" data-icon="mdi-calendar-plus"></span>

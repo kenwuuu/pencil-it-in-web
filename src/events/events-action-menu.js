@@ -8,8 +8,7 @@ class EventsActionMenu extends HTMLElement {
         </button>
     </div>
     <div class="hidden xl:block">
-        <ul class="action-menu"
-        x-data="{ current_page: window.location.pathname }">
+        <ul class="action-menu">
             <li x-on:click=" is_creating_new_event = true ">
                 <a class="sidebar-menu-item">
                     <span class="iconify" data-icon="mdi-plus"></span>

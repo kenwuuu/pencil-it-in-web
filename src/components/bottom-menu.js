@@ -1,7 +1,7 @@
 class BottomMenu extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-        <div class="dock" x-data="{ current_page: window.location.pathname }">
+        <div class="dock">
           <button
             x-on:click="page = 'events'"
             id="bottom-menu-item-events" 
