@@ -5,6 +5,11 @@
 pencil it in shows your group’s real-time availability instantly—no invites,
 no back-and-forth, just instant visibility to plan hangouts fast.
 
+- Your feed shows every event that your friends want you to go to. There are no invite lists, your entire friends list
+  can see every event you make.
+- You and your friends lead busy lives, make spontaneous plans and invite your friends to meet you at the hiking trail
+  or the mall with no pressure to attend. Or, open your feed and easily join a friend on a simple errand.
+
 # Onboarding
 
 ## General Knowledge
@@ -203,17 +208,17 @@ library, and then calls that function.
 
 ```javascript
 export async function signUpUser(email, password) {
-  const {
-    data: { user, session },
-    error,
-  } = await supabase.auth.signUp({
-    email,
-    password,
-  });
-  return { user, session, error };
+    const {
+        data: {user, session},
+        error,
+    } = await supabase.auth.signUp({
+        email,
+        password,
+    });
+    return {user, session, error};
 }
 
-const { user, session, error } = signUpUser('matriax1@gmail.com', 'password');
+const {user, session, error} = signUpUser('matriax1@gmail.com', 'password');
 ```
 
 We also have some api calls in `src/api-examples` that you can use to directly run stored
