@@ -2,7 +2,10 @@ class EventsActionMenu extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
     <div class="block xl:hidden">
-        <button class="btn">Create Event</button>
+        <button class="btn btn-md"
+        x-on:click=" is_creating_new_event = true ">
+          Create Event
+        </button>
     </div>
     <div class="hidden xl:block">
         <ul class="action-menu"
