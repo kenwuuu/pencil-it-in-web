@@ -41,38 +41,56 @@ Deno.serve(async (req)=>{
     if (friendError) throw friendError;
     const friendUserId = friendData.id;
 
-    // Update friendship status in public.friends
-    const { error: updateError } = await supabaseClient.from('friends').insert([
-      {
-        user_id: requestingUserId,
-        friend_id: friendUserId
-      },
-      {
-        user_id: friendUserId,
-        friend_id: requestingUserId
-      }
-    ]);
-    if (updateError) throw updateError;
+    const { data, error } = await supabaseClient.from('friends')
+      .select('user_id, friend_id').eq('user_id', requestingUserId).eq('friend_id', friendUserId)
+    if (error) throw error;
 
-    // Add friend to user's upcoming events
-    const { data: message, error: messageError } = await supabaseClient.functions.invoke(
-      'add-user-to-all-upcoming-events', {
-        body: {'friendUserId': friendUserId},
-      },
-    )
-    if (messageError) throw messageError;
+    const friendshipDoesNotExist = !data[0];
 
-    console.log(message);
-    // send Response to client
-    return new Response(JSON.stringify({
-      message: 'Friendship updated successfully'
-    }), {
-      headers: {
-        "Access-Control-Allow-Origin": origin,
-        'Content-Type': 'application/json'
-      },
-      status: 200
-    });
+    if (friendshipDoesNotExist) {
+      // Update friendship status in public.friends
+      const {error: updateError} = await supabaseClient.from('friends').insert([
+        {
+          user_id: requestingUserId,
+          friend_id: friendUserId
+        },
+        {
+          user_id: friendUserId,
+          friend_id: requestingUserId
+        }
+      ]);
+      if (updateError) throw updateError;
+
+      // Add friend to user's upcoming events
+      const {data: message, error: messageError} = await supabaseClient.functions.invoke(
+        'add-user-to-all-upcoming-events', {
+          body: {'friendUserId': friendUserId},
+        },
+      )
+      if (messageError) throw messageError;
+
+      // send Response to client
+      return new Response(JSON.stringify({
+        message: 'Friendship updated successfully'
+      }), {
+        headers: {
+          "Access-Control-Allow-Origin": origin,
+          'Content-Type': 'application/json'
+        },
+        status: 200
+      });
+    } else {
+      // tell client that friendship already exists
+      return new Response(JSON.stringify({
+        message: 'Friendship already exists, operation skipped.'
+      }), {
+        headers: {
+          "Access-Control-Allow-Origin": origin,
+          'Content-Type': 'application/json'
+        },
+        status: 409
+      });
+    }
   } catch (error) {
     return new Response(JSON.stringify({
       error: error.message
