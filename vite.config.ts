@@ -1,5 +1,5 @@
-import { defineConfig } from "vite";
-import { resolve } from "path";
+import {defineConfig} from "vite";
+import {resolve} from "path";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
@@ -33,7 +33,7 @@ export default defineConfig({
         // settings
         settings: resolve(__dirname, "src/settings/settings-container.js"),
         // friends
-        friends: resolve(__dirname, "src/friends/friends-container.js")
+        friends: resolve(__dirname, "src/friends/friends-container.js"),
       },
       // Ensure all JS modules are properly bundled
       external: []

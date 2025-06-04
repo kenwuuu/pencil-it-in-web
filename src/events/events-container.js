@@ -1,16 +1,15 @@
 import './events-action-menu.js';
-import './event-creation-component.js'
-import './services/get-upcoming-events.js'
-import {supabase} from "../supabase-client/supabase-client.js";
+import './event-creation-component.js';
+import './services/get-upcoming-events.js';
+import {supabase} from '../supabase-client/supabase-client.js';
 import {format, parseISO} from 'date-fns';
-import {getUpcomingEvents} from "./services/get-upcoming-events.js";
+import {getUpcomingEvents} from './services/get-upcoming-events.js';
 import {downloadICS} from './services/calendar.js';
 
 class EventsContainer extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-        <div class="flex"
-          x-data=" { is_creating_new_event: false  }">
+        <div class="flex" x-data=" { is_creating_new_event: false }">  <!--   set this to true to always load into event creation component for testing   -->
           <div
             class="page-container flex-1"
             hx-trigger="load"
@@ -21,7 +20,7 @@ class EventsContainer extends HTMLElement {
                 <div class="prose">
                   <h1 x-text="capitalize(page)"></h1>
                 </div>
-                <events-action-menu class="ml-auto block xl:hidden"></events-action-menu>
+                <events-action-menu class="action-menu-header-component"></events-action-menu>
               </div>
               <div class="join mb-4 w-full">
                 <button class="btn join-item flex-1">All Events</button>
@@ -81,7 +80,7 @@ class EventsContainer extends HTMLElement {
             </template>
             <event-creation-component class="flex-1" x-show="is_creating_new_event"></event-creation-component>
           </div>
-          <events-action-menu class="hidden xl:block"></events-action-menu>
+          <events-action-menu class="action-menu-side-component"></events-action-menu>
         </div>
     `;
     }
@@ -90,7 +89,7 @@ class EventsContainer extends HTMLElement {
 async function signIn() {
     const {data: signInData, error: signInError} = await supabase.auth.signInWithPassword({
         email: 'kenqiwu@gmail.com',
-        password: 'adsihn9',
+        password: 'adsihn9'
     });
 
     if (signInError) {
@@ -108,8 +107,8 @@ function populateEventElementsWithData(template, event, agenda) {
     const templateClone = template.content.cloneNode(true);
 
     const date = parseISO(event['start_time']);
-    const startDate = format(date, "MMMM do, yyyy"); // e.g., April 20th, 2025
-    const startTime = format(date, "h:mmaaa").toLowerCase(); // e.g., 11:00pm
+    const startDate = format(date, 'MMMM do, yyyy'); // e.g., April 20th, 2025
+    const startTime = format(date, 'h:mmaaa').toLowerCase(); // e.g., 11:00pm
 
     const titleElem = templateClone.querySelector('.title');
     if (titleElem) {
@@ -163,85 +162,85 @@ function populateEventElementsWithData(template, event, agenda) {
 function mockGetUpcomingEvents() {
     return [
         {
-            "id": "ff005eee-81d1-46f4-93bf-75966030fbf8",
-            "title": "an obnoxiously long title because people suck and try to make my life hard",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-            "start_time": "2025-05-17T06:15:00+00:00",
-            "end_time": "2025-05-30T06:15:00+00:00",
-            "host": [
+            'id': 'ff005eee-81d1-46f4-93bf-75966030fbf8',
+            'title': 'an obnoxiously long title because people suck and try to make my life hard',
+            'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+            'start_time': '2025-05-17T06:15:00+00:00',
+            'end_time': '2025-05-30T06:15:00+00:00',
+            'host': [
                 {
-                    "user_id": "584850d8-59d1-4f48-b83d-85d97bd4dee6",
-                    "first_name": "Francesca"
+                    'user_id': '584850d8-59d1-4f48-b83d-85d97bd4dee6',
+                    'first_name': 'Francesca'
                 }
             ],
-            "created_at": "2025-04-26T13:15:36.138078+00:00",
-            "cohosts": [
+            'created_at': '2025-04-26T13:15:36.138078+00:00',
+            'cohosts': [
                 null
             ],
-            "participants": [
+            'participants': [
                 {
-                    "user_id": "f18d6f00-b861-45bd-bad9-2d3c1b772323",
-                    "first_name": "f1",
-                    "attendance_answer": "yes"
+                    'user_id': 'f18d6f00-b861-45bd-bad9-2d3c1b772323',
+                    'first_name': 'f1',
+                    'attendance_answer': 'yes'
                 }
             ],
-            "attendance_yes_count": 12,
-            "attendance_maybe_count": 31,
-            "attendance_no_count": 9
+            'attendance_yes_count': 12,
+            'attendance_maybe_count': 31,
+            'attendance_no_count': 9
         },
         {
-            "id": "c5fc677f-f021-40a7-81e4-da7ad8a46fa1",
-            "created_at": "2025-04-25T15:28:31.200507+00:00",
-            "title": "picnic",
-            "description": null,
-            "start_time": "2025-06-22T19:10:25+00:00",
-            "end_time": "2025-06-22T22:10:25+00:00",
-            "host": [
+            'id': 'c5fc677f-f021-40a7-81e4-da7ad8a46fa1',
+            'created_at': '2025-04-25T15:28:31.200507+00:00',
+            'title': 'picnic',
+            'description': null,
+            'start_time': '2025-06-22T19:10:25+00:00',
+            'end_time': '2025-06-22T22:10:25+00:00',
+            'host': [
                 {
-                    "user_id": "f18d6f00-b861-45bd-bad9-2d3c1b772323",
-                    "first_name": "Francesca"
+                    'user_id': 'f18d6f00-b861-45bd-bad9-2d3c1b772323',
+                    'first_name': 'Francesca'
                 }
             ],
-            "cohosts": [
+            'cohosts': [
                 null
             ],
-            "participants": [
+            'participants': [
                 {
-                    "user_id": null,
-                    "first_name": null,
-                    "attendance_answer": null
+                    'user_id': null,
+                    'first_name': null,
+                    'attendance_answer': null
                 }
             ],
-            "attendance_yes_count": 0,
-            "attendance_maybe_count": 0,
-            "attendance_no_count": 0
+            'attendance_yes_count': 0,
+            'attendance_maybe_count': 0,
+            'attendance_no_count': 0
         },
         {
-            "id": "d02afaa9-64ad-4abb-9151-7a35c0dadd19",
-            "title": "anotherrr",
-            "description": null,
-            "start_time": "2025-07-10T09:45:00+00:00",
-            "end_time": "2025-07-26T09:45:00+00:00",
-            "host": [
+            'id': 'd02afaa9-64ad-4abb-9151-7a35c0dadd19',
+            'title': 'anotherrr',
+            'description': null,
+            'start_time': '2025-07-10T09:45:00+00:00',
+            'end_time': '2025-07-26T09:45:00+00:00',
+            'host': [
                 {
-                    "user_id": "584850d8-59d1-4f48-b83d-85d97bd4dee6",
-                    "first_name": "58"
+                    'user_id': '584850d8-59d1-4f48-b83d-85d97bd4dee6',
+                    'first_name': '58'
                 }
             ],
-            "created_at": "2025-04-25T16:52:46.177964+00:00",
-            "cohosts": [
+            'created_at': '2025-04-25T16:52:46.177964+00:00',
+            'cohosts': [
                 null
             ],
-            "participants": [
+            'participants': [
                 {
-                    "user_id": "f18d6f00-b861-45bd-bad9-2d3c1b772323",
-                    "first_name": "f1",
-                    "attendance_answer": "no"
+                    'user_id': 'f18d6f00-b861-45bd-bad9-2d3c1b772323',
+                    'first_name': 'f1',
+                    'attendance_answer': 'no'
                 }
             ],
-            "attendance_yes_count": 0,
-            "attendance_maybe_count": 0,
-            "attendance_no_count": 1
+            'attendance_yes_count': 0,
+            'attendance_maybe_count': 0,
+            'attendance_no_count': 1
         }
     ];
 }

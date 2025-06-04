@@ -31,8 +31,20 @@
     @apply navbar-end dropdown dropdown-end;
 }
 
+.action-menu-side-component {
+    @apply hidden xl:block;
+}
+
+.action-menu-header-component {
+    @apply ml-auto block xl:hidden;
+}
+
+.action-menu {
+    @apply menu menu-xl w-80 bg-base-200 menu-vertical rounded-box;
+}
+
 .page-container {
-    @apply px-8 md:px-16;
+    @apply px-4 md:px-16;
 }
 
 .event-item {

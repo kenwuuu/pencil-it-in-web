@@ -3,31 +3,46 @@ import {supabase} from "../supabase-client/supabase-client.js";
 class EventCreationComponent extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
-            <div class="page-container flex">
-                <button class="btn btn-lg mr-4"
+            <div class="sm:page-container">
+<!--            Back button    -->
+                <button class="btn btn-lg mb-4"
                         x-on:click=" is_creating_new_event = !is_creating_new_event ">
                     <span class="iconify" data-icon="mdi-arrow-left-thick"></span>
                 </button>
-                <div class="container mx-auto p-6 bg-white shadow-md rounded-md w-96">
+                <div class="container mx-auto p-4 sm:p-6 bg-white shadow-md rounded-md max-w-96">
                     <h2 class="text-2xl font-semibold mb-4">Create New Event</h2>
-                    <form id="eventForm">
+                    <form id="eventForm"">
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="title">Title:</label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered w-full"
+                            <input class="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered "
                                    id="title" name="title"
                                    required
                                    type="text">
                         </div>
                         <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="location">Location:</label>
+                            <input class="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered "
+                                   id="location" name="location"
+                                   required
+                                   type="text">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="description">Description:</label>
+                            <input class="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered "
+                                   id="description" name="description"
+                                   required
+                                   type="text">
+                        </div>
+                        <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="start_time">Start Time:</label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered w-full"
+                            <input class="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered "
                                    id="start_time" name="start_time"
                                    required
                                    type="datetime-local">
                         </div>
                         <div class="mb-6">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="end_time">End Time:</label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered w-full"
+                            <input class="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered "
                                    id="end_time" name="end_time"
                                    required
                                    type="datetime-local">
@@ -42,6 +57,15 @@ class EventCreationComponent extends HTMLElement {
                 </div>
             </div>
     `;
+        this.setDatetimeValue('start_time');
+        this.setDatetimeValue('end_time', 60);
+    }
+
+    setDatetimeValue(id, offsetMinutes = 0) {
+        const now = new Date();
+        const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000 + offsetMinutes * 60000);
+        const value = local.toISOString().slice(0, 16);
+        document.getElementById(id).value = value;
     }
 }
 
@@ -52,27 +76,26 @@ document.addEventListener('DOMContentLoaded', () => {
             return; // Only process submissions from the eventForm
         }
         event.preventDefault();
-        console.log('submit');
 
         const title = eventForm.querySelector('#title').value;
+        const description = eventForm.querySelector('#description').value;
+        const location = eventForm.querySelector('#location').value;
         const startTime = eventForm.querySelector('#start_time').value;
         const endTime = eventForm.querySelector('#end_time').value;
         const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1wb3Vua2xuZnJjZnBrZWZpZGZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDIxODE0OTcsImV4cCI6MjA1Nzc1NzQ5N30.wZlH6_dd0WtEVC-BtMXEzcTUgSAIlegqSPnr3dyvjyA';
 
-        console.log(supabase.auth.getUser())
-
         try {
             const session = await supabase.auth.getSession()
-            const response = await fetch('https://mpounklnfrcfpkefidfn.supabase.co/rest/v1/events', {
+            const response = await fetch('https://mpounklnfrcfpkefidfn.supabase.co/functions/v1/create-event', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'apikey': apiKey,
-                    'Authorization': `Bearer ${apiKey}`
+                    'Authorization': `Bearer ${session.data.session.access_token}`
                 },
                 body: JSON.stringify({
                     title: title,
-                    user_id: session.data.session.user.id,
+                    description: description,
+                    location: location,
                     start_time: startTime,
                     end_time: endTime
                 })

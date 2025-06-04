@@ -14,6 +14,8 @@ no back-and-forth, just instant visibility to meet up with your friends fast.
 
 ## General Knowledge
 
+- When running Supabase functions locally, the `anon_key` is different from the prod one,
+  so you need to change the key in certain calls, or set your env variable differently.
 - API keys in the repo are public keys so they're fine to stay out.
 - Example API calls using the Supabase JS library are in `services/examples/edge-functions
 - When renaming or moving files that use HTMX or are used by a file that uses HTMX, you have
@@ -38,6 +40,31 @@ no back-and-forth, just instant visibility to meet up with your friends fast.
 - The three lines of AlpineJS in `main.js` are just necessary. IDK why, their docs just say to do that.
 - Supabase Functions common error: `JSON object requested, multiple (or no) rows returned`, this usually happens when
   you submit bad input, and it uses that input to call the database. Check that your input exists in the database.
+- To always load into Event Creation component for testing, set `x-data=" { is_creating_new_event: true }"` to true in
+  `events-container.js`
+- If you're getting CORS errors, try adding `"Access-Control-Allow-Origin": origin` to the `Response`
+  immediately following where the error occurs.
+
+`[Error] Fetch API cannot load https://mpounklnfrcfpkefidfn.supabase.co/functions/v1/retrieve-user-friends due to access control checks.`
+
+- this error occurs when the edge function doesn't handle preflight and CORS. Add the following code block to the
+  top of
+  your function under `Deno.serve`.
+
+```javascript
+  // handle preflight checks and provide CORS headers
+if (req.method === 'OPTIONS') {
+    return new Response('ok', {
+        status: 200,
+        headers: {
+            "Access-Control-Allow-Origin": origin,
+            "Access-Control-Allow-Methods": "POST",
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            "Access-Control-Max-Age": "86400"
+        }
+    });
+}
+```
 
 ## Setting Up
 
@@ -93,6 +120,28 @@ Example: `http://192.168.1.42:5173`
 Create an account at `/index.html`.
 
 After creating an account, navigate to `/events.html`.
+
+### Testing API calls during development
+
+Download Postman and make an account. Ask me to share the project with
+you.
+
+#### Setting up Postman
+
+If you are me and unfortunately starting from scratch, you'll want to
+make a `pencil-it-in` **Workspace**, then two **Collections**, one named **Local**,
+and another named fwRemote.
+
+Make two environments, `Local` and `Remote - Prod`.
+You'll also want to create a sign in call first, save the `access_token` that it responds
+with using a post-response Script. You can see it saves it to the current `environment`.
+
+```javascript
+const response = pm.response.json();
+pm.environment.set("auth_token", response.token); // Adjust key name based on your response
+```
+
+Use the variable in `Authorization`, pick `Bearer Token`, then set token as `{{access_token}}`.
 
 ## Testing
 
