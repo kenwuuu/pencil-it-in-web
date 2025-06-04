@@ -12,7 +12,8 @@
 }
 
 #header {
-    @apply sticky top-0;
+    @apply sticky top-0 z-50;
+    padding-top: env(safe-area-inset-top);
 }
 
 #header-menu {

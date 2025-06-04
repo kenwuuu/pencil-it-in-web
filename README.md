@@ -115,6 +115,26 @@ TODO (#50): We have some linters and formatters installed. Explain how to use th
 Navigate to: `http://<your-computer-ip>:<port>`
 Example: `http://192.168.1.42:5173`
 
+### Building for prod
+
+Build into `dist`: `npm run build`
+
+Then host the build locally to check it out: `npm run serve`
+
+TODO: Setup Playwright so we can run it against the prod build and not just
+our dev preview from `npx vite`
+
+### Building phone apps
+
+Build into `dist`: `npm run build`
+
+Sync `dist` code into Capacitor folders: `npx cap sync`.
+`npx cap sync` will copy your built web bundle expected to be found in webDir of the Capacitor Config file to your
+native project and install the native project's dependencies
+
+Pick a target and run iOS simulator: `npx cap run ios` or pick a target, like iPhone 16 Pro:
+`npx cap run --target 58CBFE7A-53BA-4A37-9278-8A981C41779D ios`
+
 ### Create an account
 
 Create an account at `/index.html`.
