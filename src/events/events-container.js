@@ -43,7 +43,7 @@ class EventsContainer extends HTMLElement {
                       hard
                     </h2>
                   </div>
-                  <div class="event-description text-sm mb-2">
+                  <div class="event-description line-clamp-4 text-sm mb-2">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
                     veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
