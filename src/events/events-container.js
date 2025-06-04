@@ -99,13 +99,13 @@ async function signIn() {
 }
 
 function selectEventElements() {
-    const template = document.querySelector('.event-card-template');
-    const agenda = document.querySelector('.events-agenda');
-    return {template, agenda};
+    const eventCardTemplate = document.querySelector('.event-card-template');
+    const eventsAgenda = document.querySelector('.events-agenda');
+    return {eventCardTemplate, eventsAgenda};
 }
 
-function populateEventElementsWithData(template, event, agenda) {
-    const templateClone = template.content.cloneNode(true);
+function populateEventElementsWithData(event, eventCardTemplate, eventsAgenda) {
+    const templateClone = eventCardTemplate.content.cloneNode(true);
 
     const date = parseISO(event['start_time']);
     const startDate = format(date, "MMMM do, yyyy"); // e.g., April 20th, 2025
@@ -157,7 +157,7 @@ function populateEventElementsWithData(template, event, agenda) {
         btn.addEventListener('click', () => downloadICS(event));
     });
 
-    agenda.appendChild(templateClone);
+    eventsAgenda.appendChild(templateClone);
 }
 
 function mockGetUpcomingEvents() {
@@ -250,10 +250,10 @@ function mockGetUpcomingEvents() {
 document.addEventListener('DOMContentLoaded', async () => {
     let data = await getUpcomingEvents();
 
-    const {template, agenda} = selectEventElements();
+    const {eventCardTemplate, eventsAgenda} = selectEventElements();
 
     data.forEach(event => {
-        populateEventElementsWithData(template, event, agenda);
+        populateEventElementsWithData(event, eventCardTemplate, eventsAgenda);
     });
 });
 
