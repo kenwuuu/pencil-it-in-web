@@ -9,8 +9,9 @@ Deno.serve(async (req: Request) => {
       status: 200,
       headers: {
         "Access-Control-Allow-Origin": origin,
-        "Access-Control-Allow-Methods": "POST",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        "Access-Control-Allow-Methods": "GET",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization, apikey, x-client-info",
+        "Access-Control-Allow-Credentials": "true",
         "Access-Control-Max-Age": "86400"
       }
     });
@@ -68,7 +69,14 @@ Deno.serve(async (req: Request) => {
       };
     });
 
-    return new Response(JSON.stringify(friendsWithDetails), { status: 200 });
+    return new Response(JSON.stringify(friendsWithDetails), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": origin,
+        "Access-Control-Allow-Credentials": "true"
+      }
+    });
   }
 
   return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405 });
