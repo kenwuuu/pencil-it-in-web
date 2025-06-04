@@ -35,7 +35,8 @@ no back-and-forth, just instant visibility to plan hangouts fast.
 - The three lines of AlpineJS in `main.js` are just necessary. IDK why, their docs just say to do that.
 - To always load into Event Creation component for testing, set `x-data=" { is_creating_new_event: true }"` to true in
   `events-container.js`
--
+- If you're getting CORS errors, try adding `"Access-Control-Allow-Origin": origin` to the `Response`
+  immediately following where the error occurs.
 
 `[Error] Fetch API cannot load https://mpounklnfrcfpkefidfn.supabase.co/functions/v1/retrieve-user-friends due to access control checks.`
 
