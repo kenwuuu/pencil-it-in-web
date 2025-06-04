@@ -8,7 +8,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         // main HTML entry points
-        // events: resolve(__dirname, "events.html"),
+        events: resolve(__dirname, "events.html"),
         index: resolve(__dirname, "index.html"),
         login: resolve(__dirname, "src/auth/login.html"),
         create_account: resolve(__dirname, "src/auth/create-account.html"),

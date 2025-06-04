@@ -50,6 +50,7 @@
     "gsap": "^3.12.7",
     "htmx": "^0.0.2",
     "iconify": "^1.4.0",
+    "iconify-icon": "^3.0.0",
     "ics": "^3.8.1",
     "tailwind": "^4.0.0",
     "tailwindcss": "^4.1.7"

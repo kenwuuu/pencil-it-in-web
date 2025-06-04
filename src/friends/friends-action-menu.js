@@ -8,25 +8,25 @@ class FriendsActionMenu extends HTMLElement {
         <ul class="action-menu">
           <li>
             <a class="sidebar-menu-item">
-              <span class="iconify" data-icon="mdi-calendar-plus"></span>
+              <iconify-icon icon="mdi:calendar-plus"></iconify-icon>
               Create Event
             </a>
           </li>
           <li>
             <a class="sidebar-menu-item">
-              <span class="iconify" data-icon="mdi-chat-plus"></span>
+              <iconify-icon icon="mdi:chat-plus"></iconify-icon>
               Create Chat
             </a>
           </li>
           <li>
             <a class="sidebar-menu-item">
-              <span class="iconify" data-icon="mdi-account-plus"></span>
+              <iconify-icon icon="mdi:account-plus"></iconify-icon>
               New Requests
             </a>
           </li>
           <li x-on:click=" is_searching_for_friends = true ">
             <a class="sidebar-menu-item">
-              <span class="iconify" data-icon="mdi-search"></span>
+              <iconify-icon icon="mdi:search"></iconify-icon>
               Search
             </a>
           </li>

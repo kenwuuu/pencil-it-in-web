@@ -55,7 +55,7 @@ class EventsContainer extends HTMLElement {
                           Host: Francesca
                         </span>
                         <button class="download-calendar-btn btn btn-ghost p-1 block sm:hidden">
-                          <span class="iconify text-3xl sm:text-2xl" data-icon="mdi-calendar-export"></span>
+                          <iconify-icon class="text-3xl sm:text-2xl" icon="mdi:calendar-export"></iconify-icon>
                         </button>
                     </div>
                     <div class="attendance join flex">
@@ -72,7 +72,7 @@ class EventsContainer extends HTMLElement {
                       </button>
                     </div>
                     <button class="download-calendar-btn btn btn-ghost p-1 hidden sm:block">
-                      <span class="iconify text-3xl sm:text-2xl" data-icon="mdi-calendar-export"></span>
+                      <iconify-icon class="text-3xl sm:text-2xl" icon="mdi:calendar-export"></iconify-icon>
                     </button>
                   </div>
                 </div>

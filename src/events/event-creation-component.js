@@ -7,7 +7,7 @@ class EventCreationComponent extends HTMLElement {
 <!--            Back button    -->
                 <button class="btn btn-lg mb-4"
                         x-on:click=" is_creating_new_event = !is_creating_new_event ">
-                    <span class="iconify" data-icon="mdi-arrow-left-thick"></span>
+                    <iconify-icon icon="mdi:arrow-left-thick"></iconify-icon>
                 </button>
                 <div class="container mx-auto p-4 sm:p-6 bg-white shadow-md rounded-md max-w-96">
                     <h2 class="text-2xl font-semibold mb-4">Create New Event</h2>

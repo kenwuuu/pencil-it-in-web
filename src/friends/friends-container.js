@@ -38,7 +38,7 @@ class FriendsContainer extends HTMLElement {
                                 </div>
                                 <div class="flex items-center justify-center h-full">
                                   <div>
-                                    <span id="iconify-icon" class="iconify text-error text-2xl" data-icon="mdi-close-box"></span>
+                                    <iconify-icon class="text-error text-2xl" icon="mdi:close-box"></iconify-icon>
                                   </div>
                                 </div>
                             </li>

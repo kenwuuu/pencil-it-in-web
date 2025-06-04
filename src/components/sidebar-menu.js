@@ -9,7 +9,7 @@ class SidebarMenu extends HTMLElement {
           class="sidebar-menu-item"
           :class="page === 'events' ? 'menu-active' : ''"
           >
-            <span id="iconify-icon" class="iconify" data-icon="mdi-calendar"></span>
+            <iconify-icon icon="mdi:calendar"></iconify-icon>
             Events
             <span class="badge badge-xs badge-info">2</span>
             <span class="badge badge-xs badge-warning">23</span>
@@ -23,7 +23,7 @@ class SidebarMenu extends HTMLElement {
           class="sidebar-menu-item"
           :class="page === 'friends' ? 'menu-active' : ''"
           >
-            <span id="iconify-icon" class="iconify" data-icon="mdi-account-group"></span>
+            <iconify-icon icon="mdi:account-group"></iconify-icon>
             Friends
             <span class="badge badge-xs badge-warning">NEW REQUEST</span>
           </a>
@@ -35,7 +35,7 @@ class SidebarMenu extends HTMLElement {
           class="sidebar-menu-item"
           :class="page === 'profile' ? 'menu-active' : ''"
           >
-            <span id="iconify-icon" class="iconify" data-icon="mdi-user"></span>
+            <iconify-icon icon="mdi:user"></iconify-icon>
             Profile
           </a>
         </li>
@@ -46,7 +46,7 @@ class SidebarMenu extends HTMLElement {
           class="sidebar-menu-item"
           :class="page === 'settings' ? 'menu-active' : ''"
           >
-            <span id="iconify-icon" class="iconify" data-icon="mdi-settings"></span>
+            <iconify-icon icon="mdi:settings"></iconify-icon>
             Settings
           </a>
         </li>
