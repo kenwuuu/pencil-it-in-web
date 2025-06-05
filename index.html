@@ -4,9 +4,25 @@
   <meta charset="UTF-8" content="viewport-fit=cover" name="viewport"/>
   <title>Pencil It In</title>
 </head>
-<body class="flex align-center justify-center items-center min-h-screen">
-<a class="btn btn-primary" href="./src/auth/login.html">Log In</a>
-</body>
+
+<script type="module">  // redirect if user has signed in before
+import {supabase} from "@/supabase-client/supabase-client.js";
+
+const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);  // regex match on user agent
+const {data, error} = await supabase.auth.getSession();
+let token = data?.session?.access_token; // Get the user's access token
+
+
+if (token) {  // if they've made an account, redirect to app
+    window.location.href = '/events.html';
+}
+
+if (isMobile) {  // if no account and they're mobile, send to create an account
+    window.location.href = '/src/auth/login.html';
+} else {  // if no account and desktop, send to landing page
+    window.location.href = '/landing.html';
+}
+</script>
 
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </html>
