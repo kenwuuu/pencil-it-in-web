@@ -45,9 +45,9 @@ class FriendsContainer extends HTMLElement {
                                     </div>
                                 </div>
                                 <div class="flex items-center justify-center h-full">
-                                    <div>
-                                        <span x-on:click="removeFriendship(friend.friend_id)" class="iconify text-error text-2xl" data-icon="mdi-close-box"></span>
-                                    </div>
+                                  <div>
+                                    <iconify-icon x-on:click="removeFriendship(friend.friend_id)" class="text-error text-2xl" icon="mdi:close-box"></iconify-icon>
+                                  </div>
                                 </div>
                             </li>
                         </template>

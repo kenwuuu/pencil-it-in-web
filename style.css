@@ -12,8 +12,35 @@
 }
 
 #header {
-    @apply sticky top-0;
+    @apply sticky top-0 z-50;
+    padding-top: env(safe-area-inset-top); /* safe area code for mobile devices */
 }
+
+/* start safe area code for mobile devices */
+.safe-area-top,
+.safe-area-bottom {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    pointer-events: none;
+}
+
+.safe-area-top {
+    top: 0;
+    height: env(safe-area-inset-top);
+    @apply bg-base-100;
+    /* match background color */
+}
+
+.safe-area-bottom {
+    bottom: 0;
+    height: env(safe-area-inset-bottom);
+    @apply bg-base-100;
+    /* match background color */
+}
+
+/* end safe area code for mobile devices */
 
 #header-menu {
     @apply navbar bg-base-100 shadow-sm;

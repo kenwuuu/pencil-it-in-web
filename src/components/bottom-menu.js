@@ -1,3 +1,5 @@
+import "iconify-icon";
+
 class BottomMenu extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
@@ -7,7 +9,7 @@ class BottomMenu extends HTMLElement {
             id="bottom-menu-item-events" 
             x-bind:class="page === 'events' ? 'dock-active' : ''"
             >
-          <span id="iconify-icon" class="iconify" data-icon="mdi-calendar"></span>
+          <iconify-icon icon="mdi:calendar"></iconify-icon>
           Events
           </button>
           <button
@@ -15,7 +17,7 @@ class BottomMenu extends HTMLElement {
             id="bottom-menu-item-friends" 
             x-bind:class="page === 'friends' ? 'dock-active' : ''"
             >
-          <span id="iconify-icon" class="iconify" data-icon="mdi-account-group"></span>
+          <iconify-icon icon="mdi:account-group"></iconify-icon>
           Friends
           </button>
           <button
@@ -23,7 +25,7 @@ class BottomMenu extends HTMLElement {
             id="bottom-menu-item-profile" 
             x-bind:class="page === 'profile' ? 'dock-active' : ''"
             >
-          <span id="iconify-icon" class="iconify" data-icon="mdi-user"></span>
+          <iconify-icon icon="mdi:user"></iconify-icon>
           Profile
           </button>
           <button
@@ -31,7 +33,7 @@ class BottomMenu extends HTMLElement {
             id="bottom-menu-item-settings" 
             x-bind:class="page === 'settings' ? 'dock-active' : ''"
             >
-          <span id="iconify-icon" class="iconify" data-icon="mdi-settings"></span>
+          <iconify-icon icon="mdi:settings"></iconify-icon>
           Settings
           </button>
         </div>
