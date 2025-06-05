@@ -1,20 +1,28 @@
 import './friends-action-menu.js';
-import './friends-search-bar.ts';
 import {getUserFriends} from '@/friends/services/get-friends.js';
+import {removeFriendship as apiRemoveFriendship} from "@/friends/services/remove-friend.js";
+import {insertFriendship} from "@/friends/services/add-friend.js";
 
 class FriendsContainer extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
         <main class="flex">
-            <div class="page-container flex-1">
+            <div class="page-container flex-1" x-data="friendsData()">
                 <header class="space-y-4 my-4 sm:flex">
                     <div class="prose flex-1 mb-4">
                         <h1 x-text="capitalize(page)"></h1>
                     </div>
-                    <friends-search-bar class="max-w-full"></friends-search-bar>
+                    <!--   Start Friend Search Bar   -->
+                    <div class="max-w-full">
+                        <div class="join min-w-full">
+                          <input id="friend-input" x-ref="friendInput" class="input input-md join-item" style="font-size: 16px" placeholder="@xXdemonSlayerXx" autocomplete="first-name" />
+                          <button id="add-friend-btn" x-on:click="addFriend($refs.friendInput)" class="btn btn-md join-item">Add Friend</button>
+                        </div>
+                    </div>
+                    <!--   End Friend Search Bar   -->
                 </header>
 
-                <div x-data="friendsData()"> 
+                <div> 
                     <ul id="friends-list" class="list bg-base-100 rounded-box shadow-md mt-4">
                         <li class="flex p-4 pb-2 text-xs opacity-60 tracking-wide">
                             Friends within 30 miles of you
@@ -38,7 +46,7 @@ class FriendsContainer extends HTMLElement {
                                 </div>
                                 <div class="flex items-center justify-center h-full">
                                   <div>
-                                    <iconify-icon class="text-error text-2xl" icon="mdi:close-box"></iconify-icon>
+                                    <iconify-icon x-on:click="removeFriendship(friend.friend_id)" class="text-error text-2xl" icon="mdi:close-box"></iconify-icon>
                                   </div>
                                 </div>
                             </li>
@@ -46,9 +54,12 @@ class FriendsContainer extends HTMLElement {
                     </ul>
                 </div>
             </div>
-            <friends-action-menu class="action-menu-side-component" src="src/mock_data/action_menu/friends.html" class="hidden xl:block"></friends-action-menu>
+            <friends-action-menu class="action-menu-side-component hidden xl:block" src="src/mock_data/action_menu/friends.html"></friends-action-menu>
         </main>
-    `;
+        `;
+
+        // Re-init Alpine for dynamically injected content
+        queueMicrotask(() => Alpine.initTree(this));
     }
 }
 
@@ -63,6 +74,9 @@ function friendsData() {
     return {
         friends: [],
         async init() {
+            await this.loadFriends();
+        },
+        async loadFriends() {
             try {
                 const response = await getUserFriends();
                 this.friends = response;
@@ -70,10 +84,30 @@ function friendsData() {
                 console.error('Error fetching friends:', error);
             }
         },
+        async removeFriendship(friendId) {
+            try {
+                await apiRemoveFriendship(friendId);
+                await this.loadFriends();
+            } catch (err) {
+                console.error('Error in AlpineJS removeFriendship:', err);
+            }
+        },
+        async addFriend(input) {
+            let username = input.value.trim();
+            if (!username) return;
+
+            insertFriendship(username)
+                .then(() => {
+                    input.value = '';
+                    this.loadFriends();
+                })
+                .catch((err) => {
+                    console.error('Failed to add friend:', err);
+                });
+        },
     };
 }
 
-// Make the function globally available for Alpine
 window.getCurrentDateTime = getCurrentDateTime;
 window.friendsData = friendsData;
 
