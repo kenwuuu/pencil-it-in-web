@@ -15,7 +15,7 @@ test('testFriendsListIsVisible', async ({page}) => {
 test('testFriendsSearchBarIsVisible', async ({page}) => {
   await page.goto('/events.html');
   await page.getByTestId('friends-menu-item').click();
-  await expect(page.locator('friends-search-bar')).toBeVisible();
+  await expect(page.locator('header').filter({hasText: 'Friends Add Friend'}).locator('div').nth(1)).toBeVisible();
 });
 
 test('testFriendProfilePictureIsVisible', async ({page}) => {
