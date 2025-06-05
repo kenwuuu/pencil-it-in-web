@@ -1,6 +1,7 @@
 import './friends-action-menu.js';
 import './friends-search-bar.ts';
 import {getUserFriends} from '@/friends/services/get-friends.js';
+import {removeFriendship as apiRemoveFriendship} from "@/friends/services/remove-friend.js";
 
 class FriendsContainer extends HTMLElement {
     connectedCallback() {
@@ -37,18 +38,21 @@ class FriendsContainer extends HTMLElement {
                                     </div>
                                 </div>
                                 <div class="flex items-center justify-center h-full">
-                                  <div>
-                                    <span id="iconify-icon" class="iconify text-error text-2xl" data-icon="mdi-close-box"></span>
-                                  </div>
+                                    <div>
+                                        <span x-on:click="removeFriendship(friend.friend_id)" class="iconify text-error text-2xl" data-icon="mdi-close-box"></span>
+                                    </div>
                                 </div>
                             </li>
                         </template>
                     </ul>
                 </div>
             </div>
-            <friends-action-menu class="action-menu-side-component" src="src/mock_data/action_menu/friends.html" class="hidden xl:block"></friends-action-menu>
+            <friends-action-menu class="action-menu-side-component hidden xl:block" src="src/mock_data/action_menu/friends.html"></friends-action-menu>
         </main>
-    `;
+        `;
+
+        // Re-init Alpine for dynamically injected content
+        queueMicrotask(() => Alpine.initTree(this));
     }
 }
 
@@ -62,7 +66,7 @@ function getCurrentDateTime() {
 function friendsData() {
     return {
         friends: [],
-        async init() {
+        async loadFriends() {
             try {
                 const response = await getUserFriends();
                 this.friends = response;
@@ -70,10 +74,20 @@ function friendsData() {
                 console.error('Error fetching friends:', error);
             }
         },
+        async removeFriendship(friendId) {
+            try {
+                await apiRemoveFriendship(friendId);
+                await this.loadFriends();
+            } catch (err) {
+                console.error('Error in AlpineJS removeFriendship:', err);
+            }
+        },
+        async init() {
+            await this.loadFriends();
+        }
     };
 }
 
-// Make the function globally available for Alpine
 window.getCurrentDateTime = getCurrentDateTime;
 window.friendsData = friendsData;
 
