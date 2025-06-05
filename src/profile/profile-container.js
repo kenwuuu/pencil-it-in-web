@@ -1,17 +1,34 @@
 class ProfileContainer extends HTMLElement {
-    connectedCallback() {
-        this.innerHTML = `
-      <div
-        class="page-container"
-        hx-get="src/profile/mock_data/profile_data.html"
-        hx-trigger="load"
-        hx-target=".profile"
-      >
-      <div class="flex-1 flex">
-        <div class="profile"></div>
+  connectedCallback() {
+    this.innerHTML = `
+      <div class="page-container flex-1 flex flex-col">
+        <div class="profile-header mb-8 items-center text-center">
+          <div class="profile-photo avatar relative group cursor-pointer">
+            <div class="w-40 rounded-full">
+              <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"/>
+              <div
+                  class="absolute inset-0 bg-black/30 rounded-full opacity-0 group-hover:opacity-60 transition-opacity flex items-center justify-center">
+                <span class="iconify text-white text-2xl" data-icon="mdi-pencil"></span>
+              </div>
+            </div>
+          </div>
+          <div class="names">
+            <div class="text-2xl">Radeesha</div>
+            <div class="text-2xl">Jayewickweme</div>
+          </div>
+        </div>
+        <div class="profile-info space-y-6 items-center text-center">
+          <div class="credentials">
+            <h2>Credentials</h2>
+            <h1>email</h1>
+            <h1>password</h1>
+          </div>
+          <!--  todo add confirmation modal to confirm delete  -->
+          <button class="btn btn-warning">Delete account</button>
+        </div>
       </div>
     `;
-    }
+  }
 }
 
 customElements.define('profile-container', ProfileContainer);
