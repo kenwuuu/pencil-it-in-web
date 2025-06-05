@@ -13,12 +13,12 @@ class FriendsContainer extends HTMLElement {
                         <h1 x-text="capitalize(page)"></h1>
                     </div>
                     <!--   Start Friend Search Bar   -->
-<!--                    <div class="max-w-full">-->
-<!--                        <div class="join min-w-full">-->
-<!--                          <input id="friend-input" x-ref="friendInput" class="input input-md join-item" style="font-size: 16px" placeholder="@xXdemonSlayerXx" autocomplete="first-name" />-->
-<!--                          <button id="add-friend-btn" x-on:click="addFriend($refs.friendInput)" class="btn btn-md join-item">Add Friend</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                    <div class="max-w-full">
+                        <div class="join min-w-full">
+                          <input id="friend-input" x-ref="friendInput" class="input input-md join-item" style="font-size: 16px" placeholder="@xXdemonSlayerXx" autocomplete="first-name" />
+                          <button id="add-friend-btn" x-on:click="addFriend($refs.friendInput)" class="btn btn-md join-item">Add Friend</button>
+                        </div>
+                    </div>
                     <!--   End Friend Search Bar   -->
                 </header>
 
