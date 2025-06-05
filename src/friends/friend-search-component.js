@@ -1,10 +1,10 @@
 class FriendSearchComponent extends HTMLElement {
-  connectedCallback() {
-    this.innerHTML = `
+    connectedCallback() {
+        this.innerHTML = `
             <div class="page-container flex">
                 <button class="btn btn-lg mr-4"
                         x-on:click=" is_searching_for_friends = !is_searching_for_friends ">
-                    <span class="iconify" data-icon="mdi-arrow-left-thick"></span>
+                    <iconify-icon icon="mdi:arrow-left-thick"></iconify-icon>
                 </button>
                 <div class="container mx-auto p-6 bg-white shadow-md rounded-md w-96">
                     <h2 class="text-2xl font-semibold mb-4">Create New Event</h2>
@@ -40,7 +40,7 @@ class FriendSearchComponent extends HTMLElement {
                 </div>
             </div>
     `;
-  }
+    }
 }
 
 customElements.define('friend-search-component', FriendSearchComponent);

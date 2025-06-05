@@ -11,7 +11,7 @@ class EventsActionMenu extends HTMLElement {
         <ul class="action-menu">
             <li x-on:click=" is_creating_new_event = true ">
                 <a class="sidebar-menu-item">
-                    <span class="iconify" data-icon="mdi-plus"></span>
+                    <iconify-icon icon="mdi:plus"></iconify-icon>
                     Create Event
                 </a>
             </li>
