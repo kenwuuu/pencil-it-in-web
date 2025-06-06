@@ -52,7 +52,7 @@ Deno.serve(async (req: Request) => {
     // Step 3: Fetch user details for friends
     const { data: friendDetails, error: getFriendUserError } = await supabaseClient
       .from('users')
-      .select('id, first_name, last_name, username, profile_photo_url, wants_to_hang_end_time, city')
+      .select('id, first_name, last_name, username, profile_photo_url, wants_to_hang_end_time, city_and_state')
       .in('id', friendIds);
 
     if (getFriendUserError) {

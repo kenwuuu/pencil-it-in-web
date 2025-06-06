@@ -40,7 +40,7 @@ Deno.serve(async (req) => {
 
     // Get user row
     const { data: userData, error: selectError } = await supabaseClient.from('users')
-      .select('id, first_name, last_name, username, profile_photo_url')
+      .select('id, first_name, last_name, username, profile_photo_url, city_and_state')
       .eq('id', user_id)
       .single();
     if (selectError) throw selectError;
