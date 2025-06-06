@@ -9,6 +9,7 @@
     "serve": "serve dist",
     "preview": "vite preview",
     "prepare": "husky",
+    "ios": "npm run build && npx cap sync && npx cap run --target 58CBFE7A-53BA-4A37-9278-8A981C41779D ios",
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier",
     "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
