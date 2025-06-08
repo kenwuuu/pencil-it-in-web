@@ -1,20 +1,17 @@
 import './events-action-menu.js';
 import './event-creation-component.js';
 import './services/get-upcoming-events.js';
-import {supabase} from '../supabase-client/supabase-client.js';
-import {format, parseISO} from 'date-fns';
-import {getUpcomingEvents} from './services/get-upcoming-events.js';
-import {downloadICS} from './services/calendar.js';
+import { format, parseISO } from 'date-fns';
+import { getUpcomingEvents } from './services/get-upcoming-events.js';
+import { downloadICS } from './services/calendar.js';
+import { updateAttendanceStatus as updateAttendanceStatusAPI } from '@/events/services/update-attendance-status.js';
+import { supabase } from '@/supabase-client/supabase-client.js';
 
 class EventsContainer extends HTMLElement {
-    connectedCallback() {
-        this.innerHTML = `
-        <div class="flex" x-data=" { is_creating_new_event: false }">  <!--   set this to true to always load into event creation component for testing   -->
-          <div
-            class="page-container flex-1"
-            hx-trigger="load"
-            hx-target=".events-agenda"
-            >
+  connectedCallback() {
+    this.innerHTML = `
+        <div class="flex" x-data="eventsData()">
+          <div class="page-container flex-1">
             <header class="space-y-4 my-4">
               <div class="flex">
                 <div class="prose">
@@ -27,234 +24,183 @@ class EventsContainer extends HTMLElement {
                 <button class="btn join-item flex-1">My Events</button>
               </div>
             </header>
-            <div class="events-agenda not-prose flex-1" x-show="!is_creating_new_event"></div>
-            <template class="event-card-template">
-              <div class="card bg-base-100 shadow-sm mb-5">
-                <div class="card-body">
-                  <div class="event-datetime flex justify-between">
-                    <h2 class="event-date sm:text-3xl text-xl">April 20th, 2025</h2>
-                    <span class="event-time badge badge-soft badge-lg sm:badge-xl badge-success"
-                      >4:00pm</span
-                      >
-                  </div>
-                  <div class="title-container flex">
-                    <h2 class="title text-xl sm:text-xl font-bold">
-                      an obnoxiously long title because people suck and try to make my life
-                      hard
-                    </h2>
-                  </div>
-                  <div class="event-description line-clamp-4 text-sm mb-2">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                    commodo consequat
-                  </div>
-                  <div class="participants sm:flex justify-between">
-                    <div class="flex justify-between">
-                        <span class="host-user btn btn-md btn-outline btn-info mb-2 md:mb-0">
-                          Host: Francesca
-                        </span>
-                        <button class="download-calendar-btn btn btn-ghost p-1 block sm:hidden">
+            
+            <div class="events-agenda not-prose flex-1" x-show="!is_creating_new_event">
+              <template x-for="event in events" :key="event.id">
+                <div class="card bg-base-100 shadow-sm mb-5">
+                  <div class="card-body">
+                    <div class="event-datetime flex justify-between">
+                      <h2 class="event-date sm:text-3xl text-xl" x-text="formatDate(event.start_time)"></h2>
+                      <span class="event-time badge badge-soft badge-lg sm:badge-xl badge-success" x-text="formatTime(event.start_time)"></span>
+                    </div>
+                    <div class="title-container flex">
+                      <h2 class="title text-xl sm:text-xl font-bold" x-text="event.title"></h2>
+                    </div>
+                    <div class="event-description line-clamp-4 text-sm mb-2" x-text="event.description || ''"></div>
+                    <div class="participants sm:flex justify-between">
+                      <div class="flex justify-between">
+                        <span class="host-user btn btn-md btn-outline btn-info mb-2 md:mb-0" x-text="'Host: ' + (event.host && event.host[0] ? event.host[0].first_name : 'Unknown')"></span>
+                        <button class="download-calendar-btn btn btn-ghost p-1 block sm:hidden" x-on:click="downloadCalendar(event)">
                           <iconify-icon class="text-3xl sm:text-2xl" icon="mdi:calendar-export"></iconify-icon>
                         </button>
+                      </div>
+                      <div class="attendance join flex">
+                        <button class="yes-button btn flex-1/4 sm:flex-none btn-md btn-outline btn-success join-item" 
+                                x-text="'Yes: ' + (event.attendance_yes_count || 0)"
+                                x-on:click="updateAttendanceStatus(event.id, 'yes')"
+                                data-testid="yes-count"></button>
+                        <button class="maybe-button btn flex-1/3 sm:flex-none btn-md btn-outline btn-warning join-item" 
+                                x-text="'Maybe: ' + (event.attendance_maybe_count || 0)"
+                                x-on:click="updateAttendanceStatus(event.id, 'maybe')"></button>
+                        <button class="no-button flex-1/4 sm:flex-none block btn btn-md btn-outline btn-error join-item" 
+                                x-text="'No: ' + (event.attendance_no_count || 0)"
+                                x-on:click="updateAttendanceStatus(event.id, 'no')"></button>
+                      </div>
+                      <button class="download-calendar-btn btn btn-ghost p-1 hidden sm:block" x-on:click="downloadCalendar(event)">
+                        <iconify-icon class="text-3xl sm:text-2xl" icon="mdi:calendar-export"></iconify-icon>
+                      </button>
                     </div>
-                    <div class="attendance join flex">
-                      <button class="yes-button btn flex-1/4 sm:flex-none btn-md btn-outline btn-success join-item">
-                      Yes: 12
-                      </button>
-                      <button
-                        class="maybe-button btn flex-1/3 sm:flex-none btn-md btn-outline btn-warning join-item"
-                        >
-                      Maybe: 22
-                      </button>
-                      <button class="no-button flex-1/4 sm:flex-none block btn btn-md btn-outline btn-error join-item">
-                      No: 2
-                      </button>
-                    </div>
-                    <button class="download-calendar-btn btn btn-ghost p-1 hidden sm:block">
-                      <iconify-icon class="text-3xl sm:text-2xl" icon="mdi:calendar-export"></iconify-icon>
-                    </button>
                   </div>
                 </div>
-              </div>
-            </template>
+              </template>
+            </div>
+            
             <event-creation-component class="flex-1" x-show="is_creating_new_event"></event-creation-component>
           </div>
           <events-action-menu class="action-menu-side-component"></events-action-menu>
         </div>
     `;
-    }
+
+    // Re-init Alpine for dynamically injected content
+    queueMicrotask(() => Alpine.initTree(this));
+  }
 }
 
-async function signIn() {
-    const {data: signInData, error: signInError} = await supabase.auth.signInWithPassword({
-        email: 'kenqiwu@gmail.com',
-        password: 'adsihn9'
-    });
+// Alpine.js data function
+function eventsData() {
+  return {
+    events: [],
+    is_creating_new_event: false, // moved from x-data attribute to Alpine data
 
-    if (signInError) {
-        console.error('Sign-in error:', signInError);
-    }
-}
+    async init() {
+      await this.loadEvents();
+    },
 
-function selectEventElements() {
-    const eventCardTemplate = document.querySelector('.event-card-template');
-    const eventsAgenda = document.querySelector('.events-agenda');
-    return {eventCardTemplate, eventsAgenda};
-}
+    async loadEvents() {
+      try {
+        const data = await getUpcomingEvents();
+        this.events = data;
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
+    },
 
-function populateEventElementsWithData(event, eventCardTemplate, eventsAgenda) {
-    const templateClone = eventCardTemplate.content.cloneNode(true);
+    async updateAttendanceStatus(eventId, attendanceStatus) {
+      const event = this.events.find(e => e.id === eventId);
+      if (!event) return;
 
-    const date = parseISO(event['start_time']);
-    const startDate = format(date, 'MMMM do, yyyy'); // e.g., April 20th, 2025
-    const startTime = format(date, 'h:mmaaa').toLowerCase(); // e.g., 11:00pm
+      const currentUserId = (await supabase.auth.getUser()).data.user.id; // Replace with actual current user ID
 
-    const titleElem = templateClone.querySelector('.title');
-    if (titleElem) {
-        titleElem.textContent = event.title;
-    }
+      // Find current user in participants
+      const currentUserParticipant = event.participants?.find(
+        p => p.user_id === currentUserId,
+      );
+      const currentStatus =
+        currentUserParticipant?.attendance_answer || 'invited';
 
-    const hostElem = templateClone.querySelector('.host-user');
-    if (hostElem) {
-        hostElem.textContent = `Host: ${event.host[0].first_name}`;
-    }
+      // Don't do anything if clicking the same status
+      if (currentStatus === attendanceStatus) return;
 
-    const descElem = templateClone.querySelector('.event-description');
-    if (descElem) {
-        descElem.textContent = event.description || '';
-    }
+      // Store original counts for rollback
+      const originalCounts = {
+        yes: event.attendance_yes_count || 0,
+        maybe: event.attendance_maybe_count || 0,
+        no: event.attendance_no_count || 0,
+        invited: event.attendance_invited_count || 0,
+      };
 
-    const startTimeElem = templateClone.querySelector('.event-time');
-    if (startTimeElem) {
-        startTimeElem.textContent = startTime;
-    }
+      // Optimistically update counts
+      this.updateCountsOptimistically(event, currentStatus, attendanceStatus);
 
-    const startDateElem = templateClone.querySelector('.event-date');
-    if (startDateElem) {
-        startDateElem.textContent = startDate;
-    }
+      // Update participant's status optimistically
+      if (currentUserParticipant) {
+        currentUserParticipant.attendance_answer = attendanceStatus;
+      }
 
-    const yesButtonElem = templateClone.querySelector('.yes-button');
-    if (yesButtonElem) {
-        yesButtonElem.textContent = `Yes: ${event.attendance_yes_count}` || 'Yes: 0';
-    }
+      try {
+        // Call updateAttendanceStatus API function
+        await updateAttendanceStatusAPI(eventId, attendanceStatus);
+      } catch (error) {
+        console.error('Error updating attendance status:', error);
 
-    const maybeButtonElem = templateClone.querySelector('.maybe-button');
-    if (maybeButtonElem) {
-        maybeButtonElem.textContent = `Maybe: ${event.attendance_maybe_count}` || 'Maybe: 0';
-    }
+        // Rollback on failure
+        event.attendance_yes_count = originalCounts.yes;
+        event.attendance_maybe_count = originalCounts.maybe;
+        event.attendance_no_count = originalCounts.no;
+        event.attendance_invited_count = originalCounts.invited;
 
-    const noButtonElem = templateClone.querySelector('.no-button');
-    if (noButtonElem) {
-        noButtonElem.textContent = `No: ${event.attendance_no_count}` || 'No: 0';
-    }
-
-    // querySelectorAll because we have two buttons that hide/show based on screen size
-    const downloadBtns = templateClone.querySelectorAll('.download-calendar-btn');
-    downloadBtns.forEach(btn => {
-        btn.addEventListener('click', () => downloadICS(event));
-    });
-
-    eventsAgenda.appendChild(templateClone);
-}
-
-function mockGetUpcomingEvents() {
-    return [
-        {
-            'id': 'ff005eee-81d1-46f4-93bf-75966030fbf8',
-            'title': 'an obnoxiously long title because people suck and try to make my life hard',
-            'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
-            'start_time': '2025-05-17T06:15:00+00:00',
-            'end_time': '2025-05-30T06:15:00+00:00',
-            'host': [
-                {
-                    'user_id': '584850d8-59d1-4f48-b83d-85d97bd4dee6',
-                    'first_name': 'Francesca'
-                }
-            ],
-            'created_at': '2025-04-26T13:15:36.138078+00:00',
-            'cohosts': [
-                null
-            ],
-            'participants': [
-                {
-                    'user_id': 'f18d6f00-b861-45bd-bad9-2d3c1b772323',
-                    'first_name': 'f1',
-                    'attendance_answer': 'yes'
-                }
-            ],
-            'attendance_yes_count': 12,
-            'attendance_maybe_count': 31,
-            'attendance_no_count': 9
-        },
-        {
-            'id': 'c5fc677f-f021-40a7-81e4-da7ad8a46fa1',
-            'created_at': '2025-04-25T15:28:31.200507+00:00',
-            'title': 'picnic',
-            'description': null,
-            'start_time': '2025-06-22T19:10:25+00:00',
-            'end_time': '2025-06-22T22:10:25+00:00',
-            'host': [
-                {
-                    'user_id': 'f18d6f00-b861-45bd-bad9-2d3c1b772323',
-                    'first_name': 'Francesca'
-                }
-            ],
-            'cohosts': [
-                null
-            ],
-            'participants': [
-                {
-                    'user_id': null,
-                    'first_name': null,
-                    'attendance_answer': null
-                }
-            ],
-            'attendance_yes_count': 0,
-            'attendance_maybe_count': 0,
-            'attendance_no_count': 0
-        },
-        {
-            'id': 'd02afaa9-64ad-4abb-9151-7a35c0dadd19',
-            'title': 'anotherrr',
-            'description': null,
-            'start_time': '2025-07-10T09:45:00+00:00',
-            'end_time': '2025-07-26T09:45:00+00:00',
-            'host': [
-                {
-                    'user_id': '584850d8-59d1-4f48-b83d-85d97bd4dee6',
-                    'first_name': '58'
-                }
-            ],
-            'created_at': '2025-04-25T16:52:46.177964+00:00',
-            'cohosts': [
-                null
-            ],
-            'participants': [
-                {
-                    'user_id': 'f18d6f00-b861-45bd-bad9-2d3c1b772323',
-                    'first_name': 'f1',
-                    'attendance_answer': 'no'
-                }
-            ],
-            'attendance_yes_count': 0,
-            'attendance_maybe_count': 0,
-            'attendance_no_count': 1
+        // Rollback participant status
+        if (currentUserParticipant) {
+          currentUserParticipant.attendance_answer = currentStatus;
         }
-    ];
+
+        // Optionally show user feedback
+        // this.showErrorMessage('Failed to update attendance. Please try again.');
+      }
+    },
+
+    updateCountsOptimistically(event, oldStatus, newStatus) {
+      // Remove from old status count
+      if (oldStatus === 'yes')
+        event.attendance_yes_count = Math.max(
+          0,
+          (event.attendance_yes_count || 0) - 1,
+        );
+      if (oldStatus === 'maybe')
+        event.attendance_maybe_count = Math.max(
+          0,
+          (event.attendance_maybe_count || 0) - 1,
+        );
+      if (oldStatus === 'no')
+        event.attendance_no_count = Math.max(
+          0,
+          (event.attendance_no_count || 0) - 1,
+        );
+      if (oldStatus === 'invited')
+        event.attendance_invited_count = Math.max(
+          0,
+          (event.attendance_invited_count || 0) - 1,
+        );
+
+      // Add to new status count
+      if (newStatus === 'yes')
+        event.attendance_yes_count = (event.attendance_yes_count || 0) + 1;
+      if (newStatus === 'maybe')
+        event.attendance_maybe_count = (event.attendance_maybe_count || 0) + 1;
+      if (newStatus === 'no')
+        event.attendance_no_count = (event.attendance_no_count || 0) + 1;
+      if (newStatus === 'invited')
+        event.attendance_invited_count =
+          (event.attendance_invited_count || 0) + 1;
+    },
+
+    formatDate(dateString) {
+      const date = parseISO(dateString);
+      return format(date, 'MMMM do, yyyy'); // e.g., April 20th, 2025
+    },
+
+    formatTime(dateString) {
+      const date = parseISO(dateString);
+      return format(date, 'h:mmaaa').toLowerCase(); // e.g., 11:00pm
+    },
+
+    downloadCalendar(event) {
+      downloadICS(event);
+    },
+  };
 }
 
-// on load: retrieves events from server and populates Agenda container with Event cards
-document.addEventListener('DOMContentLoaded', async () => {
-    let data = await getUpcomingEvents();
-
-    const {eventCardTemplate, eventsAgenda} = selectEventElements();
-
-    data.forEach(event => {
-        populateEventElementsWithData(event, eventCardTemplate, eventsAgenda);
-    });
-});
-
+// Make the function globally available for Alpine
+window.eventsData = eventsData;
 
 customElements.define('events-container', EventsContainer);
