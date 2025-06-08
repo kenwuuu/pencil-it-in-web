@@ -10,9 +10,16 @@
   <title>Events - Pencil It In</title>
   <!--  dark mode script  -->
   <script>
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const theme = prefersDark ? "cupcake_dark" : "cupcake";
-      document.documentElement.setAttribute("data-theme", theme);
+      const setTheme = () => {
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.setAttribute("data-theme", prefersDark ? "cupcake_dark" : "cupcake");
+      };
+
+      // auto switch when system switches
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", setTheme);
+
+      // Initial load
+      setTheme();
   </script>
 </head>
 
