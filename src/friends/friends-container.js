@@ -1,11 +1,11 @@
 import './friends-action-menu.js';
-import {getUserFriends} from '@/friends/services/get-friends.js';
-import {removeFriendship as apiRemoveFriendship} from "@/friends/services/remove-friend.js";
-import {insertFriendship} from "@/friends/services/add-friend.js";
+import { getUserFriends } from '@/friends/services/get-friends.js';
+import { removeFriendship as apiRemoveFriendship } from '@/friends/services/remove-friend.js';
+import { insertFriendship } from '@/friends/services/add-friend.js';
 
 class FriendsContainer extends HTMLElement {
-    connectedCallback() {
-        this.innerHTML = `
+  connectedCallback() {
+    this.innerHTML = `
         <main class="flex">
             <div class="page-container flex-1" x-data="friendsData()">
                 <header class="space-y-4 my-4 sm:flex">
@@ -23,7 +23,7 @@ class FriendsContainer extends HTMLElement {
                 </header>
 
                 <div> 
-                    <ul id="friends-list" class="list bg-base-100 rounded-box shadow-md mt-4">
+                    <ul id="friends-list" class="list bg-base-100 rounded-box mt-4 outline-3 outline-base-300 dark:outline-slate-700">
                         <li class="flex p-4 pb-2 text-xs opacity-60 tracking-wide">
                             Friends within 30 miles of you
                         </li>
@@ -58,54 +58,54 @@ class FriendsContainer extends HTMLElement {
         </main>
         `;
 
-        // Re-init Alpine for dynamically injected content
-        queueMicrotask(() => Alpine.initTree(this));
-    }
+    // Re-init Alpine for dynamically injected content
+    queueMicrotask(() => Alpine.initTree(this));
+  }
 }
 
 function getCurrentDateTime() {
-    const now = new Date();
-    const localNow = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
-    return localNow;
+  const now = new Date();
+  const localNow = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+  return localNow;
 }
 
 // Alpine.js data function
 function friendsData() {
-    return {
-        friends: [],
-        async init() {
-            await this.loadFriends();
-        },
-        async loadFriends() {
-            try {
-                const response = await getUserFriends();
-                this.friends = response;
-            } catch (error) {
-                console.error('Error fetching friends:', error);
-            }
-        },
-        async removeFriendship(friendId) {
-            try {
-                await apiRemoveFriendship(friendId);
-                await this.loadFriends();
-            } catch (err) {
-                console.error('Error in AlpineJS removeFriendship:', err);
-            }
-        },
-        async addFriend(input) {
-            let username = input.value.trim();
-            if (!username) return;
+  return {
+    friends: [],
+    async init() {
+      await this.loadFriends();
+    },
+    async loadFriends() {
+      try {
+        const response = await getUserFriends();
+        this.friends = response;
+      } catch (error) {
+        console.error('Error fetching friends:', error);
+      }
+    },
+    async removeFriendship(friendId) {
+      try {
+        await apiRemoveFriendship(friendId);
+        await this.loadFriends();
+      } catch (err) {
+        console.error('Error in AlpineJS removeFriendship:', err);
+      }
+    },
+    async addFriend(input) {
+      let username = input.value.trim();
+      if (!username) return;
 
-            insertFriendship(username)
-                .then(() => {
-                    input.value = '';
-                    this.loadFriends();
-                })
-                .catch((err) => {
-                    console.error('Failed to add friend:', err);
-                });
-        },
-    };
+      insertFriendship(username)
+        .then(() => {
+          input.value = '';
+          this.loadFriends();
+        })
+        .catch(err => {
+          console.error('Failed to add friend:', err);
+        });
+    },
+  };
 }
 
 window.getCurrentDateTime = getCurrentDateTime;
