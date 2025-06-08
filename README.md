@@ -163,6 +163,16 @@ pm.environment.set("auth_token", response.token); // Adjust key name based on yo
 
 Use the variable in `Authorization`, pick `Bearer Token`, then set token as `{{access_token}}`.
 
+## Developing
+
+When developing a new feature, I generally start by writing an Edge Function that
+does what the new feature requires. That gets run locally with
+`deno --allow-net --allow-env --allow-read index.ts` and then I hit it with Postman to
+check that it does the correct things. Afterwards, I make a service file in the relevant
+directory, like `src/events/services/update-attendance-status.js`. This is usually pretty
+barebones as all it does is wrap the Edge Function call to allow the frontend to call the
+backend without worrying about how to set up the call.
+
 ## Testing
 
 ### Unit tests (testing functions)
