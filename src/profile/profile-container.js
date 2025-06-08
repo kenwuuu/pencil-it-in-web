@@ -39,7 +39,7 @@ class ProfileContainer extends HTMLElement {
               
               <!-- Names and location -->
               <div class="text-center mt-2">
-                  <h3 class="text-2xl text-slate-700 font-bold leading-normal mb-1" x-show="profile.first_name" x-text="profile.first_name + ' ' + profile.last_name"></h3>
+                  <h3 class="text-2xl font-bold leading-normal mb-1" x-show="profile.first_name" x-text="profile.first_name + ' ' + profile.last_name"></h3>
                   <div class="text-xs mt-0 mb-2 text-slate-400 font-bold uppercase">
                       <p class="fas fa-map-marker-alt mr-2 text-slate-400" x-show="profile.username" x-text="'@' + profile.username"></p>
                       <p class="fas fa-map-marker-alt mr-2 text-slate-400" x-show="profile.city_and_state" x-text="profile.city_and_state"></p>
