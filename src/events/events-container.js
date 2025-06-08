@@ -27,7 +27,7 @@ class EventsContainer extends HTMLElement {
             
             <div class="events-agenda not-prose flex-1" x-show="!is_creating_new_event">
               <template x-for="event in events" :key="event.id">
-                <div class="card bg-base-100 shadow-sm mb-5">
+                <div class="card bg-base-100 mb-5 outline-base-300 outline-3 dark:outline-slate-700">
                   <div class="card-body">
                     <div class="event-datetime flex justify-between">
                       <h2 class="event-date sm:text-3xl text-xl" x-text="formatDate(event.start_time)"></h2>
