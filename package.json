@@ -16,7 +16,8 @@
     "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore --ignore-pattern libs/",
     "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .gitignore",
     "format:prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore",
-    "test": ""
+    "test": "",
+    "test:slow": "npm run build && start-server-and-test serve http://192.168.0.143:3000 'playwright test'"
   },
   "devDependencies": {
     "@capacitor/cli": "^7.2.0",
@@ -37,6 +38,7 @@
     "lint-staged": "^15.5.1",
     "prettier": "^3.5.3",
     "serve": "^14.2.4",
+    "start-server-and-test": "^2.0.12",
     "typescript": "~5.7.2",
     "vite": "^6.3.1"
   },
