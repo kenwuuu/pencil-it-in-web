@@ -40,6 +40,22 @@ class EventsContainer extends HTMLElement {
                     <div class="participants sm:flex justify-between">
                       <div class="flex justify-between">
                         <span class="host-user btn btn-md btn-outline btn-info mb-2 md:mb-0" x-text="'Host: ' + (event.host && event.host[0] ? event.host[0].first_name : 'Unknown')"></span>
+                        <div x-show="event.participants && event.participants.length > 0">
+                          <div class="avatar-group -space-x-6 cursor-pointer" x-on:click="openParticipantsModal(event)">
+                            <template x-for="(participant, index) in event.participants.slice(0, event.participants.length > 3 ? 2 : 3)" :key="participant.user_id">
+                              <div class="avatar">
+                                <div class="w-8">
+                                  <img :src="participant.profile_photo_url || 'https://img.daisyui.com/images/profile/demo/batperson@192.webp'" />
+                                </div>
+                              </div>
+                            </template>
+                            <div class="avatar avatar-placeholder" x-show="event.participants.length > 3">
+                              <div class="bg-neutral text-neutral-content w-8">
+                                <span x-text="'+' + (event.participants.length - 2)"></span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         <button class="download-calendar-btn btn btn-ghost p-1 block sm:hidden" x-on:click="downloadCalendar(event)">
                           <iconify-icon class="text-3xl sm:text-2xl" icon="mdi:calendar-export"></iconify-icon>
                         </button>
@@ -64,10 +80,67 @@ class EventsContainer extends HTMLElement {
                 </div>
               </template>
             </div>
-            
             <event-creation-component class="flex-1" x-show="is_creating_new_event"></event-creation-component>
           </div>
           <events-action-menu class="action-menu-side-component"></events-action-menu>
+
+          <!-- Participants Modal -->
+          <div class="modal" :class="{ 'modal-open': showParticipantsModal }" x-show="showParticipantsModal">
+            <div class="modal-box max-w-xl">
+              <div class="flex justify-between items-center mb-4">
+                <h3 class="font-bold text-3xl">Invitees</h3>
+                <iconify-icon class="btn btn-xl btn-circle btn-ghost" icon="mdi:close-box" x-on:click="closeParticipantsModal()"></iconify-icon>
+              </div>
+              
+              <!-- Tab Bar -->
+              <div class="tabs tabs-boxed mb-4">
+                <button class="tab font-semibold" :class="{ 'tab-active': activeParticipantTab === 'yes' }" 
+                        x-on:click="activeParticipantTab = 'yes'" 
+                        x-text="'Yes (' + getParticipantsByStatus('yes').length + ')'"></button>
+                <button class="tab font-semibold" :class="{ 'tab-active': activeParticipantTab === 'maybe' }" 
+                        x-on:click="activeParticipantTab = 'maybe'"
+                        x-text="'Maybe (' + getParticipantsByStatus('maybe').length + ')'"></button>
+                <button class="tab font-semibold" :class="{ 'tab-active': activeParticipantTab === 'no' }" 
+                        x-on:click="activeParticipantTab = 'no'"
+                        x-text="'No (' + getParticipantsByStatus('no').length + ')'"></button>
+                <button class="tab font-semibold" :class="{ 'tab-active': activeParticipantTab === 'invited' }" 
+                        x-on:click="activeParticipantTab = 'invited'"
+                        x-text="'Invited (' + getParticipantsByStatus('invited').length + ')'"></button>
+              </div>
+
+              <!-- Participants List -->
+              <div class="max-h-96 overflow-y-auto">
+                <ul class="list bg-base-100 rounded-box">
+                  <template x-for="participant in getParticipantsByStatus(activeParticipantTab)" :key="participant.user_id">
+                    <li class="list-row">
+                      <div>
+                        <img class="size-10 md:size-12 rounded-box" :src="participant.profile_photo_url || 'https://img.daisyui.com/images/profile/demo/batperson@192.webp'" />
+                      </div>
+                      <div>
+                        <div class="text-sm md:text-lg" x-text="participant.first_name + ' ' + participant.last_name"></div>
+                        <div class="text-xs font-semibold opacity-60" x-text="participant.username || 'No username'"></div>
+                      </div>
+                      <div class="flex items-center justify-center h-full">
+                        <div class="badge badge-sm font-bold" 
+                             :class="{
+                               'badge-success': participant.attendance_answer === 'yes',
+                               'badge-warning': participant.attendance_answer === 'maybe', 
+                               'badge-error': participant.attendance_answer === 'no',
+                               'badge-neutral': participant.attendance_answer === 'invited'
+                             }"
+                             x-text="participant.attendance_answer || 'invited'">
+                        </div>
+                      </div>
+                    </li>
+                  </template>
+                  <li x-show="getParticipantsByStatus(activeParticipantTab).length === 0" class="flex p-4 text-sm opacity-60 justify-center">
+                    No responses yet
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="modal-backdrop" x-on:click="closeParticipantsModal()"></div>
+          </div>
         </div>
     `;
 
@@ -80,7 +153,10 @@ class EventsContainer extends HTMLElement {
 function eventsData() {
   return {
     events: [],
-    is_creating_new_event: false, // moved from x-data attribute to Alpine data
+    is_creating_new_event: false,
+    showParticipantsModal: false,
+    selectedEvent: null,
+    activeParticipantTab: 'yes',
 
     async init() {
       await this.loadEvents();
@@ -93,6 +169,28 @@ function eventsData() {
       } catch (error) {
         console.error('Error fetching events:', error);
       }
+    },
+
+    openParticipantsModal(event) {
+      this.selectedEvent = event;
+      this.showParticipantsModal = true;
+      this.activeParticipantTab = 'yes';
+    },
+
+    closeParticipantsModal() {
+      this.showParticipantsModal = false;
+      this.selectedEvent = null;
+    },
+
+    getParticipantsByStatus(status) {
+      if (!this.selectedEvent || !this.selectedEvent.participants) {
+        return [];
+      }
+
+      return this.selectedEvent.participants.filter(participant => {
+        const attendanceStatus = participant.attendance_answer || 'invited';
+        return attendanceStatus === status;
+      });
     },
 
     async updateAttendanceStatus(eventId, attendanceStatus) {
