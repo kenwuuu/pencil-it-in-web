@@ -5,6 +5,7 @@ import { format, parseISO } from 'date-fns';
 import { getUpcomingEvents } from './services/get-upcoming-events.js';
 import { downloadICS } from './services/calendar.js';
 import { updateAttendanceStatus as updateAttendanceStatusAPI } from '@/events/services/update-attendance-status.js';
+import { supabase } from '@/supabase-client/supabase-client.js';
 
 class EventsContainer extends HTMLElement {
   connectedCallback() {
@@ -95,13 +96,92 @@ function eventsData() {
     },
 
     async updateAttendanceStatus(eventId, attendanceStatus) {
-      try {
-        await updateAttendanceStatusAPI(eventId, attendanceStatus);
+      const event = this.events.find(e => e.id === eventId);
+      if (!event) return;
 
-        await this.loadEvents();
+      const currentUserId = (await supabase.auth.getUser()).data.user.id; // Replace with actual current user ID
+
+      // Find current user in participants
+      const currentUserParticipant = event.participants?.find(
+        p => p.user_id === currentUserId,
+      );
+      const currentStatus =
+        currentUserParticipant?.attendance_answer || 'invited';
+
+      // Don't do anything if clicking the same status
+      if (currentStatus === attendanceStatus) return;
+
+      // Store original counts for rollback
+      const originalCounts = {
+        yes: event.attendance_yes_count || 0,
+        maybe: event.attendance_maybe_count || 0,
+        no: event.attendance_no_count || 0,
+        invited: event.attendance_invited_count || 0,
+      };
+
+      // Optimistically update counts
+      this.updateCountsOptimistically(event, currentStatus, attendanceStatus);
+
+      // Update participant's status optimistically
+      if (currentUserParticipant) {
+        currentUserParticipant.attendance_answer = attendanceStatus;
+      }
+
+      try {
+        // Call updateAttendanceStatus API function
+        await updateAttendanceStatusAPI(eventId, attendanceStatus);
       } catch (error) {
         console.error('Error updating attendance status:', error);
+
+        // Rollback on failure
+        event.attendance_yes_count = originalCounts.yes;
+        event.attendance_maybe_count = originalCounts.maybe;
+        event.attendance_no_count = originalCounts.no;
+        event.attendance_invited_count = originalCounts.invited;
+
+        // Rollback participant status
+        if (currentUserParticipant) {
+          currentUserParticipant.attendance_answer = currentStatus;
+        }
+
+        // Optionally show user feedback
+        // this.showErrorMessage('Failed to update attendance. Please try again.');
       }
+    },
+
+    updateCountsOptimistically(event, oldStatus, newStatus) {
+      // Remove from old status count
+      if (oldStatus === 'yes')
+        event.attendance_yes_count = Math.max(
+          0,
+          (event.attendance_yes_count || 0) - 1,
+        );
+      if (oldStatus === 'maybe')
+        event.attendance_maybe_count = Math.max(
+          0,
+          (event.attendance_maybe_count || 0) - 1,
+        );
+      if (oldStatus === 'no')
+        event.attendance_no_count = Math.max(
+          0,
+          (event.attendance_no_count || 0) - 1,
+        );
+      if (oldStatus === 'invited')
+        event.attendance_invited_count = Math.max(
+          0,
+          (event.attendance_invited_count || 0) - 1,
+        );
+
+      // Add to new status count
+      if (newStatus === 'yes')
+        event.attendance_yes_count = (event.attendance_yes_count || 0) + 1;
+      if (newStatus === 'maybe')
+        event.attendance_maybe_count = (event.attendance_maybe_count || 0) + 1;
+      if (newStatus === 'no')
+        event.attendance_no_count = (event.attendance_no_count || 0) + 1;
+      if (newStatus === 'invited')
+        event.attendance_invited_count =
+          (event.attendance_invited_count || 0) + 1;
     },
 
     formatDate(dateString) {
