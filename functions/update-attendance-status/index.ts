@@ -36,15 +36,33 @@ Deno.serve(async (req) => {
     // Step 1: Get eventId and newAttendanceStatus
     const { eventId, newAttendanceStatus } = await req.json();
 
-    // Step 2: update attendance status
-    const { error: eventParticipantsError } = await supabaseClient
+    const { data: selectData, error: selectError } = await supabaseClient
       .from('event_participants')
-      .update({ 'attendance_status': newAttendanceStatus })
+      .select()
       .eq('event_id', eventId)
       .eq('user_id', requestingUserId);
 
-    if (eventParticipantsError) {
-      return new Response(JSON.stringify({ error: eventParticipantsError.message }), { status: 400 });
+    // Step 2: update attendance status
+    if (selectData[0]) {
+      const {error: eventParticipantsError} = await supabaseClient
+        .from('event_participants')
+        .update({'attendance_status': newAttendanceStatus})
+        .eq('event_id', eventId)
+        .eq('user_id', requestingUserId);
+
+      if (eventParticipantsError) {
+        return new Response(JSON.stringify({ error: eventParticipantsError.message }), { status: 400 });
+      }
+    } else {
+      return new Response(JSON.stringify({
+        error: "database row containing both this user_id and event_id doesn't exist",
+        status: 404,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": origin,
+          "Access-Control-Allow-Credentials": "true"
+        }
+      }));
     }
 
     let { data, error } = await supabaseClient
