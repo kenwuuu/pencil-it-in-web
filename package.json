@@ -17,7 +17,7 @@
     "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .gitignore",
     "format:prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore",
     "test": "",
-    "test:slow": "npm run build && start-server-and-test serve http://192.168.0.143:3000 'playwright test'"
+    "test:slow": "npm run build && start-server-and-test serve http://192.168.0.40:3000 'playwright test'"
   },
   "devDependencies": {
     "@capacitor/cli": "^7.2.0",
