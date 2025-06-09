@@ -128,7 +128,7 @@ class EventsContainer extends HTMLElement {
               </div>
 
               <!-- Participants List -->
-              <div class="h-[75%] overflow-y-auto">
+              <div class="h-[75%] sm:h-[80%] overflow-y-auto">
                 <ul class="list bg-base-100 rounded-box">
                   <template x-for="participant in getFilteredParticipants()" :key="participant.user_id">
                     <li class="list-row">
