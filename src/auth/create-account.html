@@ -163,19 +163,22 @@
     </div>
 </div>
 </body>
+<script src="main.js" type="module"></script>
+
 <script type="module">
     import {signUpUser} from './services/signup.js';
 
     // handle account creation and API call
     document.querySelector('form').addEventListener('submit', async (e) => {
         e.preventDefault();
-        const firstName = document.getElementById('first-name')
-        const lastName = document.getElementById('last-name')
-        const userName = document.getElementById('username')
+        const firstName = document.getElementById('first-name');
+        const lastName = document.getElementById('last-name');
+        const userName = document.getElementById('username');
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
+        const profilePhoto = document.getElementById('profile-photo-upload');
 
-        const {user, error} = await signUpUser(firstName, lastName, userName, email, password);
+        const {user, error} = await signUpUser(firstName, lastName, userName, profilePhoto, email, password);
 
         if (error) {
             alert(`Error: ${error.message}`);
