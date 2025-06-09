@@ -85,7 +85,6 @@
                             class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                             id="email"
                             name="email"
-                            required
                             type="email"
                     />
                 </div>
@@ -106,7 +105,6 @@
                             class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                             id="password"
                             name="password"
-                            required
                             type="password"
                     />
                 </div>
@@ -171,14 +169,21 @@
     // handle account creation and API call
     document.querySelector('form').addEventListener('submit', async (e) => {
         e.preventDefault();
-        const firstName = document.getElementById('first-name');
-        const lastName = document.getElementById('last-name');
-        const userName = document.getElementById('username');
+        const firstName = document.getElementById('first-name').value;
+        const lastName = document.getElementById('last-name').value;
+        const userName = document.getElementById('username').value;
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-        const profilePhoto = document.getElementById('profile-photo-upload');
+        const profilePhotoInput = document.getElementById('profile-photo-upload');
 
-        const {user, error} = await signUpUser(firstName, lastName, userName, profilePhoto, email, password);
+        const {user, error} = await signUpUser(
+            firstName,
+            lastName,
+            userName,
+            email,
+            password,
+            profilePhotoInput.files[0]
+        );
 
         if (error) {
             alert(`Error: ${error.message}`);
