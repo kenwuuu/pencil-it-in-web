@@ -40,11 +40,15 @@ class EventsContainer extends HTMLElement {
                     <div class="participants sm:flex justify-between">
                       <div class="flex justify-between">
                         <span class="host-user btn btn-md btn-outline btn-info mb-2 md:mb-0" x-text="'Host: ' + (event.host && event.host[0] ? event.host[0].first_name : 'Unknown')"></span>
-                        <div x-show="event.participants && event.participants.length > 0">
+<!--                        start participants component -->
+<!--                        using these two participant divs is the only way we can replace the third avatar
+                            with an avatar-placeholder when we have more than 3 invitees -->
+                        <div x-show="event.participants && event.participants.length > 3">
                           <div class="avatar-group -space-x-6 cursor-pointer" x-on:click="openParticipantsModal(event)">
                             <template x-for="(participant, index) in event.participants.slice(0, event.participants.length > 3 ? 2 : 3)" :key="participant.user_id">
                               <div class="avatar">
                                 <div class="w-8">
+<!--                                  todo replace the placeholder with a better image-->
                                   <img :src="participant.profile_photo_url || 'https://img.daisyui.com/images/profile/demo/batperson@192.webp'" />
                                 </div>
                               </div>
@@ -56,6 +60,20 @@ class EventsContainer extends HTMLElement {
                             </div>
                           </div>
                         </div>
+                        <div x-show="event.participants && event.participants.length <= 3">
+                          <div class="avatar-group -space-x-6 cursor-pointer" x-on:click="openParticipantsModal(event)">
+                            <template x-for="(participant, index) in event.participants.slice(0, event.participants.length > 3 ? 2 : 3)" :key="participant.user_id">
+                              <div class="avatar">
+                                <div class="w-8">
+<!--                                  todo replace the placeholder with a better image-->
+                                  <img :src="participant.profile_photo_url || 'https://img.daisyui.com/images/profile/demo/batperson@192.webp'" />
+                                </div>
+                              </div>
+                            </template>
+                           
+                          </div>
+                        </div>
+<!--                        end participants component -->
                         <button class="download-calendar-btn btn btn-ghost p-1 block sm:hidden" x-on:click="downloadCalendar(event)">
                           <iconify-icon class="text-3xl sm:text-2xl" icon="mdi:calendar-export"></iconify-icon>
                         </button>
