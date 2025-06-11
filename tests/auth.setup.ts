@@ -5,6 +5,7 @@ const { EMAIL, PASSWORD } = getCredentials();
 
 test('Login and save auth state', async ({ page }) => {
   try {
+    console.log(page.url());
     await page.goto('/src/auth/login.html');
   } catch (err) {
     throw new Error(
