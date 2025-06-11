@@ -1,5 +1,6 @@
 import { getUser } from '@/profile/services/get-profile.js';
 import { supabase } from '@/supabase-client/supabase-client.js';
+import { logoutAndRedirect } from '@/auth/services/logout.js';
 
 class ProfileContainer extends HTMLElement {
   connectedCallback() {
@@ -12,7 +13,7 @@ class ProfileContainer extends HTMLElement {
                           <div class="w-40 rounded-full">
                             <img src="https://github.com/creativetimofficial/soft-ui-dashboard-tailwind/blob/main/build/assets/img/team-2.jpg?raw=true" class="absolute left-1/2 -top-15 transform -translate-x-1/2 shadow-xl rounded-full"/>
                             <div
-                                class="absolute -top-15 bottom-15 inset-0 bg-black/30 shadow-xl rounded-full opacity-0 group-hover:opacity-60 transition-opacity flex items-center justify-center">
+                                class="absolute -top-15 bottom-15 inset-0 bg-black/60 shadow-xl rounded-full opacity-0 group-hover:opacity-90 transition-opacity flex items-center justify-center">
                               <iconify-icon class="text-white text-2xl" icon="mdi:pencil"></iconify-icon>
                             </div>
                           </div>
@@ -52,8 +53,15 @@ class ProfileContainer extends HTMLElement {
                       <div class="w-full px-4">
                       </div>
                   </div>
-                  <!--  todo add confirmation modal to confirm delete  -->
-                  <button x-show="profile.id===" class="btn btn-warning">Delete account</button>
+                  <div>
+                    <!--  todo add confirmation modal to confirm logout  -->
+                    <button x-on:click="logOut()" id="logout-btn" class="btn btn-outline btn-warning mb-2">Logout</button>
+                  </div>
+                  <div>
+                    <!--  todo add confirmation modal to confirm delete  -->
+                    <!--  todo only show if profile.id matches supabase.user.id  -->
+                    <button x-show="profile.id===" class="btn btn-outline btn-error">Delete account</button>
+                  </div>
               </div>
           </div>
       </div>
@@ -82,6 +90,9 @@ function profileData() {
       } catch (error) {
         console.error('Error fetching profile:', error);
       }
+    },
+    async logOut() {
+      logoutAndRedirect();
     },
     // async removeFriendship(friendId) {
     //   try {
