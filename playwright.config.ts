@@ -33,7 +33,7 @@ export default defineConfig({
     /* Base URL to use in actions like `await page.goto('/')`. */
     // todo toggle this depending on how tests are run. from `npm run test:slow` should use network
     // and running tests from file should run against localhost
-    baseURL: process.env.BASE_URL || 'http://localhost:5173',
+    baseURL: process.env.BASE_URL || 'http://192.168.0.40:3000',
     // baseURL: process.env.BASE_URL || 'http://192.168.0.40:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
