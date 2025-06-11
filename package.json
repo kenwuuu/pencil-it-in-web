@@ -17,7 +17,7 @@
     "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .gitignore",
     "format:prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore",
     "test": "",
-    "test:slow": "npm run build && start-server-and-test serve http://192.168.0.143:3000 'playwright test'"
+    "test:slow": "npm run build && start-server-and-test serve http://192.168.0.40:3000 'playwright test'"
   },
   "devDependencies": {
     "@capacitor/cli": "^7.2.0",
@@ -56,7 +56,8 @@
     "iconify-icon": "^3.0.0",
     "ics": "^3.8.1",
     "tailwind": "^4.0.0",
-    "tailwindcss": "^4.1.7"
+    "tailwindcss": "^4.1.7",
+    "uuid": "^11.1.0"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix",

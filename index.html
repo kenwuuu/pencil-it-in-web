@@ -1,7 +1,12 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" content="viewport-fit=cover" name="viewport"/>
+  <meta
+      charset="UTF-8"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover, initial-scale=1.0,
+      minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+      name="viewport"
+  />
   <title>Pencil It In</title>
 </head>
 
@@ -15,7 +20,7 @@ supabase.auth.getSession().then(({data, error}) => {
     if (token) {  // if they've made an account, redirect to app
         window.location.href = '/events.html';
     } else if (isMobile) {  // if no account and they're mobile, send to create an account
-        window.location.href = '/src/auth/login.html';
+        window.location.href = '/src/auth/create-account.html';
     } else {  // if no account and on desktop, send to landing page
         window.location.href = '/landing.html';
     }

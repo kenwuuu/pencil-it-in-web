@@ -190,6 +190,13 @@ Using Playwright.
 
 **Run Playwright tests with UI**: `npx playwright test --ui`
 
+**Run Playwright tests on local server**:
+
+- Update `test:slow` in `package.json` and `baseURL` in `playwright.config.ts` with the
+  network IP address that's printed when you run `npm run serve`. Terminate this process
+  with `ctrl + c`.
+- Then run `npm run test:slow`
+
 **Create tests from recording interactions**: `npx playwright codegen [url]`, e.g.
 `npx playwright codegen http://localhost:5173`
 
