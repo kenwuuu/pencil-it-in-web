@@ -16,7 +16,7 @@ class SiteHeader extends HTMLElement {
               <div class="w-10 rounded-full">
                 <img
                   alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  :src="$store.profile_photo.url"
                 />
               </div>
             </div>

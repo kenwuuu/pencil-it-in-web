@@ -1,6 +1,7 @@
 import { getUser } from '@/profile/services/get-profile.js';
 import { supabase } from '@/supabase-client/supabase-client.js';
 import { logoutAndRedirect } from '@/auth/services/logout.js';
+import { getProfilePhotoUrl } from '@/profile/services/get-profile-photo-url.js';
 
 class ProfileContainer extends HTMLElement {
   connectedCallback() {
@@ -11,7 +12,7 @@ class ProfileContainer extends HTMLElement {
                   <div class="w-full flex justify-center -mb-10">
                       <div class="avatar relative group cursor-pointer">
                           <div class="w-40 rounded-full">
-                            <img src="https://github.com/creativetimofficial/soft-ui-dashboard-tailwind/blob/main/build/assets/img/team-2.jpg?raw=true" class="absolute left-1/2 -top-15 transform -translate-x-1/2 shadow-xl rounded-full"/>
+                            <img src="$store.profile_photo.url" class="absolute left-1/2 -top-15 transform -translate-x-1/2 shadow-xl rounded-full"/>
                             <div
                                 class="absolute -top-15 bottom-15 inset-0 bg-black/60 shadow-xl rounded-full opacity-0 group-hover:opacity-90 transition-opacity flex items-center justify-center">
                               <iconify-icon class="text-white text-2xl" icon="mdi:pencil"></iconify-icon>
@@ -60,7 +61,7 @@ class ProfileContainer extends HTMLElement {
                   <div>
                     <!--  todo add confirmation modal to confirm delete  -->
                     <!--  todo only show if profile.id matches supabase.user.id  -->
-                    <button x-show="profile.id===" class="btn btn-outline btn-error">Delete account</button>
+                    <button class="btn btn-outline btn-error">Delete account</button>
                   </div>
               </div>
           </div>
@@ -87,6 +88,8 @@ function profileData() {
     async loadProfile(userId) {
       try {
         this.profile = await getUser(userId);
+        const url = await getProfilePhotoUrl();
+        Alpine.store('profile_photo').set(url);
       } catch (error) {
         console.error('Error fetching profile:', error);
       }
