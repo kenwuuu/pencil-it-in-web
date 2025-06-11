@@ -37,6 +37,7 @@
                         class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                         id="first-name"
                         name="first_name"
+                        required
                         type="text"
                     />
                 </div>
@@ -53,6 +54,7 @@
                         class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                         id="last-name"
                         name="last_name"
+                        required
                         type="text"
                     />
                 </div>
@@ -69,6 +71,7 @@
                         class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                         id="username"
                         name="username"
+                        required
                         type="text"
                     />
                 </div>
@@ -85,6 +88,7 @@
                             class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                             id="email"
                             name="email"
+                            required
                             type="email"
                     />
                 </div>
@@ -105,6 +109,7 @@
                             class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                             id="password"
                             name="password"
+                            required
                             type="password"
                     />
                 </div>
@@ -133,7 +138,9 @@
 
                     <!-- accept attribute forces iOS to upload HEIC as JPEG -->
                     <input accept="image/jpeg,image/png,image/webp" class="hidden" id='profile-photo-upload'
-                           type="file"/>
+                           required
+                           type="file"
+                    />
                     <p class="text-xs font-medium text-slate-400 mt-2">JPG, PNG, and WEBP are allowed.</p>
                 </label>
             </div>
