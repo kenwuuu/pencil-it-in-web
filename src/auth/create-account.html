@@ -131,8 +131,10 @@
                     </svg>
                     Upload profile photo
 
-                    <input class="hidden" id='profile-photo-upload' type="file"/>
-                    <p class="text-xs font-medium text-slate-400 mt-2">JPG, PNG, WEBP, and HEIC are allowed.</p>
+                    <!-- accept attribute forces iOS to upload HEIC as JPEG -->
+                    <input accept="image/jpeg,image/png,image/webp" class="hidden" id='profile-photo-upload'
+                           type="file"/>
+                    <p class="text-xs font-medium text-slate-400 mt-2">JPG, PNG, and WEBP are allowed.</p>
                 </label>
             </div>
 
