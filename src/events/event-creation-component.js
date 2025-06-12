@@ -9,6 +9,20 @@ class EventCreationComponent extends HTMLElement {
                         x-on:click="cancelCreation()">
                     <iconify-icon icon="mdi:arrow-left-thick"></iconify-icon>
                 </button>
+                <!-- Toast Test Buttons - Add this after the back button -->
+<div class="mb-4 p-4 bg-gray-100 rounded-md">
+    <h3 class="text-lg font-semibold mb-2">Toast Testing</h3>
+    <div class="flex gap-2">
+        <button class="btn btn-success btn-sm" 
+                x-on:click="showToastNotification('Test success message!', 'success')">
+            Test Success Toast
+        </button>
+        <button class="btn btn-error btn-sm" 
+                x-on:click="showToastNotification('Test error message!', 'error')">
+            Test Error Toast
+        </button>
+    </div>
+</div>
                 <div class="container mx-auto p-4 sm:p-6 bg-white shadow-md rounded-md max-w-96">
                     <h2 class="text-2xl font-semibold mb-4">Create New Event</h2>
                     <form x-on:submit.prevent="createEvent()">
@@ -65,8 +79,8 @@ class EventCreationComponent extends HTMLElement {
                 </div>
 
                 <!-- Toast Container -->
-                <div class="toast toast-top toast-end" x-show="showToast" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-x-full" x-transition:enter-end="opacity-100 transform translate-x-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-x-0" x-transition:leave-end="opacity-0 transform translate-x-full">
-                    <div class="alert" :class="toastType === 'success' ? 'alert-success' : 'alert-error'">
+                <div class="toast" x-show="showToast" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-x-full" x-transition:enter-end="opacity-100 transform translate-x-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-x-0" x-transition:leave-end="opacity-0 transform translate-x-full">
+                    <div class="alert alert-soft" :class="toastType === 'success' ? 'alert-success' : 'alert-error'">
                         <iconify-icon :icon="toastType === 'success' ? 'mdi:check-circle' : 'mdi:alert-circle'" class="text-lg"></iconify-icon>
                         <span x-text="toastMessage"></span>
                         <button class="btn btn-sm btn-ghost" x-on:click="hideToast()">
@@ -133,7 +147,7 @@ function eventCreationData() {
       // Auto-hide after 5 seconds
       this.toastTimeout = setTimeout(() => {
         this.hideToast();
-      }, 5000);
+      }, 2000);
     },
 
     hideToast() {
@@ -189,10 +203,7 @@ function eventCreationData() {
           console.log('Event created successfully:', responseData);
 
           // Show success toast
-          this.showToastNotification(
-            `Event "${this.formData.title}" created successfully!`,
-            'success',
-          );
+          this.showToastNotification(`Event created successfully!`, 'success');
 
           // Reset form
           this.resetForm();
