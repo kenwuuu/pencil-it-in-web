@@ -165,17 +165,6 @@ class EventsContainer extends HTMLElement {
             </div>
             <div class="modal-backdrop" x-on:click="closeParticipantsModal()"></div>
           </div>
-
-          <!-- Toast Container for Events Container -->
-          <div class="toast toast-top toast-end" x-show="showToast" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-x-full" x-transition:enter-end="opacity-100 transform translate-x-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-x-0" x-transition:leave-end="opacity-0 transform translate-x-full">
-              <div class="alert" :class="toastType === 'success' ? 'alert-success' : toastType === 'error' ? 'alert-error' : 'alert-info'">
-                  <iconify-icon :icon="toastType === 'success' ? 'mdi:check-circle' : toastType === 'error' ? 'mdi:alert-circle' : 'mdi:information'" class="text-lg"></iconify-icon>
-                  <span x-text="toastMessage"></span>
-                  <button class="btn btn-sm btn-ghost" x-on:click="hideToast()">
-                      <iconify-icon icon="mdi:close"></iconify-icon>
-                  </button>
-              </div>
-          </div>
         </div>
     `;
 
