@@ -168,6 +168,27 @@ class EventsContainer extends HTMLElement {
         </div>
     `;
 
+    // Add event listeners for event creation
+    this.addEventListener('cancel-event-creation', () => {
+      // Access Alpine data and close creation form
+      Alpine.store('eventsData')
+        ? (Alpine.store('eventsData').is_creating_new_event = false)
+        : null;
+      // Or if using component-level data:
+      this._x_dataStack &&
+        this._x_dataStack[0] &&
+        (this._x_dataStack[0].is_creating_new_event = false);
+    });
+
+    this.addEventListener('event-created-successfully', async event => {
+      // Access Alpine data, reload events, and close creation form
+      const alpineData = this._x_dataStack && this._x_dataStack[0];
+      if (alpineData) {
+        alpineData.is_creating_new_event = false;
+        await alpineData.loadEvents();
+      }
+    });
+
     // Re-init Alpine for dynamically injected content
     queueMicrotask(() => Alpine.initTree(this));
   }
@@ -182,8 +203,18 @@ function eventsData() {
     selectedEvent: null,
     activeParticipantTab: 'all',
 
-    async init() {
-      await this.loadEvents();
+    init() {
+      this.loadEvents();
+
+      // Listen for custom events
+      this.$el.addEventListener('cancel-event-creation', () => {
+        this.is_creating_new_event = false;
+      });
+
+      this.$el.addEventListener('event-created-successfully', async () => {
+        this.is_creating_new_event = false;
+        await this.loadEvents();
+      });
     },
 
     async loadEvents() {
