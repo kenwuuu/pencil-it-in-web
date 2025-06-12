@@ -9,20 +9,6 @@ class EventCreationComponent extends HTMLElement {
                         x-on:click="cancelCreation()">
                     <iconify-icon icon="mdi:arrow-left-thick"></iconify-icon>
                 </button>
-                <!-- Toast Test Buttons - Add this after the back button -->
-<div class="mb-4 p-4 bg-gray-100 rounded-md">
-    <h3 class="text-lg font-semibold mb-2">Toast Testing</h3>
-    <div class="flex gap-2">
-        <button class="btn btn-success btn-sm" 
-                x-on:click="showToastNotification('Test success message!', 'success')">
-            Test Success Toast
-        </button>
-        <button class="btn btn-error btn-sm" 
-                x-on:click="showToastNotification('Test error message!', 'error')">
-            Test Error Toast
-        </button>
-    </div>
-</div>
                 <div class="container mx-auto p-4 sm:p-6 bg-white shadow-md rounded-md max-w-96">
                     <h2 class="text-2xl font-semibold mb-4">Create New Event</h2>
                     <form x-on:submit.prevent="createEvent()">
