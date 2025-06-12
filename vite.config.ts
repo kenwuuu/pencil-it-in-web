@@ -11,8 +11,10 @@ export default defineConfig({
         index: resolve(__dirname, 'index.html'),
         landing: resolve(__dirname, 'landing.html'),
         events: resolve(__dirname, 'events.html'),
+        email_confirmation: resolve(__dirname, 'email-confirmation.html'),
         login: resolve(__dirname, 'src/auth/login.html'),
         create_account: resolve(__dirname, 'src/auth/create-account.html'),
+
         // main JS file
         main: resolve(__dirname, 'main.js'),
         // top level services, constants, misc, etc
