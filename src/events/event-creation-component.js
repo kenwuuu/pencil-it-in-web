@@ -63,6 +63,17 @@ class EventCreationComponent extends HTMLElement {
                         </div>
                     </form>
                 </div>
+
+                <!-- Toast Container -->
+                <div class="toast toast-top toast-end" x-show="showToast" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-x-full" x-transition:enter-end="opacity-100 transform translate-x-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-x-0" x-transition:leave-end="opacity-0 transform translate-x-full">
+                    <div class="alert" :class="toastType === 'success' ? 'alert-success' : 'alert-error'">
+                        <iconify-icon :icon="toastType === 'success' ? 'mdi:check-circle' : 'mdi:alert-circle'" class="text-lg"></iconify-icon>
+                        <span x-text="toastMessage"></span>
+                        <button class="btn btn-sm btn-ghost" x-on:click="hideToast()">
+                            <iconify-icon icon="mdi:close"></iconify-icon>
+                        </button>
+                    </div>
+                </div>
             </div>
     `;
 
@@ -90,6 +101,10 @@ function eventCreationData() {
       endTime: '',
     },
     isCreating: false,
+    showToast: false,
+    toastMessage: '',
+    toastType: 'success', // 'success' or 'error'
+    toastTimeout: null,
 
     init() {
       // Set default datetime values
@@ -103,6 +118,30 @@ function eventCreationData() {
         now.getTime() - now.getTimezoneOffset() * 60000 + offsetMinutes * 60000,
       );
       return local.toISOString().slice(0, 16);
+    },
+
+    showToastNotification(message, type = 'success') {
+      // Clear any existing timeout
+      if (this.toastTimeout) {
+        clearTimeout(this.toastTimeout);
+      }
+
+      this.toastMessage = message;
+      this.toastType = type;
+      this.showToast = true;
+
+      // Auto-hide after 5 seconds
+      this.toastTimeout = setTimeout(() => {
+        this.hideToast();
+      }, 5000);
+    },
+
+    hideToast() {
+      this.showToast = false;
+      if (this.toastTimeout) {
+        clearTimeout(this.toastTimeout);
+        this.toastTimeout = null;
+      }
     },
 
     cancelCreation() {
@@ -149,23 +188,42 @@ function eventCreationData() {
         if (responseData.message === 'Event created successfully') {
           console.log('Event created successfully:', responseData);
 
+          // Show success toast
+          this.showToastNotification(
+            `Event "${this.formData.title}" created successfully!`,
+            'success',
+          );
+
           // Reset form
           this.resetForm();
 
-          // Dispatch success event to parent EventsContainer
-          this.$el.dispatchEvent(
-            new CustomEvent('event-created-successfully', {
-              bubbles: true,
-              detail: { event: responseData },
-            }),
-          );
+          // Dispatch success event to parent EventsContainer after a short delay
+          setTimeout(() => {
+            this.$el.dispatchEvent(
+              new CustomEvent('event-created-successfully', {
+                bubbles: true,
+                detail: { event: responseData },
+              }),
+            );
+          }, 1500);
         } else {
           console.error('Error creating event:', responseData);
-          // Could dispatch an error event or show user feedback here
+
+          // Show error toast with specific message or generic fallback
+          const errorMessage =
+            responseData.error ||
+            responseData.message ||
+            'Failed to create event. Please try again.';
+          this.showToastNotification(errorMessage, 'error');
         }
       } catch (error) {
         console.error('There was an error sending the request:', error);
-        // Could dispatch an error event or show user feedback here
+
+        // Show error toast for network/request errors
+        this.showToastNotification(
+          'Network error occurred. Please check your connection and try again.',
+          'error',
+        );
       } finally {
         this.isCreating = false;
       }
