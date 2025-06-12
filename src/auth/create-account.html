@@ -149,11 +149,14 @@
 
             <div>
                 <button
-                    class="mt-10 flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    class="mt-10 flex w-full justify-center gap-2 rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    id="submit-btn"
                     type="submit"
                 >
-                    Create Account
+                    <span class="loading loading-spinner hidden" id="submit-spinner"></span>
+                    <span id="submit-text">Create Account</span>
                 </button>
+
             </div>
         </form>
 
@@ -175,6 +178,16 @@
     // handle account creation and API call
     document.querySelector('form').addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        // Show spinner and disable button
+        const btn = document.getElementById('submit-btn');
+        const spinner = document.getElementById('submit-spinner');
+        const btnText = document.getElementById('submit-text');
+        spinner.classList.remove('hidden');
+        btnText.textContent = 'Creating...';
+        btn.disabled = true;
+        // end spinner logic
+
         const firstName = document.getElementById('first-name').value;
         const lastName = document.getElementById('last-name').value;
         const userName = document.getElementById('username').value;
@@ -191,10 +204,12 @@
                 password,
                 profilePhotoInput.files[0]
             );
+            window.location.href = '/email-confirmation.html';
         } catch (error) {
             alert(`Error: ${error.message}`);
-        } finally {
-            window.location.href = '/email-confirmation.html';
+            spinner.classList.add('hidden');
+            btnText.textContent = 'Create Account';
+            btn.disabled = false;
         }
     });
 
