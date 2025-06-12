@@ -12,7 +12,7 @@ class ProfileContainer extends HTMLElement {
                   <div class="w-full flex justify-center -mb-10">
                       <div class="avatar relative group cursor-pointer">
                           <div class="w-40 rounded-full">
-                            <img src="$store.profile_photo.url" class="absolute left-1/2 -top-15 transform -translate-x-1/2 shadow-xl rounded-full"/>
+                            <img :src="$store.profile_photo.url" class="absolute left-1/2 -top-15 transform -translate-x-1/2 shadow-xl rounded-full"/>
                             <div
                                 class="absolute -top-15 bottom-15 inset-0 bg-black/60 shadow-xl rounded-full opacity-0 group-hover:opacity-90 transition-opacity flex items-center justify-center">
                               <iconify-icon class="text-white text-2xl" icon="mdi:pencil"></iconify-icon>
