@@ -3,7 +3,7 @@ import { supabase } from '../supabase-client/supabase-client.js';
 class EventCreationComponent extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-            <div class="sm:page-container">
+            <div class="sm:page-container mt-4">
 <!--            Back button    -->
                 <button class="btn btn-lg mb-4"
                         x-on:click=" is_creating_new_event = !is_creating_new_event ">

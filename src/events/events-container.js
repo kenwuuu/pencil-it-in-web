@@ -12,7 +12,7 @@ class EventsContainer extends HTMLElement {
     this.innerHTML = `
         <div class="flex" x-data="eventsData()">
           <div class="page-container flex-1">
-            <header class="space-y-4 my-4">
+            <header class="space-y-4 my-4" x-show="!is_creating_new_event">
               <div class="flex">
                 <div class="prose">
                   <h1 x-text="capitalize(page)"></h1>
