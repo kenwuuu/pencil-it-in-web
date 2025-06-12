@@ -25,7 +25,7 @@ class EventsContainer extends HTMLElement {
               </div>
             </header>
             
-            <div class="events-agenda not-prose flex-1">
+            <div class="events-agenda not-prose flex-1" x-show="!is_creating_new_event">
               <div x-show="events.length > 0">
                 <template x-for="event in events" :key="event.id">
                   <div class="card bg-base-100 mb-5 outline-base-300 outline-3 dark:outline-slate-700">
