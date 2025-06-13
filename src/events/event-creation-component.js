@@ -56,9 +56,10 @@ class EventCreationComponent extends HTMLElement {
                             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline btn btn-primary"
                                     type="submit"
                                     :disabled="isCreating"
-                                    :class="{ 'loading': isCreating }">
+                                    >
                                 <span x-show="!isCreating">Create Event</span>
-                                <span x-show="isCreating">Creating...</span>
+                                <span x-show="isCreating">Creating </span>
+                                <span :class="{ 'loading': isCreating }"></span>
                             </button>
                         </div>
                     </form>
