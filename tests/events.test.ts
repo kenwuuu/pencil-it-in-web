@@ -66,3 +66,19 @@ test('testMaybeButtonIsVisible', async ({ page }) => {
   await page.goto('/events.html');
   await expect(page.getByText('Maybe:').first()).toBeVisible();
 });
+
+test('testEventDetailModalOpens', async ({ page }) => {
+  await page.goto('/events.html');
+  await page.locator('.title-container').first().click();
+  await expect(page.locator('event-details-modal div').nth(2)).toBeVisible();
+});
+
+test('testEventDetailModalCloses', async ({ page }) => {
+  await page.goto('/events.html');
+  await page.locator('.title-container').first().click();
+  var modalOutside = (await page
+    .locator('event-details-modal div')
+    .nth(2)
+    .boundingBox())!;
+  await page.mouse.click(modalOutside.x + 1, modalOutside.y + 1);
+});
