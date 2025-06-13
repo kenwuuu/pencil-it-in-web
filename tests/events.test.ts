@@ -81,6 +81,18 @@ test('testEventDetailModalCloses', async ({ page }) => {
     .nth(2)
     .boundingBox())!;
   await page.mouse.click(modalOutside.x + 1, modalOutside.y + 1);
+  await expect(
+    page.locator('event-details-modal div').nth(2),
+  ).not.toBeVisible();
+});
+
+test('testEventDetailModalCloseButtonWorks', async ({ page }) => {
+  await page.goto('/events.html');
+  await page.locator('.title-container').first().click();
+  await page.getByRole('button', { name: 'Close' }).click();
+  await expect(
+    page.locator('event-details-modal div').nth(2),
+  ).not.toBeVisible();
 });
 
 // add tests that confirm delete button only appears for host after we set up mocks
