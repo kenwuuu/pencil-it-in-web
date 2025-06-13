@@ -112,6 +112,7 @@ const handleCreateEvent = async (req)=>{
         error: "Failed to create event"
       }, 400);
     }
+    // add self as participant
     const { error: participantsError } = await supabase.from("event_participants")
       .insert({
         event_id: event.id,
