@@ -31,6 +31,11 @@ export default defineConfig({
         site_header: resolve(__dirname, 'src/components/site-header.js'),
         // events
         events_container: resolve(__dirname, 'src/events/events-container.js'),
+        events_feed: resolve(__dirname, 'src/events/events-feed.js'),
+        participants_modal: resolve(
+          __dirname,
+          'src/events/participants-modal.js',
+        ),
         event_creation_component: resolve(
           __dirname,
           'src/events/event-creation-component.js',
