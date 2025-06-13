@@ -1,4 +1,5 @@
 import Alpine from 'alpinejs';
+import { supabase } from '@/supabase-client/supabase-client.js';
 
 window.Alpine = Alpine;
 
@@ -9,6 +10,8 @@ Alpine.store('profile_photo', {
     this.url = newUrl;
   },
 });
+
+Alpine.store('userId', (await supabase.auth.getUser()).data.user.id);
 
 Alpine.start();
 // end mandatory alpine stuff

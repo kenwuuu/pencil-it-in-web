@@ -7,12 +7,11 @@ export async function deleteEvent(eventId) {
     .eq('id', eventId);
 
   if (error) {
-    console.error('RPC error:', error);
-  } else if (data[0]) {
-    console.log('RPC result:', data);
-    return data;
+    console.error('Error while deleting event: ', error);
+    throw error;
   } else {
-    console.log('no results');
+    console.log('Successfully deleted event: ', eventId);
+    return data;
   }
   return null;
 }
