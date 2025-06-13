@@ -11,7 +11,13 @@ Alpine.store('profile_photo', {
   },
 });
 
-Alpine.store('userId', (await supabase.auth.getUser()).data.user.id);
+// hacky way around "Top level await not available"
+(async () => {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  Alpine.store('userId', user.id);
+})();
 
 Alpine.start();
 // end mandatory alpine stuff
