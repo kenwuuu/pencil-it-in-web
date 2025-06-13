@@ -9,7 +9,7 @@ class EventCreationComponent extends HTMLElement {
                         x-on:click="cancelCreation()">
                     <iconify-icon icon="mdi:arrow-left-thick"></iconify-icon>
                 </button>
-                <div class="container mx-auto p-4 sm:p-6 bg-white dark:bg-gray-800 shadow-md rounded-md max-w-96">
+                <div class="card mx-auto p-4 sm:p-6 outline-base-200 outline-3 rounded-md max-w-96">
                     <h2 class="text-2xl font-semibold mb-4 dark:text-white">Create New Event</h2>
                     <form x-on:submit.prevent="createEvent()">
                         <div class="mb-4">
@@ -18,7 +18,7 @@ class EventCreationComponent extends HTMLElement {
                                 <input class="w-full input input-md shadow appearance-none py-2 px-3 rounded-sm text-gray-700 dark:text-gray-300"
                                     type="text"
                                     x-model="formData.title"
-                                    placeholder="Add Title"
+                                    placeholder="Title"
                                     id="title" name="title"
                                     required
                                 />
@@ -30,7 +30,7 @@ class EventCreationComponent extends HTMLElement {
                                 <input class="w-full input input-md shadow appearance-none py-2 px-3 rounded-sm text-gray-700 dark:text-gray-300"
                                     type="text"
                                     x-model="formData.location"
-                                    placeholder="Add Location"
+                                    placeholder="Location"
                                     id="location" name="location"
                                     required
                                 />
@@ -42,7 +42,7 @@ class EventCreationComponent extends HTMLElement {
                                 <input class="w-full input input-md shadow appearance-none py-2 px-3 rounded-sm text-gray-700 dark:text-gray-300"
                                     type="text"
                                     x-model="formData.description"
-                                    placeholder="Add Description"
+                                    placeholder="Description"
                                     id="description" name="description"
                                     required
                                 />
@@ -65,7 +65,7 @@ class EventCreationComponent extends HTMLElement {
                                    type="datetime-local">
                         </div>
                         <div class="flex items-center justify-center">
-                            <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold w-1/2 py-2 px-4 rounded-full transform hover:scale-105 transition duration-200 focus:outline-none focus:shadow-outline btn btn-primary"
+                            <button class="btn btn-primary"
                                     type="submit"
                                     :disabled="isCreating"
                                     :class="{ 'loading': isCreating }">
