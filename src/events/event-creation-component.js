@@ -9,44 +9,44 @@ class EventCreationComponent extends HTMLElement {
                         x-on:click="cancelCreation()">
                     <iconify-icon icon="mdi:arrow-left-thick"></iconify-icon>
                 </button>
-                <div class="container mx-auto p-4 sm:p-6 bg-white shadow-md rounded-md max-w-96">
-                    <h2 class="text-2xl font-semibold mb-4">Create New Event</h2>
+                <div class="container mx-auto p-4 sm:p-6 bg-white dark:bg-gray-800 shadow-md rounded-md max-w-96">
+                    <h2 class="text-2xl font-semibold mb-4 dark:text-white">Create New Event</h2>
                     <form x-on:submit.prevent="createEvent()">
                         <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="title">Title:</label>
-                            <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered"
+                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="title">Title:</label>
+                            <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered"
                                    x-model="formData.title"
                                    id="title" name="title"
                                    required
                                    type="text">
                         </div>
                         <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="location">Location:</label>
-                            <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered"
+                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="location">Location:</label>
+                            <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered"
                                    x-model="formData.location"
                                    id="location" name="location"
                                    required
                                    type="text">
                         </div>
                         <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="description">Description:</label>
-                            <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered"
+                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="description">Description:</label>
+                            <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered"
                                    x-model="formData.description"
                                    id="description" name="description"
                                    required
                                    type="text">
                         </div>
                         <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="start_time">Start Time:</label>
-                            <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered"
+                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="start_time">Start Time:</label>
+                            <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered"
                                    x-model="formData.startTime"
                                    id="start_time" name="start_time"
                                    required
                                    type="datetime-local">
                         </div>
                         <div class="mb-6">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="end_time">End Time:</label>
-                            <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered"
+                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="end_time">End Time:</label>
+                            <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered"
                                    x-model="formData.endTime"
                                    id="end_time" name="end_time"
                                    required
