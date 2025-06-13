@@ -159,7 +159,6 @@ function eventCreationData() {
       if (this.isCreating) return;
 
       this.isCreating = true;
-      return
 
       try {
         // Convert local datetime strings to UTC ISO strings
