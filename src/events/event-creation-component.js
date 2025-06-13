@@ -13,32 +13,44 @@ class EventCreationComponent extends HTMLElement {
                     <h2 class="text-2xl font-semibold mb-4 dark:text-white">Create New Event</h2>
                     <form x-on:submit.prevent="createEvent()">
                         <div class="mb-4">
-                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="title">Title:</label>
-                            <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered"
-                                   x-model="formData.title"
-                                   id="title" name="title"
-                                   required
-                                   type="text">
+                            <label class="floating-label">
+                                <span class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Add Title</span>
+                                <input class="w-full input input-md shadow appearance-none py-2 px-3 rounded-sm text-gray-700 dark:text-gray-300"
+                                    type="text"
+                                    x-model="formData.title"
+                                    placeholder="Add Title"
+                                    id="title" name="title"
+                                    required
+                                />
+                            </label>
                         </div>
                         <div class="mb-4">
-                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="location">Location:</label>
-                            <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered"
-                                   x-model="formData.location"
-                                   id="location" name="location"
-                                   required
-                                   type="text">
+                            <label class="floating-label">
+                                <span class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Location</span>
+                                <input class="w-full input input-md shadow appearance-none py-2 px-3 rounded-sm text-gray-700 dark:text-gray-300"
+                                    type="text"
+                                    x-model="formData.location"
+                                    placeholder="Add Location"
+                                    id="location" name="location"
+                                    required
+                                />
+                            </label>
                         </div>
                         <div class="mb-4">
-                            <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="description">Description:</label>
-                            <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered"
-                                   x-model="formData.description"
-                                   id="description" name="description"
-                                   required
-                                   type="text">
+                            <label class="floating-label">
+                                <span class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Description</span>
+                                <input class="w-full input input-md shadow appearance-none py-2 px-3 rounded-sm text-gray-700 dark:text-gray-300"
+                                    type="text"
+                                    x-model="formData.description"
+                                    placeholder="Add Description"
+                                    id="description" name="description"
+                                    required
+                                />
+                            </label>
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="start_time">Start Time:</label>
-                            <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered"
+                            <input class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline input input-bordered"
                                    x-model="formData.startTime"
                                    id="start_time" name="start_time"
                                    required
@@ -46,14 +58,14 @@ class EventCreationComponent extends HTMLElement {
                         </div>
                         <div class="mb-6">
                             <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="end_time">End Time:</label>
-                            <input class="shadow appearance-none border rounded py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline input input-bordered"
+                            <input class="w-full shadow appearance-none border rounded py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline input input-bordered"
                                    x-model="formData.endTime"
                                    id="end_time" name="end_time"
                                    required
                                    type="datetime-local">
                         </div>
-                        <div class="flex items-center justify-between">
-                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline btn btn-primary"
+                        <div class="flex items-center justify-center">
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold w-1/2 py-2 px-4 rounded-full transform hover:scale-105 transition duration-200 focus:outline-none focus:shadow-outline btn btn-primary"
                                     type="submit"
                                     :disabled="isCreating"
                                     :class="{ 'loading': isCreating }">
