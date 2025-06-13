@@ -8,13 +8,13 @@ test('testEventsContainerIsVisible', async ({ page }) => {
 
 test('testCalendarExportButtonIsVisible', async ({ page }) => {
   await page.goto('/events.html');
-  await expect(page.locator('.participants > button').first()).toBeVisible();
+  await expect(page.locator('.download-calendar-btn').first()).toBeVisible();
 });
 
 test('testCalendarExportButtonStartsDownload', async ({ page }) => {
   await page.goto('/events.html');
   const downloadPromise = page.waitForEvent('download');
-  await page.locator('.participants > button').first().click();
+  await page.locator('.download-calendar-btn').first().click();
   const download = await downloadPromise;
   const downloadPath = await download.path();
 
