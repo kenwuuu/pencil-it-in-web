@@ -3,6 +3,7 @@ import './event-creation-component.js';
 import './services/get-upcoming-events.js';
 import './participants-modal.js';
 import './events-feed.js';
+import './components/event-details-modal.js';
 import { format, parseISO } from 'date-fns';
 import { getUpcomingEvents } from './services/get-upcoming-events.js';
 import { downloadICS } from './services/calendar.js';
@@ -33,6 +34,7 @@ class EventsContainer extends HTMLElement {
           <events-action-menu class="action-menu-side-component"></events-action-menu>
 
           <!-- Participants Modal -->
+          <event-details-modal></event-details-modal>
           <participants-modal></participants-modal>
         </div>
     `;
@@ -68,6 +70,7 @@ function eventsData() {
   return {
     events: [],
     is_creating_new_event: false,
+    showEventDetailsModal: false,
     showParticipantsModal: false,
     selectedEvent: null,
     activeParticipantTab: 'all',
@@ -127,6 +130,16 @@ function eventsData() {
       }
     },
 
+    openEventDetailsModal(event) {
+      this.selectedEvent = event;
+      this.showEventDetailsModal = true;
+    },
+
+    closeEventDetailsModal() {
+      this.selectedEvent = null;
+      this.showEventDetailsModal = false;
+    },
+
     openParticipantsModal(event) {
       this.selectedEvent = event;
       this.showParticipantsModal = true;
@@ -134,8 +147,8 @@ function eventsData() {
     },
 
     closeParticipantsModal() {
-      this.showParticipantsModal = false;
       this.selectedEvent = null;
+      this.showParticipantsModal = false;
     },
 
     getDropdownLabel() {
