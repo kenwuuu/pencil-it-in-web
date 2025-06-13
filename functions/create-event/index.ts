@@ -116,7 +116,8 @@ const handleCreateEvent = async (req)=>{
     const { error: participantsError } = await supabase.from("event_participants")
       .insert({
         event_id: event.id,
-        user_id: user.id
+        user_id: user.id,
+        attendance_status: 'yes',
     });
     // Get user's friends
     const { data: friends, error: friendsError } = await supabase.from("friends").select("friend_id").eq("user_id", user.id);
