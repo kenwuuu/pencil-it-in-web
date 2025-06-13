@@ -82,3 +82,5 @@ test('testEventDetailModalCloses', async ({ page }) => {
     .boundingBox())!;
   await page.mouse.click(modalOutside.x + 1, modalOutside.y + 1);
 });
+
+// add tests that confirm delete button only appears for host after we set up mocks
