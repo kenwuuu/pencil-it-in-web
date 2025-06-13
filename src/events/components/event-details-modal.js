@@ -1,4 +1,3 @@
-import '../participants-modal.js';
 import './delete-event-button.js';
 
 class EventDetailsModal extends HTMLElement {
@@ -10,6 +9,7 @@ class EventDetailsModal extends HTMLElement {
           <p class="text-sm mb-1" x-text="'Date: ' + formatDate(selectedEvent.start_time)"></p>
           <p class="text-sm mb-4" x-text="'Time: ' + formatTime(selectedEvent.start_time)"></p>
           <p class="mb-4" x-text="selectedEvent.description || 'No description provided.'"></p>
+          <delete-event-button></delete-event-button>
         </div>
         <div class="modal-backdrop" x-on:click="closeEventDetailsModal()"></div>
       </div>
