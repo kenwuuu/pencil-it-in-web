@@ -1,4 +1,5 @@
 import Alpine from 'alpinejs';
+import { supabase } from '@/supabase-client/supabase-client.js';
 
 window.Alpine = Alpine;
 
@@ -9,6 +10,14 @@ Alpine.store('profile_photo', {
     this.url = newUrl;
   },
 });
+
+// hacky way around "Top level await not available"
+(async () => {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  Alpine.store('userId', user.id);
+})();
 
 Alpine.start();
 // end mandatory alpine stuff
