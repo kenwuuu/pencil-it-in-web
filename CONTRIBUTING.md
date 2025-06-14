@@ -2,6 +2,9 @@
 
 ## Quick start
 
+0. We use DaisyUI and Tailwind for UI components and styling, and AlpineJS for reactivity.
+   If you're styling something, look to Daisy first. If you
+   use Daisy, please provide the reason in your PR.
 1. Read `Running locally for development`
 2. Read `Build for prod`. Your code should build successfully before you create a PR.
 3. Read `End-to-end tests`. Your code should pass all tests before PR.
