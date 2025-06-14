@@ -14,7 +14,6 @@ export default defineConfig({
         email_confirmation: resolve(__dirname, 'email-confirmation.html'),
         login: resolve(__dirname, 'src/auth/login.html'),
         create_account: resolve(__dirname, 'src/auth/create-account.html'),
-
         // main JS file
         main: resolve(__dirname, 'main.js'),
         // top level services, constants, misc, etc
@@ -50,8 +49,6 @@ export default defineConfig({
         ),
         // profile
         profile: resolve(__dirname, 'src/profile/profile-container.js'),
-        // settings
-        settings: resolve(__dirname, 'src/settings/settings-container.js'),
         // friends
         friends: resolve(__dirname, 'src/friends/friends-container.js'),
       },
