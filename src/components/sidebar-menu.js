@@ -1,6 +1,6 @@
 class SidebarMenu extends HTMLElement {
-    connectedCallback() {
-        this.innerHTML = `
+  connectedCallback() {
+    this.innerHTML = `
       <ul class="menu menu-xl w-80 bg-base-200 lg:menu-vertical rounded-box">
         <li>
           <a 
@@ -39,20 +39,9 @@ class SidebarMenu extends HTMLElement {
             Profile
           </a>
         </li>
-        <li>
-          <a 
-          @click="page = 'settings'"
-          id="menu-item-settings" 
-          class="sidebar-menu-item"
-          :class="page === 'settings' ? 'menu-active' : ''"
-          >
-            <iconify-icon icon="mdi:settings"></iconify-icon>
-            Settings
-          </a>
-        </li>
       </ul>
     `;
-    }
+  }
 }
 
 customElements.define('sidebar-menu', SidebarMenu);

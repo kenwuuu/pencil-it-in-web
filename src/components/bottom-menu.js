@@ -1,8 +1,8 @@
-import "iconify-icon";
+import 'iconify-icon';
 
 class BottomMenu extends HTMLElement {
-    connectedCallback() {
-        this.innerHTML = `
+  connectedCallback() {
+    this.innerHTML = `
         <div class="dock">
           <button
             x-on:click="page = 'events'"
@@ -28,17 +28,9 @@ class BottomMenu extends HTMLElement {
           <iconify-icon icon="mdi:user"></iconify-icon>
           Profile
           </button>
-          <button
-            x-on:click="page = 'settings'"
-            id="bottom-menu-item-settings" 
-            x-bind:class="page === 'settings' ? 'dock-active' : ''"
-            >
-          <iconify-icon icon="mdi:settings"></iconify-icon>
-          Settings
-          </button>
         </div>
     `;
-    }
+  }
 }
 
 customElements.define('bottom-menu', BottomMenu);
