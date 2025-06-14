@@ -48,7 +48,7 @@ Deno.serve(async (req)=>{
     const friendshipDoesNotExist = !data[0];
 
     if (friendshipDoesNotExist) {
-      // Update friendship status in public.friends
+      // Add bidirectional relationship in public.friends
       const {error: updateError} = await supabaseClient.from('friends').insert([
         {
           user_id: requestingUserId,
@@ -63,11 +63,25 @@ Deno.serve(async (req)=>{
 
       // Add friend to user's upcoming events
       const {data: message, error: messageError} = await supabaseClient.functions.invoke(
-        'add-user-to-all-upcoming-events', {
-          body: {'friendUserId': friendUserId},
+        'add-user-to-friends-upcoming-events', {
+          body: {
+            'requestingUserId': requestingUserId,
+            'friendUserId': friendUserId,
+          },
         },
       )
       if (messageError) throw messageError;
+
+      // Add user to friend's upcoming events
+      const {data: message1, error: messageError1} = await supabaseClient.functions.invoke(
+        'add-user-to-friends-upcoming-events', {
+          body: {
+            'requestingUserId': friendUserId,
+            'friendUserId': requestingUserId,
+          },
+        },
+      )
+      if (messageError1) throw messageError1;
 
       // send Response to client
       return new Response(JSON.stringify({
