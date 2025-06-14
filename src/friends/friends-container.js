@@ -28,6 +28,11 @@ class FriendsContainer extends HTMLElement {
                             Friends within 30 miles of you
                         </li>
 
+                        <li>
+                          <hr class="border-t border-base-300 dark:border-slate-700 mx-4 my-2" />
+                        </li>
+
+
                         <template x-for="friend in friends" :key="friend.friend_id">
                             <li class="list-row friend-row">
                                 <div>
