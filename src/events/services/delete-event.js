@@ -9,9 +9,9 @@ export async function deleteEvent(eventId) {
   if (error) {
     console.error('Error while deleting event: ', error);
     throw error;
-  } else {
-    console.log('Successfully deleted event: ', eventId);
-    return data;
   }
-  return null;
+
+  console.log('Successfully deleted event: ', eventId);
+  return data;
 }
+
