@@ -13,18 +13,24 @@ class DeleteEventButton extends HTMLElement {
 
 // Global event handler
 window.deleteEventHandler = async function (eventObj) {
-  const eventId = eventObj.id; // ✅ make sure this is the correct key (check console log below)
+  const confirmed = confirm("Are you sure you want to delete this event?");
+  if (!confirmed) return;
+
+  const eventId = eventObj.id;
   console.log("Selected Event Object:", eventObj);
   console.log("Extracted Event ID:", eventId);
 
   try {
     await deleteEvent(eventId);
-    // optionally close the modal or refresh event list here
     alert('Event deleted successfully.');
+    // Optionally close the modal here if needed
+    const modal = document.querySelector("#eventDetailsModal");
+    if (modal) modal.close();
+
+    window.location.reload();
   } catch (error) {
     alert('Failed to delete event. Please try again.');
     console.error(error);
   }
 };
-
 customElements.define('delete-event-button', DeleteEventButton);
