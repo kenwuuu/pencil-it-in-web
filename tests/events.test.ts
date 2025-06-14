@@ -95,4 +95,16 @@ test('testEventDetailModalCloseButtonWorks', async ({ page }) => {
   ).not.toBeVisible();
 });
 
+test('testDeleteEventButtonIsVisible', async ({ page }) => {
+  await page.goto('/events.html');
+  await page.getByText('Host: Ken').first().scrollIntoViewIfNeeded();
+  const box = await page.getByText('Host: Ken').first().boundingBox();
+  if (box) {
+    await page.mouse.click(box.x + box.width / 2, box.y - 10); // click 30 pixels above top edge of Host button, centered horizontally
+  }
+  await expect(
+    page.getByRole('button', { name: 'Delete Event' }),
+  ).toBeVisible();
+});
+
 // add tests that confirm delete button only appears for host after we set up mocks
