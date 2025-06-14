@@ -15,7 +15,7 @@ class FriendsContainer extends HTMLElement {
                     <!--   Start Friend Search Bar   -->
                     <div class="max-w-full">
                         <div class="join min-w-full">
-                          <input id="friend-input" x-ref="friendInput" class="input input-md join-item" style="font-size: 16px" placeholder="@xXdemonSlayerXx" autocomplete="first-name" />
+                          <input id="friend-input" x-ref="friendInput" x-on:keydown.enter="addFriend($refs.friendInput)" class="input input-md join-item" style="font-size: 16px" placeholder="@xXdemonSlayerXx" autocomplete="first-name" />
                           <button id="add-friend-btn" x-on:click="addFriend($refs.friendInput)" class="btn btn-md join-item">Add Friend</button>
                         </div>
                     </div>
