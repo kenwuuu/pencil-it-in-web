@@ -45,6 +45,30 @@ Deno.serve(async (req) => {
 
     if (deleteError) throw deleteError;
 
+    // Delete friend from user's upcoming events
+    const {data: message, error: messageError} = await supabaseClient.functions.invoke(
+      'handle-events-for-friendships', {
+        body: {
+          'requestingUserId': requestingUserId,
+          'friendUserId': friendUserId,
+          'addOrDelete': 'delete'
+        },
+      },
+    )
+    if (messageError) throw messageError;
+
+    // Delete user from friend's upcoming events
+    const {data: message1, error: messageError1} = await supabaseClient.functions.invoke(
+      'handle-events-for-friendships', {
+        body: {
+          'requestingUserId': friendUserId,
+          'friendUserId': requestingUserId,
+          'addOrDelete': 'delete'
+        },
+      },
+    )
+    if (messageError1) throw messageError1;
+
     // respond to client
     return new Response(JSON.stringify({
       message: 'Friendship removed successfully'

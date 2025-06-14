@@ -63,10 +63,11 @@ Deno.serve(async (req)=>{
 
       // Add friend to user's upcoming events
       const {data: message, error: messageError} = await supabaseClient.functions.invoke(
-        'handle-events-for-new-friendships', {
+        'handle-events-for-friendships', {
           body: {
             'requestingUserId': requestingUserId,
             'friendUserId': friendUserId,
+            'addOrDelete': 'add'
           },
         },
       )
@@ -74,10 +75,11 @@ Deno.serve(async (req)=>{
 
       // Add user to friend's upcoming events
       const {data: message1, error: messageError1} = await supabaseClient.functions.invoke(
-        'handle-events-for-new-friendships', {
+        'handle-events-for-friendships', {
           body: {
             'requestingUserId': friendUserId,
             'friendUserId': requestingUserId,
+            'addOrDelete': 'add'
           },
         },
       )

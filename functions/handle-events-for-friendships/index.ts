@@ -9,13 +9,13 @@ Deno.serve(async (req: Request) => {
     return new Response('ok', { status: 200 });
   }
 
-  const { requestingUserId, friendUserId, addOrRemove } = await req.json();
+  const { requestingUserId, friendUserId, addOrDelete } = await req.json();
 
-  if (!addOrRemove) {
-    console.log("Did not receive addOrRemove in request. Please check your request.")
+  if (!addOrDelete) {
+    console.log("Did not receive addOrDelete in request. Please check your request.")
 
-    return new Response(JSON.stringify({ error: "Malformed request. Did not receive addOrRemove in request. Please " +
-        "check that your request has addOrRemove in it, we accept 'add' or 'remove'." }), {
+    return new Response(JSON.stringify({ error: "Malformed request. Did not receive addOrDelete in request. Please " +
+        "check that your request has addOrDelete in it, we accept 'add' or 'delete'." }), {
       headers: { 'Content-Type': 'application/json' },
       status: 400,
     });
@@ -35,7 +35,7 @@ Deno.serve(async (req: Request) => {
 
     const eventIds = events.map(event => event.id);
 
-    if (addOrRemove === "add") {
+    if (addOrDelete === "add") {
       // Add friend to requesting user's events
       for (const eventId of eventIds) {
         const {error: addError} = await supabaseClient
@@ -48,19 +48,19 @@ Deno.serve(async (req: Request) => {
           if (!addError.message.includes("duplicate key")) throw addError;  // don't throw if error is for duplicate key
         }
       }
-    } else if (addOrRemove === "remove") {
-      // Remove friend from requesting user's events
+    } else if (addOrDelete === "delete") {
+      // Delete friend from requesting user's events
       for (const eventId of eventIds) {
-        const {error: removeError} = await supabaseClient
+        const {error: deleteError} = await supabaseClient
           .from('event_participants')
           .delete()
           .eq('user_id', friendUserId)
           .eq('event_id', eventId);
 
-        if (removeError) {
+        if (deleteError) {
           // handle or log the error
-          console.error(`Failed to add event ${eventId}:`, removeError);
-          if (!removeError.message.includes("duplicate key")) throw removeError;  // don't throw if error is for duplicate key
+          console.error(`Failed to add event ${eventId}:`, deleteError);
+          if (!deleteError.message.includes("duplicate key")) throw deleteError;  // don't throw if error is for duplicate key
         }
       }
     }
