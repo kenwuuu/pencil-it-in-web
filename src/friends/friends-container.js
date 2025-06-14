@@ -15,8 +15,14 @@ class FriendsContainer extends HTMLElement {
                     <!--   Start Friend Search Bar   -->
                     <div class="max-w-full">
                         <div class="join min-w-full">
-                          <input id="friend-input" x-ref="friendInput" x-on:keydown.enter="addFriend($refs.friendInput)" class="input input-md join-item" style="font-size: 16px" placeholder="@xXdemonSlayerXx" autocomplete="first-name" />
-                          <button id="add-friend-btn" x-on:click="addFriend($refs.friendInput)" class="btn btn-md join-item">Add Friend</button>
+                          <input id="friend-input" x-ref="friendInput" x-on:keydown.enter="addFriend($refs.friendInput)" class="input input-md join-item" style="font-size: 16px" :disabled="isAddingFriend" placeholder="@xXdemonSlayerXx" autocomplete="first-name" />
+                          <button id="add-friend-btn" x-on:click="addFriend($refs.friendInput)" class="btn btn-md join-item" :disabled="isAddingFriend">
+                            <span x-show="!isAddingFriend">Add Friend</span>
+                            <span x-show="isAddingFriend" class="flex items-center gap-2">
+                              <span class="loading loading-spinner loading-sm"></span>
+                              Adding...
+                            </span>
+                          </button>
                         </div>
                     </div>
                     <!--   End Friend Search Bar   -->
@@ -78,6 +84,7 @@ function getCurrentDateTime() {
 function friendsData() {
   return {
     friends: [],
+    isAddingFriend: false,
     async init() {
       await this.loadFriends();
     },
@@ -98,17 +105,24 @@ function friendsData() {
       }
     },
     async addFriend(input) {
-      let username = input.value.trim();
-      if (!username) return;
+      let username = input.value
+        .toLowerCase()
+        .replace(/\s+/g, '') // Remove all whitespace
+        .replace(/^@/, ''); // Remove leading @ if present
 
-      insertFriendship(username)
-        .then(() => {
-          input.value = '';
-          this.loadFriends();
-        })
-        .catch(err => {
-          console.error('Failed to add friend:', err);
-        });
+      if (!username || this.isAddingFriend) return;
+
+      this.isAddingFriend = true;
+
+      try {
+        await insertFriendship(username);
+        input.value = '';
+        await this.loadFriends();
+      } catch (err) {
+        console.error('Failed to add friend:', err);
+      } finally {
+        this.isAddingFriend = false;
+      }
     },
   };
 }

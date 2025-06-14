@@ -301,7 +301,7 @@
     function validateForm() {
         const firstName = document.getElementById('first-name').value;
         const lastName = document.getElementById('last-name').value;
-        const username = document.getElementById('username').value;
+        const username = document.getElementById('username').value.toLowerCase();
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         const photoFile = document.getElementById('profile-photo-upload').files[0];

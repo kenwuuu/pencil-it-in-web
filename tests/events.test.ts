@@ -77,10 +77,19 @@ test('testEventDetailModalCloses', async ({ page }) => {
   await page.goto('/events.html');
   await page.locator('.title-container').first().click();
   var modalOutside = (await page
-    .locator('event-details-modal div')
-    .nth(2)
+    .locator('.modal-backdrop')
+    .first()
     .boundingBox())!;
   await page.mouse.click(modalOutside.x + 1, modalOutside.y + 1);
+  await expect(
+    page.locator('event-details-modal div').nth(2),
+  ).not.toBeVisible();
+});
+
+test('testEventDetailCloseButtonWorks', async ({ page }) => {
+  await page.goto('/events.html');
+  await page.locator('.title-container').first().click();
+  await page.getByRole('button', { name: 'Close' }).click();
   await expect(
     page.locator('event-details-modal div').nth(2),
   ).not.toBeVisible();
