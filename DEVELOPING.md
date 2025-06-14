@@ -56,3 +56,14 @@ if (req.method === 'OPTIONS') {
     });
 }
 ```
+
+- `supabaseKey is required` refers to missing SUPABASE_SERVICE_ROLE_KEY key when running an edge function.
+  - When running locally, this is fixed with adding a `.env` file in the same directory as the `index.ts`
+    with SUPABASE_SERVICE_ROLE_KEY. Also add this code to the top of `index.ts`
+    -
+    ```javascript
+    import { config } from 
+    'https://deno.land/x/dotenv/mod.ts';
+    ```
+
+await config({export: true});`
