@@ -15,6 +15,8 @@ class EventDetailsModal extends HTMLElement {
 
 
           <button class="btn mt-2" x-on:click="closeEventDetailsModal()">Close</button>
+          <delete-event-button x-show="selectedEvent.host.user_id === $store.userId"></delete-event-button>
+          <button class="btn" x-on:click="closeEventDetailsModal()">Close</button>
         </div>
         <div class="modal-backdrop" x-on:click="closeEventDetailsModal()"></div>
       </div>
