@@ -396,20 +396,19 @@
 
         try {
             // Import and call your signup service
-            // await signUpUser(
-            //     firstName,
-            //     lastName,
-            //     userName,
-            //     email,
-            //     password,
-            //     profilePhotoInput.files[0]
-            // );
+            await signUpUser(
+                firstName,
+                lastName,
+                userName,
+                email,
+                password,
+                profilePhotoInput.files[0]
+            );
+            window.location.href = '/email-confirmation.html';
 
-            // Simulate API call for demo
-            await new Promise(resolve => setTimeout(resolve, 2000));
-
-            alert('Account created successfully! (This is a demo)');
-            // window.location.href = '/email-confirmation.html';
+            // Simulate API call for testing
+            // await new Promise(resolve => setTimeout(resolve, 2000));
+            // alert('Account created successfully! (This is a demo)');
         } catch (error) {
             alert(`Error: ${error.message}`);
         } finally {
