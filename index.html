@@ -22,7 +22,8 @@ supabase.auth.getSession().then(({data, error}) => {
     } else if (isMobile) {  // if no account and they're mobile, send to create an account
         window.location.href = '/src/auth/create-account.html';
     } else {  // if no account and on desktop, send to landing page
-        window.location.href = '/landing.html';
+        // window.location.href = '/landing.html';
+        window.location.href = '/src/auth/login.html';
     }
 })
 </script>

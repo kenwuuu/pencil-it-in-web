@@ -15,7 +15,7 @@ class FriendsContainer extends HTMLElement {
                     <!--   Start Friend Search Bar   -->
                     <div class="max-w-full">
                         <div class="join min-w-full">
-                          <input id="friend-input" x-ref="friendInput" class="input input-md join-item" style="font-size: 16px" :disabled="isAddingFriend" placeholder="@xXdemonSlayerXx" autocomplete="first-name" />
+                          <input id="friend-input" x-ref="friendInput" x-on:keydown.enter="addFriend($refs.friendInput)" class="input input-md join-item" style="font-size: 16px" :disabled="isAddingFriend" placeholder="@xXdemonSlayerXx" autocomplete="first-name" />
                           <button id="add-friend-btn" x-on:click="addFriend($refs.friendInput)" class="btn btn-md join-item" :disabled="isAddingFriend">
                             <span x-show="!isAddingFriend">Add Friend</span>
                             <span x-show="isAddingFriend" class="flex items-center gap-2">
@@ -33,6 +33,11 @@ class FriendsContainer extends HTMLElement {
                         <li class="flex p-4 pb-2 text-xs opacity-60 tracking-wide">
                             Friends within 30 miles of you
                         </li>
+
+                        <li>
+                          <hr class="border-t border-base-300 dark:border-slate-700 mx-4 my-2" />
+                        </li>
+
 
                         <template x-for="friend in friends" :key="friend.friend_id">
                             <li class="list-row friend-row">
@@ -104,7 +109,7 @@ function friendsData() {
       if (!username || this.isAddingFriend) return;
 
       this.isAddingFriend = true;
-      
+
       try {
         await insertFriendship(username);
         input.value = '';

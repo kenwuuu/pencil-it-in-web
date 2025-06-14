@@ -8,13 +8,13 @@ test('testEventsContainerIsVisible', async ({ page }) => {
 
 test('testCalendarExportButtonIsVisible', async ({ page }) => {
   await page.goto('/events.html');
-  await expect(page.locator('.participants > button').first()).toBeVisible();
+  await expect(page.locator('.download-calendar-btn').first()).toBeVisible();
 });
 
 test('testCalendarExportButtonStartsDownload', async ({ page }) => {
   await page.goto('/events.html');
   const downloadPromise = page.waitForEvent('download');
-  await page.locator('.participants > button').first().click();
+  await page.locator('.download-calendar-btn').first().click();
   const download = await downloadPromise;
   const downloadPath = await download.path();
 
@@ -66,3 +66,45 @@ test('testMaybeButtonIsVisible', async ({ page }) => {
   await page.goto('/events.html');
   await expect(page.getByText('Maybe:').first()).toBeVisible();
 });
+
+test('testEventDetailModalOpens', async ({ page }) => {
+  await page.goto('/events.html');
+  await page.locator('.title-container').first().click();
+  await expect(page.locator('event-details-modal div').nth(2)).toBeVisible();
+});
+
+test('testEventDetailModalCloses', async ({ page }) => {
+  await page.goto('/events.html');
+  await page.locator('.title-container').first().click();
+  var modalOutside = (await page
+    .locator('event-details-modal div')
+    .nth(2)
+    .boundingBox())!;
+  await page.mouse.click(modalOutside.x + 1, modalOutside.y + 1);
+  await expect(
+    page.locator('event-details-modal div').nth(2),
+  ).not.toBeVisible();
+});
+
+test('testEventDetailModalCloseButtonWorks', async ({ page }) => {
+  await page.goto('/events.html');
+  await page.locator('.title-container').first().click();
+  await page.getByRole('button', { name: 'Close' }).click();
+  await expect(
+    page.locator('event-details-modal div').nth(2),
+  ).not.toBeVisible();
+});
+
+test('testDeleteEventButtonIsVisible', async ({ page }) => {
+  await page.goto('/events.html');
+  await page.getByText('Host: Ken').first().scrollIntoViewIfNeeded();
+  const box = await page.getByText('Host: Ken').first().boundingBox();
+  if (box) {
+    await page.mouse.click(box.x + box.width / 2, box.y - 10); // click 30 pixels above top edge of Host button, centered horizontally
+  }
+  await expect(
+    page.getByRole('button', { name: 'Delete Event' }),
+  ).toBeVisible();
+});
+
+// add tests that confirm delete button only appears for host after we set up mocks

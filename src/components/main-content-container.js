@@ -1,7 +1,6 @@
 import '../events/events-container.js';
 import '../friends/friends-container.js';
 import '../profile/profile-container.js';
-import '../settings/settings-container.js';
 
 /** @customElement main-content-container */
 class MainContentContainer extends HTMLElement {
@@ -11,7 +10,6 @@ class MainContentContainer extends HTMLElement {
       <events-container class="flex-1" x-show="page === 'events'"></events-container>
       <friends-container class="flex-1" x-show="page === 'friends'"></friends-container>
       <profile-container class="flex-1" x-show="page === 'profile'"></profile-container>
-      <settings-container class="flex-1" x-show="page === 'settings'"></settings-container>
     `;
   }
 }
