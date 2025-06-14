@@ -105,7 +105,11 @@ function friendsData() {
       }
     },
     async addFriend(input) {
-      let username = input.value.trim();
+      let username = input.value
+        .toLowerCase()
+        .replace(/\s+/g, '') // Remove all whitespace
+        .replace(/^@/, ''); // Remove leading @ if present
+
       if (!username || this.isAddingFriend) return;
 
       this.isAddingFriend = true;
@@ -116,7 +120,6 @@ function friendsData() {
         await this.loadFriends();
       } catch (err) {
         console.error('Failed to add friend:', err);
-        // Optionally show an error message to the user
       } finally {
         this.isAddingFriend = false;
       }
