@@ -11,9 +11,6 @@ class EventDetailsModal extends HTMLElement {
           <p class="text-sm mb-4" x-text="'Time: ' + formatTime(selectedEvent.start_time)"></p>
           <p class="mb-4" x-text="selectedEvent.description || 'No description provided.'"></p>
           <delete-event-button x-show="selectedEvent?.host && selectedEvent.host.user_id === $store.userId"></delete-event-button>
-
-
-
           <button class="btn mt-2" x-on:click="closeEventDetailsModal()">Close</button>
         </div>
         <div class="modal-backdrop" x-on:click="closeEventDetailsModal()"></div>

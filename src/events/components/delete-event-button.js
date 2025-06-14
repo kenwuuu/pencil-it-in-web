@@ -3,19 +3,33 @@ import { deleteEvent } from '@/events/services/delete-event.js';
 class DeleteEventButton extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-      <button class="btn btn-outline btn-error" x-on:click="await window.deleteEventHandler(selectedEvent)">
-        Delete Event
-      </button>
+      <div x-data>
+        <!-- Delete Button -->
+        <button class="btn btn-outline btn-error" @click="confirmDelete.showModal()">
+          Delete Event
+        </button>
+
+        <!-- DaisyUI Modal -->
+        <dialog id="confirmDelete" class="modal">
+          <div class="modal-box">
+            <h3 class="font-bold text-lg mb-4">Are you sure you want to delete this event?</h3>
+            <div class="flex justify-end gap-4">
+              <form method="dialog">
+                <button class="btn">No</button>
+              </form>
+              <form method="dialog">
+                <button class="btn btn-error" @click="await window.deleteEventHandler(selectedEvent)">Yes</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
+      </div>
     `;
     queueMicrotask(() => Alpine.initTree(this));
   }
 }
 
-// Global event handler
 window.deleteEventHandler = async function (eventObj) {
-  const confirmed = confirm("Are you sure you want to delete this event?");
-  if (!confirmed) return;
-
   const eventId = eventObj.id;
   console.log("Selected Event Object:", eventObj);
   console.log("Extracted Event ID:", eventId);
@@ -23,14 +37,11 @@ window.deleteEventHandler = async function (eventObj) {
   try {
     await deleteEvent(eventId);
     alert('Event deleted successfully.');
-    // Optionally close the modal here if needed
-    const modal = document.querySelector("#eventDetailsModal");
-    if (modal) modal.close();
-
-    window.location.reload();
+    window.location.reload(); // refresh events
   } catch (error) {
     alert('Failed to delete event. Please try again.');
     console.error(error);
   }
 };
+
 customElements.define('delete-event-button', DeleteEventButton);
