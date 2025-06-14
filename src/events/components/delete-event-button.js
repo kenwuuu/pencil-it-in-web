@@ -31,12 +31,9 @@ class DeleteEventButton extends HTMLElement {
 
 window.deleteEventHandler = async function (eventObj) {
   const eventId = eventObj.id;
-  console.log("Selected Event Object:", eventObj);
-  console.log("Extracted Event ID:", eventId);
 
   try {
     await deleteEvent(eventId);
-    alert('Event deleted successfully.');
     window.location.reload(); // refresh events
   } catch (error) {
     alert('Failed to delete event. Please try again.');
