@@ -23,12 +23,33 @@ class EventsContainer extends HTMLElement {
                 <events-action-menu class="action-menu-header-component"></events-action-menu>
               </div>
               <div class="join mb-4 w-full">
-                <button class="btn join-item flex-1">All Events</button>
-                <button class="btn join-item flex-1">My Events</button>
+                <button 
+                  class="btn join-item flex-1" 
+                  :class="{ 'btn-active': activeTab === 'all' }"
+                  @click="setActiveTab('all')"
+                >
+                  All Events
+                </button>
+                <button 
+                  class="btn join-item flex-1" 
+                  :class="{ 'btn-active': activeTab === 'my' }"
+                  @click="setActiveTab('my')"
+                >
+                  My Events
+                </button>
               </div>
             </header>
             
-            <events-feed></events-feed>
+            <events-feed 
+      :filtered-events="filteredEvents"
+      :active-tab="activeTab"
+      :is-loading="isLoading"
+      :is-creating-new-event="is_creating_new_event"
+      @open-event-details-modal="openEventDetailsModal"
+      @open-participants-modal="openParticipantsModal"
+      @update-attendance-status="updateAttendanceStatus"
+      @download-calendar="downloadCalendar"
+    ></events-feed>
             <event-creation-component class="flex-1" x-show="is_creating_new_event"></event-creation-component>
           </div>
           <events-action-menu class="action-menu-side-component"></events-action-menu>
@@ -69,6 +90,9 @@ class EventsContainer extends HTMLElement {
 function eventsData() {
   return {
     events: [],
+    filteredEvents: [],
+    activeTab: 'all',
+    isLoading: true,
     is_creating_new_event: false,
     showEventDetailsModal: false,
     showParticipantsModal: false,
@@ -78,9 +102,14 @@ function eventsData() {
     toastMessage: '',
     toastType: 'success', // 'success', 'error', or 'info'
     toastTimeout: null,
+    currentUserId: null,
 
-    init() {
-      this.loadEvents();
+    async init() {
+      // Get current user ID
+      const { data: { user } } = await supabase.auth.getUser();
+      this.currentUserId = user?.id;
+      
+      await this.loadEvents();
 
       // Listen for custom events
       this.$el.addEventListener('cancel-event-creation', () => {
@@ -91,6 +120,46 @@ function eventsData() {
         this.is_creating_new_event = false;
         await this.loadEvents();
       });
+    },
+    
+    setActiveTab(tab) {
+      this.activeTab = tab;
+      this.filterEvents();
+    },
+    
+    filterEvents() {
+      if (this.activeTab === 'all') {
+        this.filteredEvents = [...this.events];
+      } else {
+        // Filter events where user is host or has RSVP'd
+        this.filteredEvents = this.events.filter(event => {
+          // Check if user is the host
+          const isHost = event.host?.id === this.currentUserId;
+          
+          // Check if user has RSVP'd (yes/maybe)
+          const hasRSVP = event.participants?.some(
+            p => p.user_id === this.currentUserId && (p.status === 'yes' || p.status === 'maybe')
+          );
+          
+          return isHost || hasRSVP;
+        });
+      }
+    },
+    
+    async loadEvents() {
+      this.isLoading = true;
+      try {
+        const events = await getUpcomingEvents();
+        if (events) {
+          this.events = events;
+          this.filterEvents();
+        }
+      } catch (error) {
+        console.error('Error loading events:', error);
+        this.showToastNotification('Failed to load events', 'error');
+      } finally {
+        this.isLoading = false;
+      }
     },
 
     showToastNotification(message, type = 'success') {

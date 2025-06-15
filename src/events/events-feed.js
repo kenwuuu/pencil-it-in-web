@@ -1,9 +1,86 @@
 class EventsFeed extends HTMLElement {
   connectedCallback() {
+    // Get props
+    const filteredEvents = this.getAttribute('filtered-events') || '[]';
+    const activeTab = this.getAttribute('active-tab') || 'all';
+    const isLoading = this.getAttribute('is-loading') === 'true';
+    
     this.innerHTML = `
+      <div 
+        x-data="{
+          filteredEvents: ${filteredEvents},
+          activeTab: '${activeTab}',
+          isLoading: ${isLoading},
+          openEventDetailsModal(event) {
+            this.$dispatch('open-event-details-modal', event);
+          },
+          openParticipantsModal(event) {
+            this.$dispatch('open-participants-modal', event);
+          },
+          updateAttendanceStatus(eventId, status) {
+            this.$dispatch('update-attendance-status', { eventId, status });
+          },
+          downloadCalendar(event) {
+            this.$dispatch('download-calendar', event);
+          },
+          formatDate(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+              month: 'short', 
+              day: 'numeric',
+              year: 'numeric'
+            });
+          },
+          formatTime(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            return date.toLocaleTimeString('en-US', { 
+              hour: '2-digit', 
+              minute: '2-digit',
+              hour12: true
+            });
+          }
+        }"
+        x-init="() => {
+          // Watch for attribute changes
+          const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+              if (mutation.attributeName === 'filtered-events') {
+                this.filteredEvents = JSON.parse(this.getAttribute('filtered-events'));
+              }
+              if (mutation.attributeName === 'active-tab') {
+                this.activeTab = this.getAttribute('active-tab');
+              }
+              if (mutation.attributeName === 'is-loading') {
+                this.isLoading = this.getAttribute('is-loading') === 'true';
+              }
+            });
+          });
+          
+          observer.observe(this, {
+            attributes: true,
+            attributeFilter: ['filtered-events', 'active-tab', 'is-loading']
+          });
+        }"
+      >` + `
         <div class="events-agenda not-prose flex-1" x-show="!is_creating_new_event">
-              <div x-show="events.length > 0">
-                <template x-for="event in events" :key="event.id">
+              <!-- Loading state -->
+              <div x-show="isLoading" class="text-center py-8">
+                <span class="loading loading-spinner loading-lg"></span>
+                <p class="mt-2">Loading events...</p>
+              </div>
+              
+              <!-- No events state -->
+              <div x-show="!isLoading && filteredEvents.length === 0" class="text-center py-8">
+                <p class="text-gray-500">
+                  <span x-text="activeTab === 'all' ? 'No events to display' : 'No events match your criteria'"></span>
+                </p>
+              </div>
+              
+              <!-- Events list -->
+              <div x-show="!isLoading && filteredEvents.length > 0">
+                <template x-for="event in filteredEvents" :key="event.id">
                 <div class="card-wrapper mb-5 cursor-pointer" x-on:click.stop="openEventDetailsModal(event)">
                       <div class="card bg-base-100 mb-5 outline-base-300 outline-3 dark:outline-slate-700">
                         <div class="card-body">
@@ -74,9 +151,7 @@ class EventsFeed extends HTMLElement {
                 </div>
                 </template>
               </div>
-              <div x-show="!events" class="text-center py-8">
-                <p class="text-gray-500">No events to display</p>
-              </div>
+
             </div>
         `;
   }
