@@ -15,7 +15,7 @@ export default defineConfig({
         login: resolve(__dirname, 'src/auth/login.html'),
         create_account: resolve(__dirname, 'src/auth/create-account.html'),
         // main JS file
-        main: resolve(__dirname, 'main.js'),
+        main: resolve(__dirname, 'main.ts'),
         // top level services, constants, misc, etc
         constants: resolve(__dirname, 'constants.js'),
         // supabase
