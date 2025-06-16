@@ -5,6 +5,13 @@ class EventsFeed extends HTMLElement {
               <div x-show="events.length > 0">
                 <template x-for="event in events" :key="event.id">
                   <div class="card bg-base-100 mb-5 outline-base-300 outline-3 dark:outline-slate-700">
+                    <!-- Cover Photo (if available) -->
+                    <div x-show="event.cover_photo_url" class="relative w-full h-48 overflow-hidden rounded-t-lg">
+                      <img 
+                        x-bind:src="event.cover_photo_url" 
+                        class="w-full h-full object-cover" 
+                        alt="Event cover photo">
+                    </div>
                     <div class="card-body">
                       <div class="event-datetime flex justify-between">
                         <h2 class="event-date sm:text-3xl text-xl" x-text="formatDate(event.start_time)"></h2>

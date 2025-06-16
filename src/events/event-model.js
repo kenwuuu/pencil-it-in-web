@@ -17,6 +17,7 @@ export class EventModel {
         this.attendanceYesCount = apiEvent.attendance_yes_count;
         this.attendanceMaybeCount = apiEvent.attendance_maybe_count;
         this.attendanceNoCount = apiEvent.attendance_no_count;
+        this.coverPhotoUrl = apiEvent.cover_photo_url || null; // Add cover photo URL property
     }
 
     getParticipantCount() {
