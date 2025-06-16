@@ -1,675 +1,246 @@
 <!doctype html>
 <html class="h-full bg-white" lang="en">
-  <head>
+<head>
     <meta
-      charset="UTF-8"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover, initial-scale=1.0,
+        charset="UTF-8"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover, initial-scale=1.0,
       minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
-      name="viewport"
+        name="viewport"
     />
     <title>Pencil It In</title>
-  </head>
-  <body class="h-full">
-    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-      <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+</head>
+<body class="h-full">
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
-          alt="Pencil It In"
-          class="mx-auto h-10 w-auto"
-          src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+            alt="Pencil It In"
+                class="mx-auto h-10 w-auto"
+                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
         />
         <h2
-          class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900"
+                class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900"
         >
-          Create an account
+            Create an account
         </h2>
-      </div>
+    </div>
 
-      <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form action="#" class="space-y-6" method="POST" novalidate>
-          <div>
-            <label class="block text-sm/6 font-medium text-gray-900" for="email"
-              >First name</label
-            >
-            <div class="mt-2 input-container">
-              <input
-                aria-label="First name"
-                autocomplete="given-name"
-                class="input-field block w-full px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none"
-                id="first-name"
-                name="first_name"
-                type="text"
-              />
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <form action="#" class="space-y-6" method="POST">
+            <div>
+                <label class="block text-sm/6 font-medium text-gray-900" for="email"
+                >First name</label
+                >
+                <div class="mt-2">
+                    <input
+                        aria-label="First name"
+                        autocomplete="given-name"
+                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                        id="first-name"
+                        name="first_name"
+                        type="text"
+                    />
+                </div>
             </div>
-            <div id="firstnameError" class="error-message"></div>
-            <div id="firstnameSuccess" class="success-message"></div>
-          </div>
 
-          <div>
-            <label class="block text-sm/6 font-medium text-gray-900" for="email"
-              >Last name</label
-            >
-            <div class="mt-2 input-container">
-              <input
-                aria-label="Last name"
-                autocomplete="last-name"
-                class="input-field block w-full px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none"
-                id="last-name"
-                name="last_name"
-                type="text"
-              />
+            <div>
+                <label class="block text-sm/6 font-medium text-gray-900" for="email"
+                >Last name</label
+                >
+                <div class="mt-2">
+                    <input
+                        aria-label="Last name"
+                        autocomplete="last-name"
+                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                        id="last-name"
+                        name="last_name"
+                        type="text"
+                    />
+                </div>
             </div>
-            <div id="lastnameError" class="error-message"></div>
-            <div id="lastnameSuccess" class="success-message"></div>
-          </div>
 
-          <div>
-            <label class="block text-sm/6 font-medium text-gray-900" for="email"
-              >Username</label
-            >
-            <div class="mt-2 input-container">
-              <input
-                aria-label="Username"
-                autocomplete="username"
-                class="input-field block w-full px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none"
-                id="username"
-                name="username"
-                type="text"
-              />
+            <div>
+                <label class="block text-sm/6 font-medium text-gray-900" for="email"
+                >Username</label
+                >
+                <div class="mt-2">
+                    <input
+                        aria-label="Username"
+                        autocomplete="username"
+                        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                        id="username"
+                        name="username"
+                        type="text"
+                    />
+                </div>
             </div>
-            <div id="usernameError" class="error-message"></div>
-            <div id="usernameSuccess" class="success-message"></div>
-          </div>
 
-          <div>
-            <label class="block text-sm/6 font-medium text-gray-900" for="email"
-              >Email address</label
-            >
-            <div class="mt-2 input-container">
-              <input
-                aria-label="Email address"
-                autocomplete="email"
-                class="input-field block w-full px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none"
-                id="email"
-                name="email"
-                type="email"
-              />
+            <div>
+                <label class="block text-sm/6 font-medium text-gray-900" for="email"
+                >Email address</label
+                >
+                <div class="mt-2">
+                    <input
+                            aria-label="Email address"
+                            autocomplete="email"
+                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                            id="email"
+                            name="email"
+                            type="email"
+                    />
+                </div>
             </div>
-            <div id="emailError" class="error-message"></div>
-            <div id="emailSuccess" class="success-message"></div>
-          </div>
 
-          <div>
-            <div class="flex items-center justify-between">
-              <label
-                class="block text-sm/6 font-medium text-gray-900"
-                for="password"
-                >Password</label
-              >
+            <div>
+                <div class="flex items-center justify-between">
+                    <label
+                            class="block text-sm/6 font-medium text-gray-900"
+                            for="password"
+                    >Password</label
+                    >
+                </div>
+                <div class="mt-2">
+                    <input
+                            aria-label="Password"
+                            autocomplete="new-password"
+                            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                            id="password"
+                            name="password"
+                            type="password"
+                    />
+                </div>
             </div>
-            <div class="mt-2 input-container relative">
-              <input
-                aria-label="Password"
-                autocomplete="new-password"
-                class="input-field block w-full px-4 py-3 text-gray-900 placeholder:text-gray-400 focus:outline-none"
-                id="password"
-                name="password"
-                type="password"
-                required
-              />
-              <svg
-                id="togglePassword"
-                class="input-icon absolute right-[12px] top-[50%] translate-[-50%] w-[20px] h-[20px] cursor-pointer text-indigo-500 hover:text-indigo-600 transition-colors duration-200 ease-in-out"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-              >
-                <path
-                  id="eyeOpen"
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  id="eyeOpen2"
-                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  id="eyeClosed"
-                  class="hidden"
-                  d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+
+            <div>
+                <div class="flex items-center justify-between">
+                    <label
+                        class="block text-sm/6 font-medium text-gray-900"
+                        for="profile-photo-upload"
+                    >Profile Photo</label
+                    >
+                </div>
+                <label
+                    class="mt-2 bg-white text-slate-500 font-semibold text-base rounded max-w-md h-52 flex flex-col items-center justify-center cursor-pointer border-2 border-gray-300 border-dashed mx-auto"
+                    for="profile-photo-upload">
+                    <svg class="w-11 mb-3 fill-gray-500" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"
+                            data-original="#000000"/>
+                        <path
+                            d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"
+                            data-original="#000000"/>
+                    </svg>
+                    Upload profile photo
+
+                    <!-- accept attribute forces iOS to upload HEIC as JPEG -->
+                    <input accept="image/jpeg,image/png,image/webp"
+                           class="hidden"
+                           id='profile-photo-upload'
+                           required
+                           type="file"
+                    />
+                    <p class="text-xs font-medium text-slate-400 mt-2">JPG, PNG, and WEBP are allowed.</p>
+                </label>
             </div>
-            <div id="passwordError" class="error-message"></div>
-            <div id="passwordSuccess" class="success-message"></div>
-          </div>
 
-          <div>
-            <div class="flex items-center justify-between">
-              <label
-                class="block text-sm/6 font-medium text-gray-900"
-                for="profile-photo-upload"
-                >Profile Photo</label
-              >
+            <div class="mt-3 text-center text-sm text-gray-600 hidden" id="photo-upload-status">
+                <img class="mx-auto h-20 w-20 rounded-full object-cover" id="photo-preview"/>
+                <p class="mt-2" id="photo-filename"></p>
             </div>
-            <label
-              class="mt-2 bg-white text-slate-500 font-semibold text-base rounded max-w-md h-52 flex flex-col items-center justify-center cursor-pointer border-2 border-gray-300 border-dashed mx-auto"
-              for="profile-photo-upload"
-            >
-              <svg
-                class="w-11 mb-3 fill-gray-500"
-                viewBox="0 0 32 32"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M23.75 11.044a7.99 7.99 0 0 0-15.5-.009A8 8 0 0 0 9 27h3a1 1 0 0 0 0-2H9a6 6 0 0 1-.035-12 1.038 1.038 0 0 0 1.1-.854 5.991 5.991 0 0 1 11.862 0A1.08 1.08 0 0 0 23 13a6 6 0 0 1 0 12h-3a1 1 0 0 0 0 2h3a8 8 0 0 0 .75-15.956z"
-                  data-original="#000000"
-                />
-                <path
-                  d="M20.293 19.707a1 1 0 0 0 1.414-1.414l-5-5a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0 1.414 1.414L15 16.414V29a1 1 0 0 0 2 0V16.414z"
-                  data-original="#000000"
-                />
-              </svg>
-              Upload profile photo
 
-              <!-- accept attribute forces iOS to upload HEIC as JPEG -->
-              <input
-                accept="image/jpeg,image/png,image/webp"
-                class="hidden"
-                id="profile-photo-upload"
-                required
-                type="file"
-              />
-              <p class="text-xs font-medium text-slate-400 mt-2">
-                JPG, PNG, and WEBP are allowed.
-              </p>
-            </label>
-          </div>
+            <div>
+                <button
+                    class="mt-10 flex w-full justify-center gap-2 rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    id="submit-btn"
+                    type="submit"
+                >
+                    <span class="loading loading-spinner hidden" id="submit-spinner"></span>
+                    <span id="submit-text">Create Account</span>
+                </button>
 
-          <div
-            class="mt-3 text-center text-sm text-gray-600 hidden"
-            id="photo-upload-status"
-          >
-            <img
-              class="mx-auto h-20 w-20 rounded-full object-cover"
-              id="photo-preview"
-            />
-            <p class="mt-2" id="photo-filename"></p>
-          </div>
-
-          <div>
-            <button
-              class="mt-10 flex w-full justify-center gap-2 rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              id="submit-btn"
-              type="submit"
-            >
-              <span
-                class="loading loading-spinner hidden"
-                id="submit-spinner"
-              ></span>
-              <span id="submit-text">Create Account</span>
-            </button>
-          </div>
+            </div>
         </form>
 
         <p class="mt-3 text-center text-sm/6 text-gray-500">
-          <a
-            class="font-semibold text-indigo-600 hover:text-indigo-500"
-            href="/src/auth/login.html"
+            <a
+                class="font-semibold text-indigo-600 hover:text-indigo-500"
+                href="/src/auth/login.html"
             >Login</a
-          >
+            >
         </p>
-      </div>
     </div>
-  </body>
-  <script src="../../main.js" type="module"></script>
+</div>
+</body>
+<script src="../../main.js" type="module"></script>
 
-  <script type="module">
-    import { signUpUser } from './services/signup.js';
-
-    const regex = {
-      email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-      password:
-        /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,36}$/,
-      username: /^[a-zA-Z0-9._]{5,30}$/,
-    };
-    // Emoji or non-ASCII checker
-    function containsOnlyASCII(str) {
-      return /^[\x00-\x7F]*$/.test(str);
-    }
-    const emailInput = document.getElementById('email');
-    const usernameInput = document.getElementById('username');
-    const firstnameInput = document.getElementById('first-name');
-    const lastnameInput = document.getElementById('last-name');
-    const passwordInput = document.getElementById('password');
-    const emailError = document.getElementById('emailError');
-    const emailSuccess = document.getElementById('emailSuccess');
-    const passwordError = document.getElementById('passwordError');
-    const passwordSuccess = document.getElementById('passwordSuccess');
-    const usernameError = document.getElementById('usernameError');
-    const usernameSuccess = document.getElementById('usernameSuccess');
-    const firstnameError = document.getElementById('firstnameError');
-    const firstnameSuccess = document.getElementById('firstnameSuccess');
-    const lastnameError = document.getElementById('lastnameError');
-    const lastnameSuccess = document.getElementById('lastnameSuccess');
-
-    const submitBtn = document.getElementById('submitBtn');
-    function validateEmail(email) {
-      if (!email) {
-        return { isValid: false, message: 'Email is required' };
-      }
-      if (!containsOnlyASCII(email)) {
-        return {
-          isValid: false,
-          message: 'Email must not contain emojis or non-English characters.',
-        };
-      }
-      if (!regex.email.test(email)) {
-        return {
-          isValid: false,
-          message: 'Please enter a valid Email Address.',
-        };
-      }
-      return { isValid: true, message: '' };
-    }
-
-    function validatePassword(password) {
-      if (!password) {
-        return { isValid: false, message: 'Password is required' };
-      }
-      if (!containsOnlyASCII(password)) {
-        return {
-          isValid: false,
-          message:
-            'Password must not contain emojis or unsupported characters.',
-        };
-      }
-      if (password.length < 8) {
-        return {
-          isValid: false,
-          message: 'Password must be at least 8 characters.',
-        };
-      }
-      if (password.length > 36) {
-        return {
-          isValid: false,
-          message: 'Password must be at most 36 characters',
-        };
-      }
-      if (!regex.password.test(password)) {
-        return {
-          isValid: false,
-          message:
-            'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.',
-        };
-      }
-      return { isValid: true, message: '' };
-    }
-
-    function validateUserName(username) {
-      if (!username) {
-        return { isValid: false, message: 'Username is required.' };
-      }
-      if (username.length < 5) {
-        return {
-          isValid: false,
-          message: 'Username should be atleast 5 characters.',
-        };
-      }
-      if (username.length > 30) {
-        return {
-          isValid: false,
-          message: 'Username should be atmost 30 characters.',
-        };
-      }
-      if (!regex.username.test(username)) {
-        return {
-          isValid: false,
-          message:
-            'Username should contain only  letters, numbers, underscores, and periods ',
-        };
-      }
-      return {
-        isValid: true,
-        message: '',
-      };
-    }
-
-    function validateFirstName(firstname) {
-      if (!firstname) {
-        return { isValid: false, message: 'Firstname is required.' };
-      }
-      if (!containsOnlyASCII(firstname)) {
-        return {
-          isValid: false,
-          message:
-            'firstname must not contain emojis or unsupported characters.',
-        };
-      }
-      if (firstname.length < 5) {
-        return {
-          isValid: false,
-          message: 'Firstname must be atleast 5 characters.',
-        };
-      }
-      if (firstname.length > 30) {
-        return {
-          isValid: false,
-          message: 'Firstname must be atmost 30 characters.',
-        };
-      }
-      return {
-        isValid: true,
-        message: '',
-      };
-    }
-
-    function validateLastName(lastname) {
-      if (!lastname) {
-        return {
-          isValid: false,
-          message: 'Lastname is required.',
-        };
-      }
-      if (!containsOnlyASCII(lastname)) {
-        return {
-          isValid: false,
-          message:
-            'lastname must not contain emojis or unsupported characters.',
-        };
-      }
-      return {
-        isValid: true,
-        message: '',
-      };
-    }
-    // show validation
-
-    function showValidation(input, errorElement, successElement, validation) {
-      if (validation.isValid) {
-        input.classList.remove('input-error');
-        input.classList.add('input-success');
-        errorElement.classList.remove('show');
-        successElement.textContent = validation.message;
-        successElement.classList.add('show');
-      } else {
-        input.classList.remove('input-success');
-        input.classList.add('input-error');
-        successElement.classList.remove('show');
-        errorElement.textContent = validation.message;
-        errorElement.classList.add('show');
-      }
-    }
-    // toggle password visibility
-
-    const togglePassword = document.getElementById('togglePassword');
-    const eyeOpen = document.getElementById('eyeOpen');
-    const eyeClosed = document.getElementById('eyeClosed');
-
-    togglePassword.addEventListener('click', function () {
-      const type =
-        passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-      passwordInput.setAttribute('type', type);
-      eyeOpen.classList.toggle('hidden');
-      eyeClosed.classList.toggle('hidden');
-    });
-
-    // real time validation
-
-    emailInput.addEventListener('input', function () {
-      const emailValidate = validateEmail(this.value.trim());
-      showValidation(emailInput, emailError, emailSuccess, emailValidate);
-    });
-
-    emailInput.addEventListener('blur', function () {
-      const emailValidate = validateEmail(this.value.trim());
-      showValidation(emailInput, emailError, emailSuccess, emailValidate);
-    });
-    usernameInput.addEventListener('input', function () {
-      const usernameValidate = validateUserName(this.value);
-      showValidation(
-        usernameInput,
-        usernameError,
-        usernameSuccess,
-        usernameValidate,
-      );
-    });
-
-    usernameInput.addEventListener('blur', function () {
-      const usernameValidate = validateUserName(this.value);
-      showValidation(
-        usernameInput,
-        usernameError,
-        usernameSuccess,
-        usernameValidate,
-      );
-    });
-    firstnameInput.addEventListener('input', function () {
-      const firstnameValidate = validateFirstName(this.value);
-      showValidation(
-        firstnameInput,
-        firstnameError,
-        firstnameSuccess,
-        firstnameValidate,
-      );
-    });
-
-    firstnameInput.addEventListener('blur', function () {
-      const firstnameValidate = validateFirstName(this.value);
-      showValidation(
-        firstnameInput,
-        firstnameError,
-        firstnameSuccess,
-        firstnameValidate,
-      );
-    });
-    lastnameInput.addEventListener('input', function () {
-      const lastnameValidate = validateLastName(this.value);
-      showValidation(
-        lastnameInput,
-        lastnameError,
-        lastnameSuccess,
-        lastnameValidate,
-      );
-    });
-
-    lastnameInput.addEventListener('blur', function () {
-      const lastnameValidate = validateLastName(this.value);
-      showValidation(
-        lastnameInput,
-        lastnameError,
-        lastnameSuccess,
-        lastnameValidate,
-      );
-    });
-
-    passwordInput.addEventListener('input', function () {
-      const passwordValidate = validatePassword(this.value);
-      showValidation(
-        passwordInput,
-        passwordError,
-        passwordSuccess,
-        passwordValidate,
-      );
-    });
-    passwordInput.addEventListener('blur', function () {
-      const passwordValidate = validatePassword(this.value);
-      showValidation(
-        passwordInput,
-        passwordError,
-        passwordSuccess,
-        passwordValidate,
-      );
-    });
-    const inputContainer = document.querySelectorAll('.input-container');
+<script type="module">
+    import {signUpUser} from './services/signup.js';
 
     // handle account creation and API call
-    document.querySelector('form').addEventListener('submit', async e => {
-      e.preventDefault();
+    document.querySelector('form').addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-      const firstName = document
-        .getElementById('first-name')
-        .value.toLowerCase();
-      const lastName = document.getElementById('last-name').value.toLowerCase();
-      const userName = document.getElementById('username').value.toLowerCase();
-      const email = document.getElementById('email').value.trim().toLowerCase();
-      const password = document.getElementById('password').value;
-      const profilePhotoInput = document.getElementById('profile-photo-upload');
+        // Show spinner and disable button
+        const btn = document.getElementById('submit-btn');
+        const spinner = document.getElementById('submit-spinner');
+        const btnText = document.getElementById('submit-text');
+        spinner.classList.remove('hidden');
+        btnText.textContent = 'Creating...';
+        btn.disabled = true;
+        // end spinner logic
 
-      const emailValidate = validateEmail(email);
-      const passwordValidate = validatePassword(password);
-      const firstnameValidate = validateFirstName(firstName);
-      const lastnameValidate = validateLastName(lastName);
-      const usernameValidate = validateUserName(userName);
+        const firstName = document.getElementById('first-name').value;
+        const lastName = document.getElementById('last-name').value;
+        const userName = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const profilePhotoInput = document.getElementById('profile-photo-upload');
 
-      showValidation(emailInput, emailError, emailSuccess, emailValidate);
-      showValidation(
-        passwordInput,
-        passwordError,
-        passwordSuccess,
-        passwordValidate,
-      );
-      showValidation(
-        usernameInput,
-        usernameError,
-        usernameSuccess,
-        usernameValidate,
-      );
-      showValidation(
-        firstnameInput,
-        firstnameError,
-        firstnameSuccess,
-        firstnameValidate,
-      );
-      showValidation(
-        lastnameInput,
-        lastnameError,
-        lastnameSuccess,
-        lastnameValidate,
-      );
-      const emailContainer = emailInput.closest('.input-container');
-      const passwordContainer = passwordInput.closest('.input-container');
-      const usernameContainer = usernameInput.closest('.input-container');
-      const firstameContainer = firstnameInput.closest('.input-container');
-      const lastnameContainer = lastnameInput.closest('.input-container');
-
-      let hasError = false;
-
-      if (!emailValidate.isValid) {
-        hasError = true;
-        emailContainer.classList.add('shake');
-        emailContainer.addEventListener(
-          'animationend',
-          () => emailContainer.classList.remove('shake'),
-          { once: true },
-        );
-      }
-
-      if (!usernameValidate.isValid) {
-        hasError = true;
-        usernameContainer.classList.add('shake');
-        usernameContainer.addEventListener(
-          'animationend',
-          () => usernameContainer.classList.remove('shake'),
-          { once: true },
-        );
-      }
-      if (!firstnameValidate.isValid) {
-        hasError = true;
-        firstameContainer.classList.add('shake');
-        firstameContainer.addEventListener(
-          'animationend',
-          () => firstameContainer.classList.remove('shake'),
-          { once: true },
-        );
-      }
-      if (!lastnameValidate.isValid) {
-        hasError = true;
-        lastnameContainer.classList.add('shake');
-        lastnameContainer.addEventListener(
-          'animationend',
-          () => lastnameContainer.classList.remove('shake'),
-          { once: true },
-        );
-      }
-      if (!passwordValidate.isValid) {
-        hasError = true;
-        passwordContainer.classList.add('shake');
-        passwordContainer.addEventListener(
-          'animationend',
-          () => passwordContainer.classList.remove('shake'),
-          { once: true },
-        );
-      }
-
-      if (hasError) {
-        return;
-      }
-
-      // Show spinner and disable button
-      const btn = document.getElementById('submit-btn');
-      const spinner = document.getElementById('submit-spinner');
-      const btnText = document.getElementById('submit-text');
-      spinner.classList.remove('hidden');
-      btnText.textContent = 'Creating...';
-      btn.disabled = true;
-      // end spinner logic
-
-      try {
-        await signUpUser(
-          firstName,
-          lastName,
-          userName,
-          email,
-          password,
-          profilePhotoInput.files[0],
-        );
-        window.location.href = '/email-confirmation.html';
-      } catch (error) {
-        alert(`Error: ${error.message}`);
-        spinner.classList.add('hidden');
-        btnText.textContent = 'Create Account';
-        btn.disabled = false;
-      }
+        try {
+            await signUpUser(
+                firstName,
+                lastName,
+                userName,
+                email,
+                password,
+                profilePhotoInput.files[0]
+            );
+            window.location.href = '/email-confirmation.html';
+        } catch (error) {
+            alert(`Error: ${error.message}`);
+            spinner.classList.add('hidden');
+            btnText.textContent = 'Create Account';
+            btn.disabled = false;
+        }
     });
 
     // show photo upload confirmation
-    document
-      .getElementById('profile-photo-upload')
-      .addEventListener('change', e => {
+    document.getElementById('profile-photo-upload').addEventListener('change', (e) => {
         const file = e.target.files[0];
         const preview = document.getElementById('photo-preview');
         const filename = document.getElementById('photo-filename');
         const status = document.getElementById('photo-upload-status');
 
         if (!file) {
-          status.classList.add('hidden');
-          return;
+            status.classList.add('hidden');
+            return;
         }
 
         // Show image preview
         if (file.type.startsWith('image/')) {
-          const reader = new FileReader();
-          reader.onload = function (event) {
-            preview.src = event.target.result;
-            status.classList.remove('hidden');
-            filename.textContent = file.name;
-          };
-          reader.readAsDataURL(file);
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                preview.src = event.target.result;
+                status.classList.remove('hidden');
+                filename.textContent = file.name;
+            };
+            reader.readAsDataURL(file);
         } else {
-          status.classList.remove('hidden');
-          preview.src = '';
-          filename.textContent = file.name;
+            status.classList.remove('hidden');
+            preview.src = '';
+            filename.textContent = file.name;
         }
-      });
-  </script>
+    });
+</script>
 
-  <link href="../../style.css" rel="stylesheet" type="text/css" />
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
 </html>
