@@ -121,6 +121,9 @@ function eventCreationData() {
 
     init() {
       // Set default datetime values
+      this.refreshDatetimes();
+    },
+    refreshDatetimes() {
       this.formData.startTime = this.setDatetimeValue(0);
       this.formData.endTime = this.setDatetimeValue(60);
     },
@@ -158,6 +161,9 @@ function eventCreationData() {
     },
 
     cancelCreation() {
+      //reset form
+
+      this.resetForm();
       // Dispatch event to parent EventsContainer to hide creation form
       this.$el.dispatchEvent(
         new CustomEvent('cancel-event-creation', {
