@@ -1,4 +1,4 @@
-import { supabase } from '../../supabase-client/supabase-client.js';
+import { createEventApiCall } from '@/events/event-creator/services/event-creation-service.js';
 
 class EventCreationComponent extends HTMLElement {
   connectedCallback() {
@@ -9,6 +9,7 @@ class EventCreationComponent extends HTMLElement {
                         x-on:click="cancelCreation()">
                     <iconify-icon icon="mdi:arrow-left-thick"></iconify-icon>
                 </button>
+<!--            Event Creation Component    -->
                 <div class="card mx-auto p-4 sm:p-6 outline-base-200 outline-3 rounded-md max-w-96">
                     <h2 class="text-2xl font-semibold mb-4 dark:text-white">Create New Event</h2>
                     <form x-on:submit.prevent="createEvent()">
@@ -77,7 +78,7 @@ class EventCreationComponent extends HTMLElement {
                     </form>
                 </div>
 
-                <!-- Toast Container -->
+                <!-- Toast Notification for API Success/Error -->
                 <div class="toast mb-16" x-show="showToast" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-x-full" x-transition:enter-end="opacity-100 transform translate-x-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-x-0" x-transition:leave-end="opacity-0 transform translate-x-full">
                     <div class="alert alert-soft" :class="toastType === 'success' ? 'alert-success' : 'alert-error'">
                         <iconify-icon :icon="toastType === 'success' ? 'mdi:check-circle' : 'mdi:alert-circle'" class="text-lg"></iconify-icon>
@@ -168,75 +169,7 @@ function eventCreationData() {
     },
 
     async createEvent() {
-      if (this.isCreating) return;
-
-      this.isCreating = true;
-
-      try {
-        // Convert local datetime strings to UTC ISO strings
-        const startTimeUTC = new Date(this.formData.startTime).toISOString();
-        const endTimeUTC = new Date(this.formData.endTime).toISOString();
-
-        const session = await supabase.auth.getSession();
-        const response = await fetch(
-          'https://mpounklnfrcfpkefidfn.supabase.co/functions/v1/create-event',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${session.data.session.access_token}`,
-            },
-            body: JSON.stringify({
-              title: this.formData.title,
-              description: this.formData.description,
-              location: this.formData.location,
-              start_time: startTimeUTC,
-              end_time: endTimeUTC,
-            }),
-          },
-        );
-
-        const responseData = await response.json();
-
-        if (responseData.message === 'Event created successfully') {
-          console.log('Event created successfully:', responseData);
-
-          // Show success toast
-          this.showToastNotification(`Event created successfully!`, 'success');
-
-          // Reset form
-          this.resetForm();
-
-          // Dispatch success event to parent EventsContainer after a short delay
-          setTimeout(() => {
-            this.$el.dispatchEvent(
-              new CustomEvent('event-created-successfully', {
-                bubbles: true,
-                detail: { event: responseData },
-              }),
-            );
-          }, 1500);
-        } else {
-          console.error('Error creating event:', responseData);
-
-          // Show error toast with specific message or generic fallback
-          const errorMessage =
-            responseData.error ||
-            responseData.message ||
-            'Failed to create event. Please try again.';
-          this.showToastNotification(errorMessage, 'error');
-        }
-      } catch (error) {
-        console.error('There was an error sending the request:', error);
-
-        // Show error toast for network/request errors
-        this.showToastNotification(
-          'Network error occurred. Please check your connection and try again.',
-          'error',
-        );
-      } finally {
-        this.isCreating = false;
-      }
+      await createEventApiCall.call(this);
     },
 
     resetForm() {
