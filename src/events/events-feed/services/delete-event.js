@@ -14,4 +14,3 @@ export async function deleteEvent(eventId) {
   console.log('Successfully deleted event: ', eventId);
   return data;
 }
-

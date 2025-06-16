@@ -1,16 +1,16 @@
 import { supabase } from '@/supabase-client/supabase-client.js';
 
-
-export async function createEvent(eventData) {
-
-}
+export async function createEvent(eventData) {}
 
 export async function getUpcomingEvents() {
   const session = await supabase.auth.getSession();
 
-  const { data: rpcData, error: rpcError } = await supabase.rpc('get_upcoming_events', {
-    querying_user_id: session.data.session.user.id
-  });
+  const { data: rpcData, error: rpcError } = await supabase.rpc(
+    'get_upcoming_events',
+    {
+      querying_user_id: session.data.session.user.id,
+    },
+  );
 
   if (rpcError) {
     console.error('RPC error:', rpcError);
@@ -27,9 +27,12 @@ export async function getUpcomingEvents() {
 export async function getPastEvents() {
   const session = await supabase.auth.getSession();
 
-  const { data: rpcData, error: rpcError } = await supabase.rpc('get_past_events', {
-    querying_user_id: session.data.session.user.id
-  });
+  const { data: rpcData, error: rpcError } = await supabase.rpc(
+    'get_past_events',
+    {
+      querying_user_id: session.data.session.user.id,
+    },
+  );
 
   if (rpcError) {
     console.error('RPC error:', rpcError);
@@ -43,10 +46,6 @@ export async function getPastEvents() {
   return null;
 }
 
-export async function deleteEvent(id) {
+export async function deleteEvent(id) {}
 
-}
-
-export async function updateEvent(id) {
-
-}
+export async function updateEvent(id) {}

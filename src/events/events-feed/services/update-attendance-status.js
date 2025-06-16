@@ -1,4 +1,4 @@
-import { supabase } from '@/supabase-client/supabase-client';
+import { supabase } from '@/supabase-client/supabase-client.js';
 
 const edgeFunctionName = 'update-attendance-status';
 

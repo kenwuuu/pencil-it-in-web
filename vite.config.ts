@@ -30,14 +30,17 @@ export default defineConfig({
         site_header: resolve(__dirname, 'src/components/site-header.js'),
         // events
         events_container: resolve(__dirname, 'src/events/events-container.js'),
-        events_feed: resolve(__dirname, 'src/events/events-feed.js'),
+        events_feed: resolve(
+          __dirname,
+          'src/events/events-feed/components/events-feed.js',
+        ),
         participants_modal: resolve(
           __dirname,
-          'src/events/participants-modal.js',
+          'src/events/events-feed/components/participants-modal.js',
         ),
         event_creation_component: resolve(
           __dirname,
-          'src/events/event-creation-component.js',
+          'src/events/event-creator/event-creation-component.js',
         ),
         event_action_menu: resolve(
           __dirname,
@@ -45,7 +48,7 @@ export default defineConfig({
         ),
         get_upcoming_events: resolve(
           __dirname,
-          'src/events/services/get-upcoming-events.js',
+          'src/events/events-feed/services/get-upcoming-events.js',
         ),
         // profile
         profile: resolve(__dirname, 'src/profile/profile-container.js'),
