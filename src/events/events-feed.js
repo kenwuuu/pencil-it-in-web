@@ -17,7 +17,7 @@ class EventsFeed extends HTMLElement {
                           <div class="event-description line-clamp-4 text-sm mb-2" x-text="event.description || ''"></div>
                           <div class="participants justify-between">
                             <div class="flex justify-between">
-                              <span class="host-user btn btn-md btn-outline btn-info mb-2" x-text="'Host: ' + (event.host && event.host[0] ? event.host[0].first_name : 'Unknown')"></span>
+                              <span class="host-user btn btn-md btn-outline btn-info mb-2" x-text="'Host: ' + (event.host ? event.host.first_name : 'Unknown')"></span>
       <!--                        start participants component -->
       <!--                        using these two participant divs is the only way we can replace the third avatar
                                   with an avatar-placeholder when we have more than 3 invitees -->
