@@ -1,13 +1,13 @@
 import './events-action-menu.js';
-import './event-creation-component.js';
-import './services/get-upcoming-events.js';
-import './participants-modal.js';
-import './events-feed.js';
-import './components/event-details-modal.js';
+import './event-creator/event-creation-component.js';
+import '@/events/events-feed/services/get-upcoming-events.js';
+import './events-feed/components/participants-modal.js';
+import './events-feed/components/events-feed.js';
+import './events-feed/components/event-details-modal.js';
 import { format, parseISO } from 'date-fns';
-import { getUpcomingEvents } from './services/get-upcoming-events.js';
-import { downloadICS } from './services/calendar.js';
-import { updateAttendanceStatus as updateAttendanceStatusAPI } from '@/events/services/update-attendance-status.js';
+import { getUpcomingEvents } from '@/events/events-feed/services/get-upcoming-events.js';
+import { downloadICS } from '@/events/events-feed/services/calendar.js';
+import { updateAttendanceStatus as updateAttendanceStatusAPI } from '@/events/events-feed/services/update-attendance-status.js';
 import { supabase } from '@/supabase-client/supabase-client.js';
 
 class EventsContainer extends HTMLElement {

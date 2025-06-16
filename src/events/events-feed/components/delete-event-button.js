@@ -1,4 +1,4 @@
-import { deleteEvent } from '@/events/services/delete-event.js';
+import { deleteEvent } from '@/events/events-feed/services/delete-event.js';
 
 class DeleteEventButton extends HTMLElement {
   connectedCallback() {

@@ -1,4 +1,4 @@
-import { supabase } from '../supabase-client/supabase-client.js';
+import { supabase } from '../../supabase-client/supabase-client.js';
 
 class EventCreationComponent extends HTMLElement {
   connectedCallback() {
