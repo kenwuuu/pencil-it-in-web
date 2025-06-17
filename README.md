@@ -27,4 +27,11 @@ and plan issues.
 
 ## First Time Contributors
 
-Read `CONTRIBUTING.md`
+We use Alpine, DaisyUI, and Tailwind. Most of these can be easily seen in our code.
+If your change doesn't use these libraries when it should, it's possible that I might ask you
+to rewrite it.
+
+These libraries were chosen for being simple to learn and use, and to speed up development. It
+shouldn't take you too long to start using them, read their docs to learn them.
+
+Read `CONTRIBUTING.md` before your first contribution.
