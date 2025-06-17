@@ -172,7 +172,7 @@ The homepage for the site is `/events.html`, but the landing page is
 
 ### Folder structure
 
-All developer code exists within `src` and in the top level HTML/JS, like `index.html` and `main.js`;
+All developer code exists within `src` and in the top level HTML/JS, like `index.html` and `main.ts`;
 anything outside of `src` is probably automatically generated and safe to ignore.
 
 #### Frontend
