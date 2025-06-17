@@ -12,6 +12,10 @@ no back-and-forth, just instant visibility to meet up with your friends fast.
 
 ## Development Roadmap
 
+We have a [Discord](https://discord.gg/6eF36VUTPC) now. If you've been contributing, join! It'll make it easier to
+discuss
+and plan issues.
+
 ```
 - May 01:  ✅ Start development
 - Jun 14:  ✅ Proof of concept
