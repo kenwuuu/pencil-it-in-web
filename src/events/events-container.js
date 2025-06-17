@@ -91,6 +91,11 @@ function eventsData() {
         this.is_creating_new_event = false;
         await this.loadEvents();
       });
+
+      // Listen for the 'friend-added' event and refresh events
+      document.addEventListener('friend-added', async () => {
+        await this.loadEvents();
+      });
     },
 
     showToastNotification(message, type = 'success') {
