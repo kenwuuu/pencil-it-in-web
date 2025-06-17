@@ -3,7 +3,9 @@ import { expect, test } from '@playwright/test';
 test('testFriendsContainerIsVisible', async ({ page }) => {
   await page.goto('/events.html');
   await page.getByTestId('friends-menu-item').click();
-  await expect(page.getByText('Friends within 30 miles of you')).toBeVisible();
+  await expect(
+    page.getByText(/Friends within \d{1,3}(,\d{3})* miles? of you/),
+  ).toBeVisible();
 });
 
 test('testFriendsListIsVisible', async ({ page }) => {

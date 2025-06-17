@@ -31,7 +31,7 @@ class FriendsContainer extends HTMLElement {
                 <div> 
                     <ul id="friends-list" class="list bg-base-100 rounded-box mt-4 outline-3 outline-base-300 dark:outline-slate-700">
                         <li class="flex p-4 pb-2 text-xs opacity-60 tracking-wide">
-                            Friends within 30 miles of you
+                            Friends within 12,450 miles of you
                         </li>
 
                         <li>
