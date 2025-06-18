@@ -100,6 +100,7 @@ function friendsData() {
       try {
         await apiRemoveFriendship(friendId);
         await this.loadFriends();
+        this.FriendListChangedEvent();
       } catch (err) {
         console.error('Error in AlpineJS removeFriendship:', err);
       }
@@ -118,15 +119,18 @@ function friendsData() {
         await insertFriendship(username);
         input.value = '';
         await this.loadFriends();
-        // Dispatch a custom event when a friend is added
-        const event = new CustomEvent('friend-added', { bubbles: true });
-        this.$el.dispatchEvent(event);
+        this.FriendListChangedEvent();
       } catch (err) {
         console.error('Failed to add friend:', err);
       } finally {
         this.isAddingFriend = false;
       }
     },
+    FriendListChangedEvent() {
+      const event = new CustomEvent('friend-list-changed', { bubbles: true, composed: true  });
+      window.dispatchEvent(event);
+    }
+    
   };
 }
 
