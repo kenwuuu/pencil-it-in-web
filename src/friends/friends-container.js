@@ -118,6 +118,9 @@ function friendsData() {
         await insertFriendship(username);
         input.value = '';
         await this.loadFriends();
+        // Dispatch a custom event when a friend is added
+        const event = new CustomEvent('friend-added', { bubbles: true });
+        this.$el.dispatchEvent(event);
       } catch (err) {
         console.error('Failed to add friend:', err);
       } finally {
