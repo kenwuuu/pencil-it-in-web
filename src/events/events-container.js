@@ -93,12 +93,7 @@ function eventsData() {
       });
 
       // Listen for the 'friend-added' event and refresh events
-      document.addEventListener('friend-added', async () => {
-        await this.loadEvents();
-      });
-
-      // Listen for the 'friend-removed' event and refresh events
-      window.addEventListener('friend-removed', async () => {
+      window.addEventListener('friend-list-changed', async () => {
         await this.loadEvents();
       });
     },
