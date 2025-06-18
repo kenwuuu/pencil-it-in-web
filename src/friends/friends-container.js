@@ -100,6 +100,8 @@ function friendsData() {
       try {
         await apiRemoveFriendship(friendId);
         await this.loadFriends();
+        const event = new CustomEvent('friend-removed', { bubbles: true, composed: true });
+        window.dispatchEvent(event); // Changed from this.$el.dispatchEvent
       } catch (err) {
         console.error('Error in AlpineJS removeFriendship:', err);
       }

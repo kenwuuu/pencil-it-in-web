@@ -96,6 +96,11 @@ function eventsData() {
       document.addEventListener('friend-added', async () => {
         await this.loadEvents();
       });
+
+      // Listen for the 'friend-removed' event and refresh events
+      window.addEventListener('friend-removed', async () => {
+        await this.loadEvents();
+      });
     },
 
     showToastNotification(message, type = 'success') {
