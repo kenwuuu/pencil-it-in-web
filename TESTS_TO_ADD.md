@@ -1,0 +1,6 @@
+- Test that each page can scroll up and down. PR #273
+- Test that event feed refreshes after adding and removing friend. PR #278
+- Test that default time placeholders are updated upon opening event creation component. #263
+- Test that event filtering works. #259
+- Test that user signup works. #275
+    - Test all invalid inputs too
