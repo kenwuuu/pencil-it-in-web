@@ -1,5 +1,5 @@
 # Credentials
-constants.ts
+secrets.ts
 playwright.auth.json
 
 # Logs
