@@ -186,6 +186,27 @@
     </div>
 </div>
 
+<script>
+    document.getElementById('submit-btn').addEventListener('click', function (event) {
+        const photoInput = document.getElementById('profile-photo-upload');
+        const photoLabel = document.getElementById('photo-upload-label');
+        const photoError = document.getElementById('photo-error');
+
+        // Reset previous error state
+        photoLabel.classList.remove('border-red-600');
+        photoError.classList.add('hidden');
+        photoError.textContent = '';
+
+        // Check if no file is selected
+        if (!photoInput.files || photoInput.files.length === 0) {
+            event.preventDefault(); // Prevent form submission
+            photoLabel.classList.add('border-red-600'); // Add red border
+            photoError.textContent = 'Profile photo is required.';
+            photoError.classList.remove('hidden');
+        }
+    });
+</script>
+
 <script type="module">
     import {signUpUser} from "@/auth/services/signup.js";
 
