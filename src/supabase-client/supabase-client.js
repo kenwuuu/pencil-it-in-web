@@ -4,6 +4,6 @@
  */
 
 import { createClient } from '@supabase/supabase-js';
-import { SUPABASE_ANON_KEY, SUPABASE_URL } from '../../secrets.ts';
+import { SUPABASE_ANON_KEY, SUPABASE_URL } from '../../supabase-public.ts';
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
