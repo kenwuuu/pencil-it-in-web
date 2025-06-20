@@ -1,5 +1,5 @@
-// copy this to `constants.ts` and replace the credentials with your account info
+// copy this to `secrets.ts` and replace the credentials with your account info
 
 // used in `auth.setup.ts` for Playwright testing
-export const EMAIL = "email@gmail.com";
-export const PASSWORD = "password";
+export const EMAIL = 'email@gmail.com';
+export const PASSWORD = 'password';

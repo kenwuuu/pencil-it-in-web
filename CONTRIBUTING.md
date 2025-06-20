@@ -137,7 +137,7 @@ None for now.
 
 We use Playwright for e2e tests.
 
-**Set up credentials**: Add your account credentials to `constants.ts`, see `constants.example.ts`.
+**Set up credentials**: Add your account credentials to `secrets.ts`, see `constants.example.ts`.
 Then run `node tests/auth.setup.ts`.
 
 **Run Playwright tests**: `npx playwright test`
