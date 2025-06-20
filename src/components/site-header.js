@@ -1,3 +1,5 @@
+import { BUG_REPORT_GOOGLE_FORMS_URL } from '../../constants.js';
+
 class SiteHeader extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
@@ -8,7 +10,7 @@ class SiteHeader extends HTMLElement {
               <a  id="navbar-logo">pencil it in</a>
             </div>
           <div class="mr-2 sm:mr-4 navbar-end">          
-            <button class="btn mr-2 sm:mr-4 w-10" @click="window.location.replace('https://docs.google.com/forms/d/e/1FAIpQLSfjnL6Ho4kDSq3jjgtBZA0FJ1WmdAFMflnj7mvOfcKAfTA1zA/viewform')">
+            <button class="btn mr-2 sm:mr-4 w-10" @click="window.location.replace('${BUG_REPORT_GOOGLE_FORMS_URL}')">
               <iconify-icon class="text-2xl" icon="mdi:spider" alt="Submit a bug report or feature request" title="Submit a bug report or feature request"></iconify-icon>
             </button>
             <div
