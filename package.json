@@ -20,6 +20,7 @@
     "test:slow": "npm run build && start-server-and-test serve http://192.168.0.40:3000 'playwright test'"
   },
   "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "^7.2.0",
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",

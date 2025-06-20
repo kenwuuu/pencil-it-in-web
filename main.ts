@@ -49,12 +49,11 @@ Alpine.start();
 // Request permission to use push notifications
 // iOS will prompt user and return if they granted permission or not
 // Android will just grant without prompting
+// todo delay this ask until user adds their first friend. then hit them with "Would you like to be notified when your friends invite you to an event?"
 PushNotifications.requestPermissions().then(result => {
   if (result.receive === 'granted') {
     // Register with Apple / Google to receive push via APNS/FCM
     PushNotifications.register();
-  } else {
-    // Show some error
   }
 });
 
