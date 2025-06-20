@@ -7,8 +7,8 @@ class SiteHeader extends HTMLElement {
             <div @click="page = 'events'" id="website-logo-container">
               <a  id="navbar-logo">pencil it in</a>
             </div>
-          <div class="mr-4 navbar-end">          
-            <button class="btn mr-4" @click="window.location.replace('https://docs.google.com/forms/d/e/1FAIpQLSfjnL6Ho4kDSq3jjgtBZA0FJ1WmdAFMflnj7mvOfcKAfTA1zA/viewform')">
+          <div class="mr-2 sm:mr-4 navbar-end">          
+            <button class="btn mr-2 sm:mr-4 w-10" @click="window.location.replace('https://docs.google.com/forms/d/e/1FAIpQLSfjnL6Ho4kDSq3jjgtBZA0FJ1WmdAFMflnj7mvOfcKAfTA1zA/viewform')">
               <iconify-icon class="text-2xl" icon="mdi:spider" alt="Submit a bug report or feature request" title="Submit a bug report or feature request"></iconify-icon>
             </button>
             <div
