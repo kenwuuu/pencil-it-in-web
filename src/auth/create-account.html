@@ -28,7 +28,7 @@
         <form action="#" class="space-y-6" method="POST">
             <div>
                 <label class="block text-sm/6 font-medium text-gray-900" for="first-name"
-                >First name*</label
+                >First name<span class="text-red-600">*</span></label
                 >
                 <div class="mt-2">
                     <input
@@ -46,7 +46,7 @@
 
             <div>
                 <label class="block text-sm/6 font-medium text-gray-900" for="last-name"
-                >Last name*</label
+                >Last name<span class="text-red-600">*</span></label
                 >
                 <div class="mt-2">
                     <input
@@ -64,7 +64,7 @@
 
             <div>
                 <label class="block text-sm/6 font-medium text-gray-900" for="username"
-                >Username*</label
+                >Username<span class="text-red-600">*</span></label
                 >
                 <div class="mt-2">
                     <input
@@ -84,7 +84,7 @@
 
             <div>
                 <label class="block text-sm/6 font-medium text-gray-900" for="email"
-                >Email address*</label
+                >Email address<span class="text-red-600">*</span></label
                 >
                 <div class="mt-2">
                     <input
@@ -105,7 +105,7 @@
                     <label
                         class="block text-sm/6 font-medium text-gray-900"
                         for="password"
-                    >Password*</label
+                    >Password<span class="text-red-600">*</span></label
                     >
                 </div>
                 <div class="mt-2">
@@ -129,7 +129,7 @@
                     <label
                         class="block text-sm/6 font-medium text-gray-900"
                         for="profile-photo-upload"
-                    >Profile Photo*</label
+                    >Profile Photo<span class="text-red-600">*</span></label
                     >
                 </div>
                 <label
@@ -185,6 +185,27 @@
         </p>
     </div>
 </div>
+
+<script>
+    document.getElementById('submit-btn').addEventListener('click', function (event) {
+        const photoInput = document.getElementById('profile-photo-upload');
+        const photoLabel = document.getElementById('photo-upload-label');
+        const photoError = document.getElementById('photo-error');
+
+        // Reset previous error state
+        photoLabel.classList.remove('border-red-600');
+        photoError.classList.add('hidden');
+        photoError.textContent = '';
+
+        // Check if no file is selected
+        if (!photoInput.files || photoInput.files.length === 0) {
+            event.preventDefault(); // Prevent form submission
+            photoLabel.classList.add('border-red-600'); // Add red border
+            photoError.textContent = 'Profile photo is required.';
+            photoError.classList.remove('hidden');
+        }
+    });
+</script>
 
 <script type="module">
     import {signUpUser} from "@/auth/services/signup.js";
