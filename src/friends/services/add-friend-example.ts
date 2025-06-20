@@ -1,12 +1,12 @@
 import { supabase } from '../../supabase-client/supabase-client.js';
 import { insertFriendship } from './add-friend.ts';
 import { acceptFriendRequest } from './accept-friend-request.ts';
-import { PENCIL_IT_IN_EMAIL, PENCIL_IT_IN_PASSWORD } from '../../../constants.ts';
+import { PENCIL_IT_IN_EMAIL, PENCIL_IT_IN_PASSWORD } from '../../../secrets.ts';
 
 // Sign in since most functions require an authorized user
 await supabase.auth.signInWithPassword({
   email: PENCIL_IT_IN_EMAIL,
-  password: PENCIL_IT_IN_PASSWORD
+  password: PENCIL_IT_IN_PASSWORD,
 });
 
 // Prompt user to select an action
@@ -29,7 +29,9 @@ switch (userChoice) {
     break;
 
   case '2':
-    const friendUserId = prompt('Enter the user ID (UUID) of the friend request to accept:');
+    const friendUserId = prompt(
+      'Enter the user ID (UUID) of the friend request to accept:',
+    );
     if (friendUserId) {
       acceptFriendRequest(friendUserId);
     } else {
