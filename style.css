@@ -88,10 +88,6 @@
     @apply btn btn-ghost text-xl;
 }
 
-#navbar-user-icon {
-    @apply navbar-end dropdown dropdown-end;
-}
-
 .action-menu-side-component {
     @apply hidden xl:block;
 }
