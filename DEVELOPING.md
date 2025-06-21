@@ -67,3 +67,12 @@ if (req.method === 'OPTIONS') {
     ```
 
 await config({export: true});`
+
+## Github
+
+#### Github Secrets
+
+**TESTING_EMAIL** is used in automated e2e testing where an account is created
+and then deleted after testing.
+**PLAYWRIGHT_KEN_EMAIL** is used as the primary account that all prod tests are
+run on. It is Ken's real account.

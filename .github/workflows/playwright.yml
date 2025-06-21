@@ -21,6 +21,8 @@ jobs:
         run: echo "URL is $BASE_URL"
       - name: Run Playwright tests
         env:
+          TESTING_EMAIL: ${{ secrets.TESTING_EMAIL }}
+          TESTING_PASSWORD: ${{ secrets.TESTING_PASSWORD }}
           PLAYWRIGHT_KEN_EMAIL: ${{ secrets.PLAYWRIGHT_KEN_EMAIL }}
           PLAYWRIGHT_KEN_PASSWORD: ${{ secrets.PLAYWRIGHT_KEN_PASSWORD }}
           BASE_URL: ${{ github.event.deployment_status.environment_url }}
