@@ -3,8 +3,8 @@
 ## Quick start
 
 0. We use DaisyUI and Tailwind for UI components and styling, and AlpineJS for reactivity.
-   If you're styling something, look to Daisy first. If you
-   use Daisy, please provide the reason in your PR.
+   If you're styling something, look to Daisy first. If you pick a vanilla option
+   , please provide the reason in your PR.
 1. Read `Running locally for development`
 2. Read `Build for prod`. Your code should build successfully before you create a PR.
 3. Read `End-to-end tests`. Your code should pass all tests before PR.
@@ -22,16 +22,23 @@ Create `.env` in the root directory and fill in the appropriate
 values. Look to `.env.example` for reference.
 Contact Ken for necessary credentials.
 
-Install libraries.
+#### Install `pnpm`
 
+We use `pnpm` instead of `npm`, it's faster and creates smaller files than
+`npm`.
+
+`brew install pnpm` **or** `npm install -g pnpm`
+
+Then just use `pnpm` when you'd use `npm`
+
+#### Install libraries.
 ```bash
-npm i
+pnpm i
 ```
 
-Run the site.
-
+#### Run the site.
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 ### Create an account
