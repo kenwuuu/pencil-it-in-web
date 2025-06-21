@@ -70,6 +70,15 @@ await config({export: true});`
 
 ## Github
 
+To add environment variables to Github for use in Actions and Workflows, the
+values need to be added to the repo: Repo > Settings > Secrets and variables >
+Actions > Pick Secrets or Variables depending on whether they need to be
+encrypted.
+
+Then, add the Name of the secret/variable to the workflow under
+`pencil-it-in-web/.github/workflows` where it needs to be exposed. See
+`PLAYWRIGHT_KEN_EMAIL` in `playwright.yml` for example usage.
+
 #### Github Secrets
 
 **TESTING_EMAIL** is used in automated e2e testing where an account is created
