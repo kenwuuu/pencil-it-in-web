@@ -22,7 +22,8 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
-    // get requestingUserId
+    // Create client with admin permissions. Using admin because we need to modify the friend's events too.
+    // DON'T DO THIS IF YOU'RE COPYING CODE. USE SUPABASE_ANON_KEY UNLESS YOU'RE SURE
     const supabaseClient = createClient(Deno.env.get('SUPABASE_URL'), Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'));
 
     // Get the requesting user's events
