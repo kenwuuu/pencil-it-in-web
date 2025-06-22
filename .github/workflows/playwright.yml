@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: lts/*
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Check BASE_URL
