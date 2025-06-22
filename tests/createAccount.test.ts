@@ -33,7 +33,6 @@ test('testCreateAccountPageRedirectsToLoginPage', async ({ page }) => {
 
 // todo this currently passes even if the user already exists. we need to check for duplicate accounts on the frontend
 // and prevent signups
-test.use({ storageState: { cookies: [], origins: [] } }); // run without cookies
 test('testCreateAccount', async ({ page }) => {
   await page.goto('/src/auth/create-account.html');
   await page.getByRole('textbox', { name: 'First name' }).click();
@@ -58,7 +57,6 @@ test('testCreateAccount', async ({ page }) => {
   await expect(page.getByText('Please check your email for')).toBeVisible();
 });
 
-test.use({ storageState: { cookies: [], origins: [] } }); // run without cookies
 test('testPhotoUploadWorks', async ({ page }) => {
   await page.goto('/src/auth/create-account.html');
   await page
