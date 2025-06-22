@@ -130,7 +130,9 @@ function eventCreationData() {
     // if start time changes, set end time to 1 hour after start time
     watchStartTime(newStartTime) {
       const start = new Date(newStartTime);
-      const end = new Date(start.getTime() + 60 * 60000); // add 1 hour
+      const end = new Date(
+        start.getTime() + 60 * 60000 - start.getTimezoneOffset() * 60000,
+      ); // add 1 hour
       this.formData.endTime = end.toISOString().slice(0, 16);
     },
 
