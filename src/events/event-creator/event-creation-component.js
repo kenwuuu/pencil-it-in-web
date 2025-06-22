@@ -124,6 +124,14 @@ function eventCreationData() {
       // Set default datetime values
       this.formData.startTime = this.setDatetimeValue(0);
       this.formData.endTime = this.setDatetimeValue(60);
+      this.$watch('formData.startTime', this.watchStartTime.bind(this));
+    },
+
+    // if start time changes, set end time to 1 hour after start time
+    watchStartTime(newStartTime) {
+      const start = new Date(newStartTime);
+      const end = new Date(start.getTime() + 60 * 60000); // add 1 hour
+      this.formData.endTime = end.toISOString().slice(0, 16);
     },
 
     setDatetimeValue(offsetMinutes = 0) {
