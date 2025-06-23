@@ -76,3 +76,22 @@ await config({export: true});`
 and then deleted after testing.
 **PLAYWRIGHT_KEN_EMAIL** is used as the primary account that all prod tests are
 run on. It is Ken's real account.
+
+## Developing a new full stack feature
+
+### Common gotchas
+
+The files that we tell you to copy from mimic the most common use case of Edge Functions.
+You may find occasions where you could do something a different way but it's likely to
+be an edge case. For example, we do successfully use the Supabase library to call Edge
+Functions in `update-attendance-status.js` but I have no idea how that works. Will need
+to debug. But the point is that I've spent hours, on separate occasions, trying to debug
+that code before realizing that it's **simpler** and **faster** to just use `fetch`.
+
+- Using Supabase's JS library to call Edge Functions:
+  - for some reason, this just doesn't work. Haven't debugged it yet but the simplest
+    thing to do is to just use `fetch()`. Just copy
+    `upsert-notification-token.js` and replace `edgeFunctionName` and `body.
+- Not handling preflight CORS requests:
+  - Copy `functions/upsert-notification-token/index.ts`. Note the top few lines of code
+    that address CORS.
