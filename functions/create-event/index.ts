@@ -1,12 +1,14 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2.49.8";
 import { config } from 'https://deno.land/x/dotenv/mod.ts';
-import admin from 'firebase-admin';
-import { format } from 'date-fns';
-import serviceAccount from '/Users/kenwu/WebstormProjects/pencil-it-in-web/supabase/firebase-secret.json' with { type: "json" };
+import admin from 'npm:firebase-admin';
+import { format } from 'npm:date-fns';
+// todo uncomment to run locally and then comment the other usage of serviceAccount
+// import serviceAccount from '/Users/kenwu/WebstormProjects/pencil-it-in-web/supabase/firebase-secret.json' with { type: "json" };
 
 // init .env file when running locally
 await config({export: true});
+const serviceAccount = JSON.parse(Deno.env.get("FIREBASE_SECRET") || '');
 
 // init Firebase admin SDK
 admin.initializeApp({
@@ -42,8 +44,8 @@ async function sendNotifications(deviceTokens: string[], title: string, body: st
     // suffering from success and have a user sending notifications to more than 500 friends
     const response = await admin.messaging().sendEachForMulticast(message);
 
-    console.log('Successfully sent messages:', response.successCount);
-    console.log('Failed to send messages:', response.failureCount);
+    console.log('Count of sent notifications:', response.successCount);
+    console.log('Count of failed notifications:', response.failureCount);
 
     if (response.failureCount > 0) {
       console.log('Errors encountered:');
@@ -193,6 +195,8 @@ const handleCreateEvent = async (req)=>{
       return createResponse({
         error: "Failed to create event"
       }, 400);
+    } else {
+      console.log(`Successfully created event - id: ${event.id}`)
     }
 
     // add self as participant
@@ -202,6 +206,7 @@ const handleCreateEvent = async (req)=>{
         user_id: user.id,
         attendance_status: 'yes',
     });
+    console.log(`Successfully added self as participant to ${event.id}`)
 
     // Get all friends: get all rows where from public.friends where user_id=requestingUserId
     const { data: friends, error: friendsError } = await supabase.from("friends").select("friend_id").eq("user_id", user.id);
@@ -228,6 +233,8 @@ const handleCreateEvent = async (req)=>{
           event,
           warning: "Some friends may not have been added as participants"
         }, 201);
+      } else {
+        console.log(`Successfully added all invitees as participants`)
       }
 
       const friendUserIds = friends.map(friend => friend.friend_id);
@@ -237,10 +244,9 @@ const handleCreateEvent = async (req)=>{
         .select("id")
         .in("user_id", friendUserIds);
 
-      console.log('deviceTokens: ', deviceTokens)
-
       if (deviceTokens) {
         let notificationTokens: string[] = deviceTokens.map(token => token.id)
+        console.log(`Notification tokens for invitees to event ${event.id}: `, notificationTokens)
 
         // If you have more than 500 tokens, you'd batch them:
         // const chunkSize = 500;
@@ -253,8 +259,8 @@ const handleCreateEvent = async (req)=>{
           "pencil it in",
           `${firstName || "Someone"} invited you to "${title}" on ${startTimeAsString}.`
         )
-          .then(() => console.log('Multicast send attempt completed.'))
-          .catch(error => console.error('Overall multicast send process failed:', error));
+          .then(() => console.log('Multicast notification send attempt completed.'))
+          .catch(error => console.error('Overall multicast notification send process failed:', error));
       }
     }
 
