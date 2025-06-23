@@ -1,14 +1,36 @@
 # pencil it in
 
-### pencil it in is the first shared calendar built for friends, not meetings.
+Pencil It In is the first shared calendar built for friends—not work, not meetings, just real-life, low-pressure plans
+with the people you care about.
 
-pencil it in shows your friends’ current plans instantly—no invites,
-no back-and-forth, just instant visibility to meet up with your friends fast.
+Spontaneous hangouts? Lazy park days? Quick bites after a workout? Pencil It In makes it easy to see what your friends
+are up to—and even easier to join them.
 
-- Your feed shows every event that your friends want you to go to. There are no invite lists, your entire friends list
-  can see every event you make.
-- You and your friends lead busy lives, make spontaneous plans and invite your friends to meet you at the hiking trail
-  or the mall with no pressure to attend. Or, open your feed and easily join a friend on a simple errand.
+### 📝 No Invites. No Pressure. Just Plans.
+
+Your feed shows all the events your friends want you to join. There’s no need to send invites or create another group
+chat. Create an event, and your friends can see it and join if they’re free. That’s it.
+
+Whether it’s a casual hike, a coffee stop between errands, or a late-night hang at the park—Pencil It In is built for
+day-to-day, spontaneous plans that fit into real life.
+
+### ⚙️ How It Works
+
+- Open Invite Events: Every event is shared with all of your friends or close friends—no need to type in thirty
+  usernames.
+- Instant Visibility: See what your friends are doing right now, this afternoon, or tomorrow.
+- No Back-and-Forth: Skip the texts and scheduling. Just show up if you can.
+- Low-Stakes, High-Fun: Join or host plans with zero pressure. No commitment necessary.
+
+### 🌎 Designed for Real Life
+
+Planning a trip into the city? Hanging out in a park for a few hours? Heading to the local farmer’s market? Just pencil
+it in—and let your friends decide if they can join. It’s like bumping into a friend at the perfect moment, but better.
+
+You can even use Pencil It In as a simple calendar app—but with smarter, easier sharing built in. No emails. No
+workplace energy. Just friends.
+
+**Make more moments happen. See more of the people you care about. Pencil it in.**
 
 ## Development Roadmap
 
