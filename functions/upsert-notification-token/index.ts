@@ -5,14 +5,26 @@ import { config } from 'https://deno.land/x/dotenv/mod.ts';
 // import env vars from .env file for local development
 await config({ export: true });
 
-Deno.serve(async (req: Request) => {
-  // mandatory handling of CORS preflight request
-  if (req.method === 'OPTIONS') {
-    return new Response('ok', { status: 200 });
+Deno.serve(async (req)=>{
+  // handle preflight checks and provide CORS headers
+  const origin = req.headers.get("origin") || "*";
+  if (req.method === "OPTIONS") {
+    return new Response("ok", {
+      status: 200,
+      headers: {
+        "Access-Control-Allow-Origin": origin,
+        "Access-Control-Allow-Methods": "POST",
+        "Access-Control-Allow-Headers": "Content-Type, apikey, x-client-info, Authorization",
+        "Access-Control-Max-Age": "86400"
+      }
+    });
   }
 
   // parse data from request body
-  const { deviceTokenId, enable } = await req.json();
+  const { deviceTokenId, lastActiveAt, enable } = await req.json();
+  console.log('deviceTokenId: ', deviceTokenId);
+  console.log('lastActiveAt: ', lastActiveAt);
+  console.log('enable: ', enable);
 
   try {
     // get requestingUserId
@@ -28,10 +40,15 @@ Deno.serve(async (req: Request) => {
     if (userError) throw userError;
     const requestingUserId = user.id;
 
-    // Get the requesting user's events
-    const { data, error } = await supabaseClient
-      .from('fcm_tokens')
-      .upsert({ id: deviceTokenId, enable: enable, user_id: requestingUserId }, { onConflict: 'id'});
+    // Upsert notification token
+    const { data, error } = await supabaseClient.from('fcm_tokens').upsert({
+      id: deviceTokenId,
+      user_id: requestingUserId,
+      last_active_at: lastActiveAt,
+      enable: enable,
+    }, {
+      onConflict: 'id'
+    });
     if (error) throw error;
 
     // send success response to client
