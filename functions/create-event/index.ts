@@ -1,8 +1,70 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { createClient } from "jsr:@supabase/supabase-js@2.49.8";
 import { config } from 'https://deno.land/x/dotenv/mod.ts';
+import admin from 'firebase-admin';
+import { format } from 'date-fns';
+import serviceAccount from '/Users/kenwu/WebstormProjects/pencil-it-in-web/supabase/firebase-secret.json' with { type: "json" };
 
+// init .env file when running locally
 await config({export: true});
+
+// init Firebase admin SDK
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
+});
+
+async function sendNotifications(deviceTokens: string[], title: string, body: string, dataPayload = {}): Promise<admin.messaging.BatchResponse | void> {
+  // Validate that you have tokens to send to
+  if (!deviceTokens || deviceTokens.length === 0) {
+    console.warn("No device tokens provided to send message.");
+    return;
+  }
+
+  // Define the message payload
+  const message: admin.messaging.MulticastMessage = {
+    notification: {
+      title: title,
+      body: body
+    },
+    // You can add custom data here that your app can process
+    data: dataPayload,
+    // The list of tokens to send the message to
+    tokens: deviceTokens, // This must be an array of FCM registration tokens
+  };
+
+  try {
+    // Send the message using sendEachForMulticast
+    // This method handles up to 500 tokens per call.
+    // If you have more than 500 tokens, you'll need to batch them yourself
+    // and call this method multiple times.
+    // Deno currently has issues with the Node libraries that Firebase libraries use and
+    // will crash after a few seconds of calling this function. A problem for when I'm
+    // suffering from success and have a user sending notifications to more than 500 friends
+    const response = await admin.messaging().sendEachForMulticast(message);
+
+    console.log('Successfully sent messages:', response.successCount);
+    console.log('Failed to send messages:', response.failureCount);
+
+    if (response.failureCount > 0) {
+      console.log('Errors encountered:');
+      response.responses.forEach((resp, idx) => {
+        if (!resp.success) {
+          console.error(`Token at index ${idx} failed: ${resp.error?.code} - ${resp.error?.message}`);
+          // You should typically remove invalid or "NotRegistered" tokens from your database here.
+          // For example: if (resp.error.code === 'messaging/invalid-registration-token' || resp.error.code === 'messaging/registration-token-not-registered') {
+          //   deleteTokenFromYourDatabase(deviceTokens[idx]);
+          // }
+        }
+      });
+    }
+
+    return response;
+
+  } catch (error) {
+    console.error('Error sending multicast message:', error);
+    throw error; // Re-throw or handle as appropriate for your backend
+  }
+}
 
 // Helper function to create standardized responses
 const createResponse = (data, status = 200)=>{
@@ -16,6 +78,7 @@ const createResponse = (data, status = 200)=>{
     }
   });
 };
+
 // Helper function to handle CORS preflight
 const handleCors = (req)=>{
   const origin = req.headers.get("origin") || "*";
@@ -29,6 +92,7 @@ const handleCors = (req)=>{
     }
   });
 };
+
 // Helper function to validate request body
 const validateEventData = (body)=>{
   const { title, location, description, start_time, end_time } = body;
@@ -55,6 +119,7 @@ const validateEventData = (body)=>{
     }
   };
 };
+
 // Helper function to create Supabase client with auth
 const createAuthenticatedClient = (req)=>{
   const supabaseUrl = Deno.env.get("SUPABASE_URL");
@@ -70,6 +135,17 @@ const createAuthenticatedClient = (req)=>{
     }
   });
 };
+
+async function getUserFirstName(supabase, user) {
+  const {data: userFirstName, error: profileError} = await supabase
+    .from("users")
+    .select("first_name")
+    .eq("id", user.id);
+
+  const firstName = userFirstName?.[0]?.first_name;
+  return firstName;
+}
+
 // Main handler for creating events
 const handleCreateEvent = async (req)=>{
   try {
@@ -82,8 +158,10 @@ const handleCreateEvent = async (req)=>{
       }, 400);
     }
     const { title, location, description, start_time, end_time } = validation.data;
+
     // Create authenticated Supabase client
     const supabase = createAuthenticatedClient(req);
+
     // Get authenticated user
     const token = req.headers.get("Authorization")?.replace("Bearer ", "");
     if (!token) {
@@ -97,6 +175,10 @@ const handleCreateEvent = async (req)=>{
         error: "Invalid or expired token"
       }, 401);
     }
+
+    const firstName = await getUserFirstName(supabase, user);
+    const startTimeAsString = format(new Date(start_time), "MMMM do");  // converts 2025-06-02T14:32:04 to "June 2nd"
+
     // Create the event
     const { data: event, error: eventError } = await supabase.from("events").insert({
       title,
@@ -112,6 +194,7 @@ const handleCreateEvent = async (req)=>{
         error: "Failed to create event"
       }, 400);
     }
+
     // add self as participant
     const { error: participantsError } = await supabase.from("event_participants")
       .insert({
@@ -119,7 +202,8 @@ const handleCreateEvent = async (req)=>{
         user_id: user.id,
         attendance_status: 'yes',
     });
-    // Get user's friends
+
+    // Get all friends: get all rows where from public.friends where user_id=requestingUserId
     const { data: friends, error: friendsError } = await supabase.from("friends").select("friend_id").eq("user_id", user.id);
     if (friendsError) {
       console.error("Friends fetch error:", friendsError);
@@ -127,6 +211,7 @@ const handleCreateEvent = async (req)=>{
         error: "Failed to fetch friends"
       }, 400);
     }
+
     // Add friends as participants if there are any
     if (friends && friends.length > 0) {
       const participants = friends.map((friend)=>({
@@ -144,7 +229,35 @@ const handleCreateEvent = async (req)=>{
           warning: "Some friends may not have been added as participants"
         }, 201);
       }
+
+      const friendUserIds = friends.map(friend => friend.friend_id);
+
+      let { data: deviceTokens, error } = await supabase
+        .from("fcm_tokens")
+        .select("id")
+        .in("user_id", friendUserIds);
+
+      console.log('deviceTokens: ', deviceTokens)
+
+      if (deviceTokens) {
+        let notificationTokens: string[] = deviceTokens.map(token => token.id)
+
+        // If you have more than 500 tokens, you'd batch them:
+        // const chunkSize = 500;
+        // for (let i = 0; i < allYourDeviceTokens.length; i += chunkSize) {
+        //   const chunk = allYourDeviceTokens.slice(i, i + chunkSize);
+        //   sendNotifications(chunk, "New Update!", "Check out the latest features!");
+        // }
+        sendNotifications(
+          notificationTokens,
+          "pencil it in",
+          `${firstName || "Someone"} invited you to "${title}" on ${startTimeAsString}.`
+        )
+          .then(() => console.log('Multicast send attempt completed.'))
+          .catch(error => console.error('Overall multicast send process failed:', error));
+      }
     }
+
     return createResponse({
       message: "Event created successfully",
       event,
@@ -157,16 +270,19 @@ const handleCreateEvent = async (req)=>{
     }, 500);
   }
 };
+
 // Main request handler
 Deno.serve(async (req)=>{
   // Handle CORS preflight
   if (req.method === "OPTIONS") {
     return handleCors(req);
   }
+
   // Handle POST requests for event creation
   if (req.method === "POST") {
     return await handleCreateEvent(req);
   }
+
   // Method not allowed
   return createResponse({
     error: `Method ${req.method} not allowed`
