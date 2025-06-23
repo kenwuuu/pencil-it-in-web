@@ -127,10 +127,12 @@ function friendsData() {
       }
     },
     FriendListChangedEvent() {
-      const event = new CustomEvent('friend-list-changed', { bubbles: true, composed: true  });
+      const event = new CustomEvent('friend-list-changed', {
+        bubbles: true,
+        composed: true,
+      });
       window.dispatchEvent(event);
-    }
-    
+    },
   };
 }
 
