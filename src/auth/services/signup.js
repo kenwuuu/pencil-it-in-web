@@ -40,14 +40,19 @@ export async function signUpUser(
     `Original file size: ${(profilePhoto.size / 1024 / 1024).toFixed(2)} MB`,
   );
 
-  profilePhoto = await cropPhoto(profilePhoto);
-  profilePhoto = await compressPhoto(profilePhoto);
+  let profilePhoto512 = await cropPhoto(profilePhoto, 512);
+  profilePhoto512 = await compressPhoto(profilePhoto512);
+
+  let profilePhoto256 = await cropPhoto(profilePhoto, 256);
+  profilePhoto256 = await compressPhoto(profilePhoto256);
 
   console.log(
     `Final file size: ${(profilePhoto.size / 1024 / 1024).toFixed(2)} MB`,
   );
 
-  const filePath = await uploadProfilePhoto(profilePhoto);
+  const uuid = crypto.randomUUID(); // generates a v4 UUID
+  await uploadProfilePhoto(profilePhoto512, uuid, '512');
+  const filePath = await uploadProfilePhoto(profilePhoto256, uuid, '256');
   const photoUrl = buildBucketUrl(filePath);
 
   await insertPhotoAndNamesToUserRow(
@@ -62,7 +67,7 @@ export async function signUpUser(
 }
 
 // crop photo to square based on shortest edge
-async function cropPhoto(file) {
+async function cropPhoto(file, cropSize) {
   console.time('cropPhoto');
 
   return new Promise((resolve, reject) => {
@@ -71,7 +76,7 @@ async function cropPhoto(file) {
     img.onload = () => {
       // Calculate crop dimensions (square based on shortest edge)
       const shortestEdge = Math.min(img.width, img.height);
-      const cropSize = Math.min(shortestEdge, 1024);
+      cropSize = Math.min(shortestEdge, cropSize);
 
       console.log(
         `Cropping from ${img.width}x${img.height} to ${cropSize}x${cropSize}`,
@@ -132,18 +137,18 @@ async function compressPhoto(file) {
 
   return new Promise((resolve, reject) => {
     new Compressor(file, {
-      quality: 0.8,
-      convertSize: 0, // Always convert to WebP
+      quality: 0.6,
+      convertSize: 0, // always compress
       convertTypes: ['image/webp'],
       success(result) {
         // Create new File with .webp extension
-        const fileName = file.name.replace(/\.[^/.]+$/, '.webp');
-        const webpFile = new File([result], fileName, {
-          type: 'image/webp',
+        const fileName = file.name.replace(/\.[^/.]+$/, '.jpg');
+        const photo = new File([result], fileName, {
+          type: 'image/jpg',
           lastModified: Date.now(),
         });
         console.timeEnd('compressPhoto');
-        resolve(webpFile);
+        resolve(photo);
       },
       error(err) {
         console.timeEnd('compressPhoto');
@@ -153,14 +158,12 @@ async function compressPhoto(file) {
   });
 }
 
-async function uploadProfilePhoto(file) {
-  const uuid = crypto.randomUUID(); // generates a UUID v4
-
+async function uploadProfilePhoto(photo, uuid, folder) {
   // upload photo
   const { data, error } = await supabase.storage
     .from('profile-photos')
-    .upload(uuid, file, {
-      contentType: file.type || 'image/webp',
+    .upload(folder + '/' + uuid, photo, {
+      contentType: photo.type || 'image/webp',
     });
 
   if (error) {
