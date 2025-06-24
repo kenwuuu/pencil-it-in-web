@@ -8,6 +8,13 @@ import {
 } from '@capacitor/push-notifications';
 import { upsertNotificationToken } from 'src/push_notifications/services/upsert-notification-token';
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+    .register('/sw.js')
+    .then(reg => console.log('Service Worker registered:', reg))
+    .catch(err => console.error('Service Worker registration failed:', err));
+}
+
 // Ensure Alpine is available globally
 (window as any).Alpine = Alpine;
 

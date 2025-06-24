@@ -1,0 +1,15 @@
+{
+  "name": "pencil it in",
+  "short_name": "pencil it in",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#007bff",
+  "icons": [
+    {
+      "src": "/assets/logo.jpg",
+      "sizes": "1172x1172",
+      "type": "image/lpg"
+    }
+  ]
+}
