@@ -9,7 +9,7 @@ const TESTING_EMAIL = process.env.TESTING_EMAIL || '';
 const TESTING_PASSWORD = process.env.TESTING_PASSWORD || '';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const profilePhotoPath = 'black-pfp-for-tests.avif';
+const profilePhotoPath = 'black-pfp-for-tests.jpg';
 
 if (TESTING_EMAIL === '') {
   throw new Error(
