@@ -16,12 +16,19 @@ class EventsContainer extends HTMLElement {
         <div class="flex" x-data="eventsData()">
           <div class="page-container flex-1">
             <header class="space-y-4 my-4" x-show="!is_creating_new_event">
+<!--              title row -->
               <div class="flex">
                 <div class="prose">
                   <h1 x-text="capitalize(page)"></h1>
                 </div>
-                <events-action-menu class="action-menu-header-component"></events-action-menu>
+                <div class="ml-auto flex">
+                  <button class="btn text-2xl mr-2" @click="loadEvents()">
+                    <iconify-icon icon="mdi:refresh"></iconify-icon>
+                  </button>
+                  <events-action-menu class="action-menu-header-component"></events-action-menu>
+                </div>
               </div>
+<!--              filter row -->
               <div class="join mb-4 w-full">
                 <button class="btn join-item flex-1">All Events</button>
                 <button class="btn join-item flex-1">My Events</button>
