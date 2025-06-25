@@ -9,9 +9,20 @@ class FriendsContainer extends HTMLElement {
         <main class="flex">
             <div class="page-container flex-1" x-data="friendsData()">
                 <header class="space-y-4 my-4 sm:flex">
-                    <div class="prose flex-1 mb-4">
-                        <h1 x-text="capitalize(page)"></h1>
-                    </div>
+<!--                title row-->
+
+                    <div class="flex">  
+                        <div class="prose flex-1 mb-4">
+                            <h1 x-text="capitalize(page)"></h1>
+                        </div>
+                        
+                        <div class="ml-auto flex">
+                          <button class="btn text-2xl mr-2" @click="loadFriends()">
+                            <iconify-icon icon="mdi:refresh"></iconify-icon>
+                          </button>
+                          <events-action-menu class="action-menu-header-component"></events-action-menu>
+                        </div>
+                    </div>  
                     <!--   Start Friend Search Bar   -->
                     <div class="max-w-full">
                         <div class="join min-w-full">
