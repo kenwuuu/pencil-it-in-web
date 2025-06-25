@@ -85,6 +85,8 @@ function eventsData() {
     toastMessage: '',
     toastType: 'success', // 'success', 'error', or 'info'
     toastTimeout: null,
+    showReportModal: false,
+    reportText: '',
 
     init() {
       this.loadEvents();
@@ -315,6 +317,21 @@ function eventsData() {
 
     downloadCalendar(event) {
       downloadICS(event);
+    },
+
+    submitReport() {
+      if (!this.reportText.trim()) {
+        this.showToastNotification('Please enter a report message.', 'error');
+        return;
+      }
+
+      // call backend function once we have it
+      alert('Report submitted.');
+      console.log('Report submitted.', this.selectedEvent?.id, this.reportText);
+
+      this.showToastNotification('Thank you for your report.', 'success');
+      this.reportText = '';
+      this.showReportModal = false;
     },
   };
 }
