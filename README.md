@@ -1,7 +1,15 @@
 # pencil it in
 
+
+Spending a mandatory 14 days in beta before we can release to the public. We anticipate global release to be July 14. 
+
+Sign up for the beta here: https://forms.gle/FCKs3butUYXCHF4y7
+
+### pencil it in is the first shared calendar built for friends, not meetings.
+
 Pencil It In is the first shared calendar built for friends—not work, not meetings, just real-life, low-pressure plans
 with the people you care about.
+
 
 Spontaneous hangouts? Lazy park days? Quick bites after a workout? Pencil It In makes it easy to see what your friends
 are up to—and even easier to join them.

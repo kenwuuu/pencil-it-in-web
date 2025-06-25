@@ -165,6 +165,30 @@ Then run `node tests/auth.setup.ts`.
 
 #### [How to use Playwright with GitHub Actions for e2e testing of Vercel preview deployments](https://cushionapp.com/journal/how-to-use-playwright-with-github-actions-for-e2e-testing-of-vercel-preview)
 
+## Building for Release
+
+### iOS
+
+1. `npx cap sync`
+2. `npx cap open ios`
+3. Menu Bar > Product > Archive
+4. Optional: `Validate App` does prerelease checks without releasing
+5. Click `Distribute App`
+
+### Android
+
+1. From project root, go to `android/app/build.gradle` and bump `versionCode` and `versionName`
+2. `npx cap sync`
+2. `npx cap open android`
+3. Menu Bar > Build > `Generate Signed App Bundle or APKs`
+4. In next window, choose `Android App Bundle`, not `APK`
+5. I already had keystore and password filled in, need to look this step up and fill it in
+6. Select `release` for build variant
+7. Wait for build to finish and then click `locate` in the bottom right pop up, or
+   navigate to `/Users/kenwu/WebstormProjects/pencil-it-in-web/pencil-it-in-web/android/app/release/app-release.aab`
+8. Go to Play Console dashboard and create a new release in open/closed/internal testing.
+9. Follow the instructions on the dashboard.
+
 ## Project Structure
 
 This project is structured very much like a standard, vanilla HTML/CSS/JS
