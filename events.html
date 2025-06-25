@@ -9,6 +9,11 @@
   />
   <link href="/vite.svg" rel="icon" type="image/svg+xml"/>
   <title>Events - Pencil It In</title>
+  <script type="module">
+      import {protectPage} from '@/auth/services/redirect.js';
+
+      protectPage();
+  </script>
 </head>
 
 <body>

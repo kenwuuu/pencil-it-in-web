@@ -8,25 +8,13 @@
       name="viewport"
   />
   <title>Pencil It In</title>
+  <script type="module">
+      import {handleRootRedirect} from '@/auth/services/redirect.js';
+
+      handleRootRedirect();
+  </script>
 </head>
 
-<script type="module">  // redirect if user has signed in before
-import {supabase} from "@/supabase-client/supabase-client.js";
-
-supabase.auth.getSession().then(({data, error}) => {
-    let token = data?.session?.access_token; // Get the user's access token
-    const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);  // regex match on user agent
-
-    if (token) {  // if they've made an account, redirect to app
-        window.location.href = '/events.html';
-    } else if (isMobile) {  // if no account and they're mobile, send to create an account
-        window.location.href = '/src/auth/create-account.html';
-    } else {  // if no account and on desktop, send to landing page
-        // window.location.href = '/landing.html';
-        window.location.href = '/src/auth/login.html';
-    }
-})
-</script>
 
 <link href="style.css" rel="stylesheet" type="text/css"/>
 </html>
