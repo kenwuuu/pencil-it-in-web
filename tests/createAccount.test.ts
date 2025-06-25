@@ -9,6 +9,7 @@ const TESTING_EMAIL = process.env.TESTING_EMAIL || '';
 const TESTING_PASSWORD = process.env.TESTING_PASSWORD || '';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const profilePhotoPath = 'black-pfp-for-tests.jpg';
 
 if (TESTING_EMAIL === '') {
   throw new Error(
@@ -50,7 +51,7 @@ test('testCreateAccount', async ({ page }) => {
     .fill(TESTING_EMAIL);
   await page.getByRole('textbox', { name: 'Password' }).click();
   await page.getByRole('textbox', { name: 'Password' }).fill('Atwf3@vaw');
-  const imagePath = path.resolve(__dirname, 'IMG_6436.jpeg');
+  const imagePath = path.resolve(__dirname, profilePhotoPath);
   await page.locator('input[type="file"]').setInputFiles(imagePath);
   await page.getByRole('button', { name: 'Create Account' }).click();
 
@@ -62,8 +63,8 @@ test('testPhotoUploadWorks', async ({ page }) => {
   await page
     .getByRole('button', { name: 'Create Account' })
     .scrollIntoViewIfNeeded();
-  const imagePath = path.resolve(__dirname, 'IMG_6436.jpeg');
+  const imagePath = path.resolve(__dirname, profilePhotoPath);
   await page.locator('input[type="file"]').setInputFiles(imagePath);
 
-  await expect(page.getByText('IMG_6436.jpeg')).toBeVisible();
+  await expect(page.getByText(profilePhotoPath)).toBeVisible();
 });

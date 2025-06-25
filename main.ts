@@ -6,6 +6,14 @@ import {
   PushNotificationSchema,
   Token,
 } from '@capacitor/push-notifications';
+import { upsertNotificationToken } from 'src/push_notifications/services/upsert-notification-token';
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker
+    .register('/sw.js')
+    .then(reg => console.log('Service Worker registered:', reg))
+    .catch(err => console.error('Service Worker registration failed:', err));
+}
 
 // Ensure Alpine is available globally
 (window as any).Alpine = Alpine;
@@ -57,9 +65,15 @@ PushNotifications.requestPermissions().then(result => {
   }
 });
 
+// todo one time use: force registration of devices with apps from before notification implementation
+// delete this after building. do not commit
+PushNotifications.register();
+
 // On success, we should be able to receive notifications
 PushNotifications.addListener('registration', (token: Token) => {
   console.log('Push registration success, token: ' + token.value);
+  upsertNotificationToken(token.value, true);
+  Alpine.store('notificationToken', token.value);
 });
 
 // Some issue with our setup and push will not work
