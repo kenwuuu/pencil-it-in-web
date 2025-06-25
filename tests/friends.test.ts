@@ -18,11 +18,7 @@ test('testFriendsSearchBarIsVisible', async ({ page }) => {
   await page.goto('/events.html');
   await page.getByTestId('friends-menu-item').click();
   await expect(
-    page
-      .locator('header')
-      .filter({ hasText: 'Friends Add Friend' })
-      .locator('div')
-      .nth(1),
+    page.locator('header').filter({ hasText: 'Friends' }).getByRole('textbox'),
   ).toBeVisible();
 });
 
