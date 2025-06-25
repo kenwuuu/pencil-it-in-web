@@ -117,3 +117,11 @@ test('testDeleteEventButtonIsVisible', async ({ page }) => {
 });
 
 // add tests that confirm delete button only appears for host after we set up mocks
+
+test.use({ storageState: { cookies: [], origins: [] } });
+test('testRedirectToLoginWhenNotLoggedIn', async ({ page }) => {
+  await page.goto('/events.html');
+  await expect(
+    page.getByRole('heading', { name: 'Log in to your account' }),
+  ).toBeVisible();
+});
