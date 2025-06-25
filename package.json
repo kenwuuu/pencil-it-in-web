@@ -40,7 +40,8 @@
     "serve": "^14.2.4",
     "start-server-and-test": "^2.0.12",
     "typescript": "~5.7.2",
-    "vite": "^6.3.1"
+    "vite": "^6.3.1",
+    "vite-plugin-pwa": "^1.0.0"
   },
   "dependencies": {
     "@capacitor/android": "^7.2.0",
