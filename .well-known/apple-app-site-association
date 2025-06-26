@@ -1,0 +1,26 @@
+{
+  "applinks": {
+      "details": [
+           {
+             "appIDs": [ "ZQPT5KAR78.com.kenwu.pencilitin"],
+             "components": [
+               {
+                  "/": "/buy/*",
+                  "comment": "Matches any URL with a path that starts with /buy/."
+               },
+               {
+                  "/": "https://mpounklnfrcfpkefidfn.supabase.co/auth/v1/verify?token=ad5b03d8776638215dd25e7bbe1ff7d0f6ed95ed82492b677fc2c17b&type=signup&redirect_to=https://pencilitin.app/events.html",
+                  "comment": "Matches any URL with a path that starts with /buy/."
+               },
+               {
+                  "/": "/events.html",
+                  "comment": "Matches any URL with a path that starts with /events/."
+               },
+             ]
+           }
+       ]
+    },
+    "webcredentials": {
+      "apps": [ "ABCDE12345.com.example.app" ]
+    },
+}
