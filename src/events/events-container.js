@@ -22,10 +22,9 @@ class EventsContainer extends HTMLElement {
                   <h1 x-text="capitalize(page)"></h1>
                 </div>
                 <div class="ml-auto flex">
-                  <button class="btn text-2xl mr-2" @click="loadEvents()">
+                  <button class="btn text-2xl" @click="loadEvents()">
                     <iconify-icon icon="mdi:refresh"></iconify-icon>
                   </button>
-                  <events-action-menu class="action-menu-header-component"></events-action-menu>
                 </div>
               </div>
 <!--              filter row -->
