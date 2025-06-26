@@ -14,6 +14,9 @@ class EventsFeed extends HTMLElement {
                           <div class="title-container flex">
                             <h2 class="title text-xl sm:text-xl font-bold" x-text="event.title"></h2>
                           </div>
+                          <div class="title-container flex">
+                            <h2 class="title text-sm text-slate-500 font-bold" x-text="'@ ' + event.location"></h2>
+                          </div>
                           <div class="event-description line-clamp-4 text-sm mb-2" x-text="event.description || ''"></div>
                           <div class="participants justify-between">
                             <div class="flex justify-between">
