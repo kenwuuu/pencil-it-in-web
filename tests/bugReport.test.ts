@@ -2,18 +2,19 @@ import { expect, test } from '@playwright/test';
 
 test('testBugReportButtonVisibleOnEventsPage', async ({ page }) => {
   await page.goto('/events.html');
+  await page.click('iconify-icon[icon="mdi:calendar"]:visible');
   await expect(page.locator('[icon="mdi:spider"]')).toBeVisible();
 });
 
 test('testBugReportButtonVisibleOnFriendsPage', async ({ page }) => {
   await page.goto('/events.html');
-  await page.getByTestId('friends-menu-item').click();
+  await page.click('iconify-icon[icon="mdi:account-group"]:visible');
   await expect(page.locator('[icon="mdi:spider"]')).toBeVisible();
 });
 
 test('testBugReportButtonVisibleOnProfilePage', async ({ page }) => {
   await page.goto('/events.html');
-  await page.getByText('Profile').click();
+  await page.click('iconify-icon[icon="mdi:user"]:visible');
   await expect(page.locator('[icon="mdi:spider"]')).toBeVisible();
 });
 
