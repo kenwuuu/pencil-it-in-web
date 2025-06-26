@@ -74,6 +74,24 @@ export default defineConfig({
       dependencies: ['setup'],
     },
 
+    {
+      name: 'Mobile Safari on iPhone 13',
+      use: {
+        ...devices['iPhone 13'],
+        storageState: 'tests/playwright.auth.json',
+      },
+      dependencies: ['setup'],
+    },
+
+    {
+      name: 'Mobile Chrome on Galaxy S20',
+      use: {
+        ...devices['Galaxy S20'],
+        storageState: 'tests/playwright.auth.json',
+      },
+      dependencies: ['setup'],
+    },
+
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',

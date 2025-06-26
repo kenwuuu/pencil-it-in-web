@@ -11,6 +11,11 @@ test('testCalendarExportButtonIsVisible', async ({ page }) => {
   await expect(page.locator('.download-calendar-btn').first()).toBeVisible();
 });
 
+test('testCreateEventButtonIsVisible', async ({ page }) => {
+  await page.goto('/events.html');
+  await page.locator('[data-testid="create-event-button"]:visible').click();
+});
+
 test('testCalendarExportButtonStartsDownload', async ({ page }) => {
   await page.goto('/events.html');
   const downloadPromise = page.waitForEvent('download');
@@ -39,11 +44,7 @@ test('testCalendarExportButtonStartsDownload', async ({ page }) => {
 
 test('testEventCreationComponentIsVisible', async ({ page }) => {
   await page.goto('/events.html');
-  await page
-    .getByRole('listitem')
-    .filter({ hasText: 'Create Event' })
-    .locator('a')
-    .click();
+  await page.locator('[data-testid="create-event-button"]:visible').click();
   await expect(
     page.getByRole('heading', { name: 'Create New Event' }),
   ).toBeVisible();

@@ -10,15 +10,16 @@ class BottomMenu extends HTMLElement {
             id="bottom-menu-item-events" 
             x-bind:class="page === 'events' ? 'dock-active' : ''"
             >
-          <iconify-icon class="text-2xl" icon="mdi:calendar"></iconify-icon>
+            <iconify-icon class="text-2xl" icon="mdi:calendar"></iconify-icon>
           </button>
           <button
             aria-label="friends"
+            data-testid="friends-menu-item"
             x-on:click="page = 'friends'"
             id="bottom-menu-item-friends" 
             x-bind:class="page === 'friends' ? 'dock-active' : ''"
             >
-          <iconify-icon class="text-2xl" icon="mdi:account-group"></iconify-icon>
+            <iconify-icon class="text-2xl" icon="mdi:account-group"></iconify-icon>
           </button>
           <button
             aria-label="profile"
@@ -26,7 +27,7 @@ class BottomMenu extends HTMLElement {
             id="bottom-menu-item-profile" 
             x-bind:class="page === 'profile' ? 'dock-active' : ''"
             >
-          <iconify-icon class="text-2xl" icon="mdi:user"></iconify-icon>
+            <iconify-icon class="text-2xl" icon="mdi:user"></iconify-icon>
           </button>
         </div>
     `;

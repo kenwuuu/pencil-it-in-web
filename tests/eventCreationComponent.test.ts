@@ -3,11 +3,7 @@ import { expect, test } from '@playwright/test';
 test('testEndTimeUpdatesWhenStartTimeChanges', async ({ page }) => {
   await page.goto('/events.html');
 
-  await page
-    .getByRole('listitem')
-    .filter({ hasText: 'Create Event' })
-    .locator('a')
-    .click();
+  await page.locator('[data-testid="create-event-button"]:visible').click();
 
   const startTimeInput = page.locator('input[name="start_time"]');
   const endTimeInput = page.locator('input[name="end_time"]');
