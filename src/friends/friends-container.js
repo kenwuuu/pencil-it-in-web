@@ -18,10 +18,10 @@ class FriendsContainer extends HTMLElement {
                     </div>  
                     <!--   Start Friend Search Bar   -->
                     <div class="ml-auto flex">
-                        <button class="btn text-2xl mr-2" @click="loadFriends()">
+                        <button class="btn text-2xl" @click="loadFriends()">
                           <iconify-icon icon="mdi:refresh"></iconify-icon>
                         </button>
-                        <div class="max-w-full">
+                        <div class="max-w-full ml-2">
                             <div class="join min-w-full">
                               <input id="friend-input" x-ref="friendInput" x-on:keydown.enter="addFriend($refs.friendInput)" class="input input-md join-item" style="font-size: 16px" :disabled="isAddingFriend" placeholder="@xXdemonSlayerXx" autocomplete="first-name" />
                               <button id="add-friend-btn" x-on:click="addFriend($refs.friendInput)" class="btn btn-md join-item" :disabled="isAddingFriend">
