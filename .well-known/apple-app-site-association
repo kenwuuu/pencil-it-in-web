@@ -1,0 +1,14 @@
+{
+      "applinks": {
+           "apps": [],
+           "details": [
+                {
+                  "appIDs": [ "ZQPT5KAR78.com.kenwu.pencilitin"],
+                  "paths": ["*"]
+                }
+           ]
+      },
+      "webcredentials": {
+        "apps": [ "ZQPT5KAR78.com.kenwu.pencilitin" ]
+      }
+}
