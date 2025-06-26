@@ -16,9 +16,10 @@ class EventDetailsModal extends HTMLElement {
               </ul>
             </div>
           </div>
-          <p class="text-sm mb-2" x-text="'Location: ' + selectedEvent.location"></p>
-          <p class="text-sm mb-1" x-text="'Date: ' + formatDate(selectedEvent.start_time)"></p>
-          <p class="text-sm mb-4" x-text="'Time: ' + formatTime(selectedEvent.start_time)"></p>
+          <p class="text-sm mb-1" x-text="'Location: ' + selectedEvent.location"></p>
+          <p class="text-sm mb-3" x-text="'Date: ' + formatDate(selectedEvent.start_time)"></p>
+          <p class="text-sm mb-1" x-text="'Start: ' + formatTime(selectedEvent.start_time)"></p>
+          <p class="text-sm mb-4" x-text="'End: ' + formatTime(selectedEvent.end_time)"></p>
           <p class="mb-4" x-text="selectedEvent.description || 'No description provided.'"></p>
           <div class="flex gap-4">
             <delete-event-button class="ml-auto" x-show="selectedEvent?.host && selectedEvent.host.user_id === $store.userId"></delete-event-button>
