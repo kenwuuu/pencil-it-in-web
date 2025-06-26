@@ -16,6 +16,7 @@ class EventDetailsModal extends HTMLElement {
               </ul>
             </div>
           </div>
+          <p class="text-sm mb-2" x-text="'Location: ' + selectedEvent.location"></p>
           <p class="text-sm mb-1" x-text="'Date: ' + formatDate(selectedEvent.start_time)"></p>
           <p class="text-sm mb-4" x-text="'Time: ' + formatTime(selectedEvent.start_time)"></p>
           <p class="mb-4" x-text="selectedEvent.description || 'No description provided.'"></p>
