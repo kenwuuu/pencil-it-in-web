@@ -7,6 +7,34 @@
         name="viewport"
   />
   <title>Pencil It In</title>
+  <script>
+      window.onload = function () {
+          var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+          if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+              // iOS device
+              window.location = 'appname://com.kenwu.pencilitin';
+
+              setTimeout(function () {
+                  // Fallback (e.g. App Store or website)
+                  window.location.href = 'https://www.pencilitin.app/events.html';
+              }, 100);
+
+          } else if (/android/i.test(userAgent)) {
+              // Android device
+              window.location = 'intent://com.kenwu.pencilitin#Intent;scheme=appname;package=com.kenwu.pencilitin;end';
+
+              setTimeout(function () {
+                  // Fallback (e.g. Play Store or website)
+                  window.location.href = 'https://www.pencilitin.app/events.html';
+              }, 100);
+
+          } else {
+              // Non-mobile devices
+              window.location.href = 'https://www.pencilitin.app/events.html';
+          }
+      };
+  </script>
 </head>
 <body
     class="flex items-center justify-center min-h-screen bg-base-100 text-center"
