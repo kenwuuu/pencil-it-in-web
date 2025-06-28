@@ -186,8 +186,16 @@
     </div>
 </div>
 
-<script>
+<script type="module">
     document.getElementById('submit-btn').addEventListener('click', function (event) {
+
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        // hacky way to get app sign in to work after redirect. replace with vue rewrite, search: localStorageHack
+        localStorage.setItem('email', email);
+        localStorage.setItem('password', password);
+
         const photoInput = document.getElementById('profile-photo-upload');
         const photoLabel = document.getElementById('photo-upload-label');
         const photoError = document.getElementById('photo-error');

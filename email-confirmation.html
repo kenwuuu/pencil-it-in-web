@@ -8,6 +8,36 @@
       name="viewport"
   />
   <title>Pencil It In</title>
+  <script type="module">
+      import {App} from '@capacitor/app';
+      import {loginWithEmailPassword} from "./src/auth/services/login.js";
+
+      let wasInBackground = false;
+
+      const email = localStorage.getItem('email');
+      const password = localStorage.getItem('password');
+
+      console.log('logging in')
+      console.log('email', email)
+      console.log('password', password)
+      App.addListener('appStateChange', async ({isActive}) => {
+          if (!isActive) {
+              // App moved to background
+              wasInBackground = true;
+          } else if (isActive && wasInBackground) {
+              // App returned to foreground after being in background
+              console.log('logging in2')
+              console.log('email', email)
+              console.log('password', password)
+              const {error} = await loginWithEmailPassword(email, password);
+
+              window.location.href = '/events.html';
+
+              localStorage.removeItem('email');
+              localStorage.removeItem('password');
+          }
+      });
+  </script>
 </head>
 <body>
 
