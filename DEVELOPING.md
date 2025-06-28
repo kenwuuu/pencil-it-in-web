@@ -95,3 +95,54 @@ that code before realizing that it's **simpler** and **faster** to just use `fet
 - Not handling preflight CORS requests:
   - Copy `functions/upsert-notification-token/index.ts`. Note the top few lines of code
     that address CORS.
+
+## Cross platform app deep linking on Supabase
+
+The reason we do it the way below is because Supabase links to their own auth page
+first to trigger verification, before redirecting to our site. But this sometimes
+doesn't work on iOS because email clients (gmail) will open in a popup
+browser and not the full browser. For some reason, iOS doesn't respond to redirects
+to app links linked in that manner, and only likes it when users do a little clicky
+click. If
+
+The simplest way I found to handle this is to adjust Supabase's verification URL to point
+to a simple page that has a script that instantly redirects the user to the home page.
+
+Example redirect page with style imported from `styles.css`:
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover, initial-scale=1.0,
+      minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        name="viewport"
+  />
+  <title>Pencil It In</title>
+</head>
+<body
+        class="flex items-center justify-center min-h-screen bg-base-100 text-center"
+>
+<!--  Button fall back if automatic redirects don't work  -->
+<div class="space-y-4">
+  <p class="text-lg text-gray-600 mb-8">
+    Email verified!
+  </p>
+
+  <a class="btn btn-primary" href="https://www.pencilitin.app/events.html">
+    Open App
+  </a>
+</div>
+</body>
+<link href="../../style.css" rel="stylesheet" type="text/css"/>
+</html>
+```
+
+To change Supabase's verification URL:
+Auth > Emails > URL Configuration > Insert your redirect page URL
+from the file above into `Site URL`
+
+If deep linking is set up correctly, clicking the button will take you to the app.
+Also, see this [nice tool](10.0.0.181:5173/src/auth/auth-redirect-to-app.html) that
+iOS has to test if the URL you're hitting will open your app.
