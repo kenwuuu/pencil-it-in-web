@@ -17,18 +17,12 @@
       const email = localStorage.getItem('email');
       const password = localStorage.getItem('password');
 
-      console.log('logging in')
-      console.log('email', email)
-      console.log('password', password)
       App.addListener('appStateChange', async ({isActive}) => {
           if (!isActive) {
               // App moved to background
               wasInBackground = true;
           } else if (isActive && wasInBackground) {
               // App returned to foreground after being in background
-              console.log('logging in2')
-              console.log('email', email)
-              console.log('password', password)
               const {error} = await loginWithEmailPassword(email, password);
 
               window.location.href = '/events.html';
