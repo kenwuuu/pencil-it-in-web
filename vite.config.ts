@@ -36,6 +36,11 @@ export default defineConfig({
         email_confirmation: resolve(__dirname, 'email-confirmation.html'),
         login: resolve(__dirname, 'src/auth/login.html'),
         create_account: resolve(__dirname, 'src/auth/create-account.html'),
+        // auth entry points
+        auth_redirect_to_app: resolve(
+          __dirname,
+          'src/auth/auth-redirect-to-app.html',
+        ),
         // main JS file
         main: resolve(__dirname, 'main.ts'),
         // top level services, constants, misc, etc
