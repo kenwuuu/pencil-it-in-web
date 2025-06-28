@@ -8,6 +8,21 @@
       name="viewport"
   />
   <title>Pencil It In</title>
+  <script type="module">
+      import {App} from '@capacitor/app';
+
+      let wasInBackground = false;
+
+      App.addListener('appStateChange', ({isActive}) => {
+          if (!isActive) {
+              // App moved to background
+              wasInBackground = true;
+          } else if (isActive && wasInBackground) {
+              // App returned to foreground after being in background
+              window.location.href = '/events.html';
+          }
+      });
+  </script>
 </head>
 <body>
 
@@ -27,5 +42,4 @@
 </body>
 
 <link href="style.css" rel="stylesheet" type="text/css"/>
-
 </html>
