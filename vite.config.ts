@@ -2,9 +2,11 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
   plugins: [
+    vue(),
     tailwindcss(),
     VitePWA({
       manifest: {
@@ -77,8 +79,6 @@ export default defineConfig({
           __dirname,
           'src/events/events-feed/services/get-upcoming-events.js',
         ),
-        // profile
-        profile: resolve(__dirname, 'src/profile/profile-container.js'),
         // friends
         friends: resolve(__dirname, 'src/friends/friends-container.js'),
       },
