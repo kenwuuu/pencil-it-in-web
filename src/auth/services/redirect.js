@@ -1,4 +1,4 @@
-import { supabase } from '@/supabase-client/supabase-client.js';
+import { supabase } from '@/supabase-client/supabase-client.ts';
 
 // For the root page (index.html), redirect users based on their auth status.
 export function handleRootRedirect() {

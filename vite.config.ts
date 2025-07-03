@@ -46,7 +46,7 @@ export default defineConfig({
         // top level services, constants, misc, etc
         constants: resolve(__dirname, 'constants.js'),
         // supabase
-        supabase: resolve(__dirname, 'src/supabase-client/supabase-client.js'),
+        supabase: resolve(__dirname, 'src/supabase-client/supabase-client.ts'),
         // components folder
         main_content_container: resolve(
           __dirname,

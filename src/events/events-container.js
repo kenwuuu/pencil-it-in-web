@@ -8,7 +8,7 @@ import { format, parseISO } from 'date-fns';
 import { getUpcomingEvents } from '@/events/events-feed/services/get-upcoming-events.js';
 import { downloadICS } from '@/events/events-feed/services/calendar.js';
 import { updateAttendanceStatus as updateAttendanceStatusAPI } from '@/events/events-feed/services/update-attendance-status.js';
-import { supabase } from '@/supabase-client/supabase-client.js';
+import { supabase } from '@/supabase-client/supabase-client.ts';
 
 class EventsContainer extends HTMLElement {
   connectedCallback() {
