@@ -54,6 +54,7 @@
     "@capacitor/push-notifications": "^7.0.1",
     "@squoosh/lib": "^0.3.1",
     "@supabase/supabase-js": "^2.49.4",
+    "@vue/tsconfig": "^0.7.0",
     "alpinejs": "^3.14.9",
     "autoprefixer": "^10.4.21",
     "compressorjs": "^1.2.1",

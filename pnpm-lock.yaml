@@ -29,6 +29,9 @@ importers:
       '@supabase/supabase-js':
         specifier: ^2.49.4
         version: 2.50.0
+      '@vue/tsconfig':
+        specifier: ^0.7.0
+        version: 0.7.0(typescript@5.7.3)(vue@3.5.17(typescript@5.7.3))
       alpinejs:
         specifier: ^3.14.9
         version: 3.14.9
@@ -1523,6 +1526,17 @@ packages:
 
   '@vue/shared@3.5.17':
     resolution: {integrity: sha512-CabR+UN630VnsJO/jHWYBC1YVXyMq94KKp6iF5MQgZJs5I8cmjw6oVMO1oDbtBkENSHSSn/UadWlW/OAgdmKrg==}
+
+  '@vue/tsconfig@0.7.0':
+    resolution: {integrity: sha512-ku2uNz5MaZ9IerPPUyOHzyjhXoX2kVJaVf7hL315DC17vS6IiZRmmCPfggNbU16QTvM80+uYYy3eYJB59WCtvg==}
+    peerDependencies:
+      typescript: 5.x
+      vue: ^3.4.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+      vue:
+        optional: true
 
   '@xml-tools/parser@1.0.11':
     resolution: {integrity: sha512-aKqQ077XnR+oQtHJlrAflaZaL7qZsulWc/i/ZEooar5JiWj1eLt0+Wg28cpa+XLney107wXqneC+oG1IZvxkTA==}
@@ -7177,6 +7191,11 @@ snapshots:
   '@vue/shared@3.1.5': {}
 
   '@vue/shared@3.5.17': {}
+
+  '@vue/tsconfig@0.7.0(typescript@5.7.3)(vue@3.5.17(typescript@5.7.3))':
+    optionalDependencies:
+      typescript: 5.7.3
+      vue: 3.5.17(typescript@5.7.3)
 
   '@xml-tools/parser@1.0.11':
     dependencies:
