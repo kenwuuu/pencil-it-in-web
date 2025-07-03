@@ -28,6 +28,7 @@
     "@playwright/test": "^1.52.0",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.7",
+    "@tsconfig/node22": "^22.0.2",
     "@types/node": "^22.15.24",
     "@vitejs/plugin-vue": "^6.0.0",
     "daisyui": "^5.0.40",
