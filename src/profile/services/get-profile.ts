@@ -1,4 +1,4 @@
-import { supabase } from '@/supabase-client/supabase-client';
+import { supabase } from '@/supabase-client/supabase-client.ts';
 
 const edgeFunctionName = 'get-user';
 

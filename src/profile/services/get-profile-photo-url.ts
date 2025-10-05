@@ -1,4 +1,4 @@
-import { supabase } from '@/supabase-client/supabase-client';
+import { supabase } from '@/supabase-client/supabase-client.ts';
 
 // Function to call the edge function
 export async function getProfilePhotoUrl() {

@@ -1,4 +1,4 @@
-import { supabase } from '@/supabase-client/supabase-client.js';
+import { supabase } from '@/supabase-client/supabase-client.ts';
 
 export async function deleteEvent(eventId) {
   const { data, error } = await supabase

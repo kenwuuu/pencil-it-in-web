@@ -28,7 +28,9 @@
     "@playwright/test": "^1.52.0",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.1.7",
+    "@tsconfig/node22": "^22.0.2",
     "@types/node": "^22.15.24",
+    "@vitejs/plugin-vue": "^6.0.0",
     "daisyui": "^5.0.40",
     "deno": "^2.3.5",
     "dotenv": "^16.5.0",
@@ -52,6 +54,7 @@
     "@capacitor/push-notifications": "^7.0.1",
     "@squoosh/lib": "^0.3.1",
     "@supabase/supabase-js": "^2.49.4",
+    "@vue/tsconfig": "^0.7.0",
     "alpinejs": "^3.14.9",
     "autoprefixer": "^10.4.21",
     "compressorjs": "^1.2.1",
@@ -63,7 +66,8 @@
     "ics": "^3.8.1",
     "tailwind": "^4.0.0",
     "tailwindcss": "^4.1.7",
-    "uuid": "^11.1.0"
+    "uuid": "^11.1.0",
+    "vue": "^3.5.17"
   },
   "lint-staged": {
     "*.js": "eslint --cache --fix",

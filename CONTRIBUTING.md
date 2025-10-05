@@ -277,7 +277,7 @@ The backend and the database are on Supabase: an open source, relational DB
 alternative to Firebase. This site is mostly a frontend project since
 all it's really doing is serving a list of events to people.
 
-For testing calls to the backend, I like to just open `supabase-client.js`
+For testing calls to the backend, I like to just open `supabase-client.ts`
 and write my JS call right underneath the client instantiation. For example,
 the code below defines a function that signs a user up using the `supabase`
 library, and then calls that function.

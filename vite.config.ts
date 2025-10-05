@@ -2,9 +2,11 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
   plugins: [
+    vue(),
     tailwindcss(),
     VitePWA({
       manifest: {
@@ -46,7 +48,7 @@ export default defineConfig({
         // top level services, constants, misc, etc
         constants: resolve(__dirname, 'constants.js'),
         // supabase
-        supabase: resolve(__dirname, 'src/supabase-client/supabase-client.js'),
+        supabase: resolve(__dirname, 'src/supabase-client/supabase-client.ts'),
         // components folder
         main_content_container: resolve(
           __dirname,
@@ -78,7 +80,7 @@ export default defineConfig({
           'src/events/events-feed/services/get-upcoming-events.js',
         ),
         // profile
-        profile: resolve(__dirname, 'src/profile/profile-container.js'),
+        profile: resolve(__dirname, 'vue-app/src/views/profile/profile.vue'),
         // friends
         friends: resolve(__dirname, 'src/friends/friends-container.js'),
       },

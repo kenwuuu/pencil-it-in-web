@@ -1,5 +1,5 @@
 // Handles logout logic for the profile page
-import { supabase } from '@/supabase-client/supabase-client.js';
+import { supabase } from '@/supabase-client/supabase-client.ts';
 
 export async function logoutAndRedirect() {
   const { error } = await supabase.auth.signOut();
