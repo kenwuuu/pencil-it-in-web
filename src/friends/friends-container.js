@@ -65,8 +65,20 @@ class FriendsContainer extends HTMLElement {
                                     </div>
                                 </div>
                                 <div class="flex items-center justify-center h-full">
-                                  <div>
-                                    <iconify-icon x-on:click="removeFriendship(friend.friend_id)" class="text-error text-2xl" icon="mdi:close-box"></iconify-icon>
+                                  <button class="btn btn-error" @click="selectedFriendId = friend.friend_id; showDeleteModal = true">
+                                    <iconify-icon class="text-white text-2xl" icon="mdi:close-box"></iconify-icon>
+                                  </button>
+                                  <!-- Delete Modal -->
+                                  <div x-show="showDeleteModal && selectedFriendId === friend.friend_id" class="modal modal-open" x-cloak>
+                                    <div class="modal-box">
+                                      <h3 class="font-bold text-lg">Are you sure?</h3>
+                                      <p class="py-4">Do you really want to delete this friend?</p>
+                                      <div class="modal-action">
+                                        <button class="btn" @click="showDeleteModal = false">Cancel</button>
+                                        <button class="btn btn-error text-white" @click="removeFriendship(selectedFriendId); showDeleteModal = false">Yes, Delete</button>
+                                      </div>
+                                    </div>
+                                    <div class="modal-backdrop" @click="showDeleteModal = false"></div>
                                   </div>
                                 </div>
                             </li>
@@ -93,7 +105,9 @@ function getCurrentDateTime() {
 function friendsData() {
   return {
     friends: [],
+    showDeleteModal: false,
     isAddingFriend: false,
+    selectedFriendId: null,
     async init() {
       await this.loadFriends();
     },
