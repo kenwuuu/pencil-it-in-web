@@ -11,6 +11,9 @@
   <title>Events - Pencil It In</title>
   <script type="module">
       import {protectPage} from '@/auth/services/redirect.js';
+      import {PAGES} from './src/constants/pages.ts';
+
+      window.PAGES = PAGES;  // add PAGES to global scope for use in HTML later
 
       protectPage();
   </script>
@@ -23,15 +26,15 @@
 <div class="safe-area-bottom"></div>
 <!-- end safe area for mobile devices -->
 
-<div id="main-container mx-auto" x-data="{ page: 'events' }">
+<div id="main-container mx-auto" x-data="{ page: PAGES.EVENTS }">
   <site-header></site-header>
-  <div class="lg:m-16 2xl:mx-32 max-w-[90rem] flex" id="body-container">
+  <div id="body-container" class="lg:m-16 2xl:mx-32 max-w-[90rem] flex">
     <bottom-menu class="block lg:hidden"></bottom-menu>
     <sidebar-menu class="hidden lg:block"></sidebar-menu>
     <!--    todo fix title so that it correctly passes in 'page' from x-data -->
     <main-content-container
-        class="flex flex-1 mb-24 sm:mb-0"
         id="main-content-container"
+        class="flex flex-1 mb-24 sm:mb-0"
         x-data="{ capitalize(str) { return str.charAt(0).toUpperCase() + str.slice(1) } }"
     >
     </main-content-container>
