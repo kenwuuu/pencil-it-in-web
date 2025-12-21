@@ -71,7 +71,7 @@ test('testMaybeButtonIsVisible', async ({ page }) => {
 test('testEventDetailModalOpens', async ({ page }) => {
   await page.goto('/events.html');
   await page.locator('.title-container').first().click();
-  await expect(page.locator('event-details-modal div').nth(2)).toBeVisible();
+  await expect(page.locator('#event-details-modal div').nth(2)).toBeVisible();
 });
 
 test('testEventDetailModalCloses', async ({ page }) => {
@@ -83,7 +83,7 @@ test('testEventDetailModalCloses', async ({ page }) => {
     .boundingBox())!;
   await page.mouse.click(modalOutside.x + 1, modalOutside.y + 1);
   await expect(
-    page.locator('event-details-modal div').nth(2),
+    page.locator('#event-details-modal div').nth(2),
   ).not.toBeVisible();
 });
 

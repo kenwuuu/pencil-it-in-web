@@ -59,22 +59,6 @@ export default defineConfig({
         site_header: resolve(__dirname, 'src/components/site-header.js'),
         // events
         events_container: resolve(__dirname, 'src/events/events-container.js'),
-        events_feed: resolve(
-          __dirname,
-          'src/events/events-feed/components/events-feed.js',
-        ),
-        participants_modal: resolve(
-          __dirname,
-          'src/events/events-feed/components/participants-modal.js',
-        ),
-        event_creation_component: resolve(
-          __dirname,
-          'src/events/event-creator/event-creation-component.js',
-        ),
-        event_action_menu: resolve(
-          __dirname,
-          'src/events/events-action-menu.js',
-        ),
         get_upcoming_events: resolve(
           __dirname,
           'src/events/events-feed/services/get-upcoming-events.js',
