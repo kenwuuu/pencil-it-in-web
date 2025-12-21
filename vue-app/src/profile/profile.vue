@@ -80,10 +80,16 @@ import { supabase } from '../../../src/supabase-client/supabase-client.ts'
 import { getUser } from './services/get-profile.ts'
 import { getProfilePhotoUrl } from './services/get-profile-photo-url.ts'
 import { logoutAndRedirect } from '../../../src/auth/services/logout.ts'
+import type { Profile } from './types/profile.ts'
 import Alpine from 'alpinejs'
 
-const currentUserId = ref(-1)
-const profile = ref({})
+const currentUserId = ref('')
+const profile = ref<Profile>({
+  first_name: '',
+  last_name: '',
+  username: '',
+  city_and_state: '',
+})
 const profilePhotoUrl = ref('')
 
 async function loadProfile(userId: string) {
@@ -107,13 +113,16 @@ function logOut() {
 
 onMounted(async () => {
   // Fetch current user and profile
-  const {
-    data: { user },
-    error: userError,
-  } = await supabase.auth.getUser()
+  const response = await supabase.auth.getUser()
 
-  if (userError) {
-    console.error(userError)
+  if (response.error) {
+    console.error(response.error)
+    return
+  }
+
+  const user = response.data.user
+  if (!user) {
+    console.error('No user found')
     return
   }
   currentUserId.value = user.id
