@@ -1,13 +1,13 @@
-import { supabase } from '@/supabase-client/supabase-client.ts';
+import { supabase } from '../../../../src/supabase-client/supabase-client.ts'
 
-const edgeFunctionName = 'get-user';
+const edgeFunctionName = 'get-user'
 
 // Function to call the edge function
 export async function getUser(user_id: string) {
-  const { data, error } = await supabase.auth.getSession();
-  let token = data?.session?.access_token; // Get the user's access token
+  const { data, error } = await supabase.auth.getSession()
+  let token = data?.session?.access_token // Get the user's access token
   if (error) {
-    console.error('Error fetching session:', error);
+    console.error('Error fetching session:', error)
   }
 
   const response = await fetch(
@@ -20,13 +20,13 @@ export async function getUser(user_id: string) {
       },
       body: JSON.stringify({ user_id: user_id }),
     },
-  );
+  )
 
-  const result = await response.json();
+  const result = await response.json()
 
   if (response.ok) {
-    return result;
+    return result
   } else {
-    console.error('Error:', result.error);
+    console.error('Error:', result.error)
   }
 }

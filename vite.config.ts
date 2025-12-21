@@ -80,7 +80,7 @@ export default defineConfig({
           'src/events/events-feed/services/get-upcoming-events.js',
         ),
         // profile
-        profile: resolve(__dirname, 'vue-app/src/views/profile/profile.vue'),
+        profile: resolve(__dirname, 'vue-app/src/profile/profile.vue'),
         // friends
         friends: resolve(__dirname, 'src/friends/friends-container.js'),
       },

@@ -76,10 +76,10 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-import { supabase } from '../../../../src/supabase-client/supabase-client.ts'
-import { getUser } from '../../../../src/profile/services/get-profile.ts'
-import { getProfilePhotoUrl } from '../../../../src/profile/services/get-profile-photo-url.ts'
-import { logoutAndRedirect } from '../../../../src/auth/services/logout.ts'
+import { supabase } from '../../../src/supabase-client/supabase-client.ts'
+import { getUser } from './services/get-profile.ts'
+import { getProfilePhotoUrl } from './services/get-profile-photo-url.ts'
+import { logoutAndRedirect } from '../../../src/auth/services/logout.ts'
 import Alpine from 'alpinejs'
 
 const currentUserId = ref(-1)

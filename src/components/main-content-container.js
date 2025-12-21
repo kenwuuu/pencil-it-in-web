@@ -1,7 +1,7 @@
 import '../events/events-container.js';
 import '../friends/friends-container.js';
 import { createApp } from 'vue';
-import ProfileVue from '../../vue-app/src/views/profile/profile.vue';
+import ProfileVue from '../../vue-app/src/profile/profile.vue';
 
 /** @customElement main-content-container */
 class MainContentContainer extends HTMLElement {
