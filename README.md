@@ -1,12 +1,6 @@
 # pencil it in
 
 
-Spending a mandatory 14 days in beta before we can release to the public. We anticipate global release to be July 14. 
-
-Download the public iOS beta here: https://testflight.apple.com/join/9YDsmCpB
-
-Sign up for the private Android beta here: https://forms.gle/FCKs3butUYXCHF4y7
-
 ### pencil it in is the first shared calendar built for friends, not meetings.
 
 Pencil It In is the first shared calendar built for friends—not work, not meetings, just real-life, low-pressure plans
