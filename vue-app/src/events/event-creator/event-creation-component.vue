@@ -127,10 +127,10 @@
 
 <script lang="ts" setup>
 import { onMounted, ref, watch } from 'vue'
-import { createEventApiCall } from './services/event-creation-service'
 import { useEventStore } from '../stores/event-store.ts'
 import { storeToRefs } from 'pinia'
 import type { FormData } from '@/events/types.ts'
+import { createEventApiCall } from '../services/get-upcoming-events.ts'
 
 interface Emits {
   (e: 'cancelEventCreation'): void
