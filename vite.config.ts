@@ -57,12 +57,6 @@ export default defineConfig({
         bottom_menu: resolve(__dirname, 'src/components/bottom-menu.js'),
         sidebar_menu: resolve(__dirname, 'src/components/sidebar-menu.js'),
         site_header: resolve(__dirname, 'src/components/site-header.js'),
-        // events
-        events_container: resolve(__dirname, 'src/events/events-container.js'),
-        get_upcoming_events: resolve(
-          __dirname,
-          'src/events/events-feed/services/get-upcoming-events.js',
-        ),
         // profile
         profile: resolve(__dirname, 'vue-app/src/profile/profile.vue'),
         // friends

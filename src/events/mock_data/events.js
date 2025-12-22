@@ -1,4 +1,4 @@
-import { EventsService } from '@/events/events-feed/services/events-service.js';
+import { EventsService } from '../../../vue-app/src/events/services/events-service.js';
 
 ('../../repositories/events.js');
 
