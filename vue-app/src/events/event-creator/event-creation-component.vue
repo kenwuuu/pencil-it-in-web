@@ -1,9 +1,9 @@
 <template>
   <div class="sm:page-container mt-4">
     <!-- Back button -->
-    <button class="btn btn-lg mb-4" @click="cancelCreation">
+    <button class="btn btn-lg mb-4" @click="isCreatingNewEvent = false">
       <iconify-icon icon="mdi:arrow-left-thick"></iconify-icon>
-    </button>
+    </button
 
     <!-- Event Creation Component -->
     <div class="card mx-auto p-4 sm:p-6 outline-base-200 outline-3 rounded-md max-w-96">
@@ -88,10 +88,10 @@
           />
         </div>
         <div class="flex items-center justify-center">
-          <button :disabled="isCreating" class="btn btn-primary" type="submit">
-            <span v-if="!isCreating">Create Event</span>
+          <button :disabled="inProgress" class="btn btn-primary" type="submit">
+            <span v-if="!inProgress">Create Event</span>
             <span v-else>Creating </span>
-            <span :class="{ loading: isCreating }"></span>
+            <span :class="{ loading: inProgress }"></span>
           </button>
         </div>
       </form>
@@ -126,8 +126,10 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref, watch } from 'vue'
-import { createEventApiCall } from './services/event-creation-service'
+import {onMounted, ref, watch} from 'vue'
+import {createEventApiCall} from './services/event-creation-service'
+import {useEventStore} from '../stores/event-store.ts'
+import {storeToRefs} from 'pinia'
 
 interface FormData {
   title: string
@@ -139,7 +141,6 @@ interface FormData {
 
 interface Emits {
   (e: 'cancelEventCreation'): void
-
   (e: 'eventCreatedSuccessfully'): void
 }
 
@@ -153,10 +154,10 @@ const formData = ref<FormData>({
   endTime: '',
 })
 
-const isCreating = ref(false)
-const showToast = ref(false)
-const toastMessage = ref('')
-const toastType = ref<'success' | 'error'>('success')
+const eventStore = useEventStore()
+const { isCreatingNewEvent, showToast, toastMessage, toastType } = storeToRefs(eventStore)
+
+const inProgress = ref(false)
 const toastTimeout = ref<number | null>(null)
 
 function setDatetimeValue(offsetMinutes: number = 0): string {
@@ -165,10 +166,11 @@ function setDatetimeValue(offsetMinutes: number = 0): string {
   return local.toISOString().slice(0, 16)
 }
 
+// if start time changes, set end time to 1 hour after start time
 function watchStartTime(newStartTime: string) {
   if (!newStartTime) return
   const start = new Date(newStartTime)
-  const end = new Date(start.getTime() + 60 * 60000 - start.getTimezoneOffset() * 60000)
+  const end = new Date(start.getTime() + 60 * 60000 - start.getTimezoneOffset() * 60000) // add 1 hour
   formData.value.endTime = end.toISOString().slice(0, 16)
 }
 
@@ -177,13 +179,15 @@ function showToastNotification(message: string, type: 'success' | 'error' = 'suc
     clearTimeout(toastTimeout.value)
   }
 
+  // set toast values
   toastMessage.value = message
   toastType.value = type
   showToast.value = true
 
+  // hide toast
   toastTimeout.value = window.setTimeout(() => {
     hideToast()
-  }, 2000)
+  }, 2000) // 2 seconds
 }
 
 function hideToast() {
@@ -198,14 +202,45 @@ function cancelCreation() {
   emit('cancelEventCreation')
 }
 
+function handleSuccess(result: any) {
+  if (result.message === 'success') {
+    console.log('Event created successfully:', result)
+
+    showToastNotification('Event created successfully!', 'success')
+    resetForm()
+    emit('eventCreatedSuccessfully')
+    isCreatingNewEvent.value = false
+  } else {
+    console.error('Error creating event:', result)
+
+    // Show error toast with specific message or generic fallback
+    const errorMessage =
+      result.error || result.message || 'Failed to create event. Please try again.'
+    showToastNotification(errorMessage, 'error')
+  }
+}
+
+function handleError(error: any) {
+  console.error('There was an error sending the request:', error)
+
+  // Show error toast for network/request errors
+  showToastNotification(
+    'Network error occurred. Please check your connection and try again.',
+    'error',
+  )
+}
+
+function handleFinally() {
+  inProgress.value = false
+}
+
 async function createEvent() {
-  await createEventApiCall({
-    formData: formData.value,
-    isCreating,
-    showToastNotification,
-    resetForm,
-    onSuccess: () => emit('eventCreatedSuccessfully'),
-  })
+  inProgress.value = true
+
+  createEventApiCall({ formData: formData.value })
+    .then(handleSuccess)
+    .catch(handleError)
+    .finally(handleFinally)
 }
 
 function resetForm() {

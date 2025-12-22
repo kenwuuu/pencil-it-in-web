@@ -36,7 +36,6 @@
       <EventCreationComponent
         v-show="isCreatingNewEvent"
         class="flex-1"
-        @cancel-event-creation="isCreatingNewEvent = false"
         @event-created-successfully="handleEventCreated"
       />
     </div>
@@ -321,7 +320,6 @@ function submitReport() {
 }
 
 async function handleEventCreated() {
-  isCreatingNewEvent.value = false
   await loadEvents()
 }
 
