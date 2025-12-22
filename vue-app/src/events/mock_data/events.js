@@ -1,6 +1,5 @@
-import { EventsService } from '../../../vue-app/src/events/services/events-service.js';
-
-('../../repositories/events.js');
+import { EventsService } from '../services/events-service.js'
+;('../../repositories/events.js')
 
 const mockEvents = [
   {
@@ -72,10 +71,10 @@ const mockEvents = [
     attendance_maybe_count: 0,
     attendance_no_count: 0,
   },
-];
+]
 
-export const events = new EventsService();
+export const events = new EventsService()
 
-events.loadMockData(mockEvents);
+events.loadMockData(mockEvents)
 
-console.log(events.getAll());
+console.log(events.getAll())
