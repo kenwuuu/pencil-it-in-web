@@ -106,27 +106,7 @@
 </template>
 
 <script lang="ts" setup>
-interface Participant {
-  user_id: string
-  profile_photo_url?: string
-}
-
-interface Host {
-  first_name: string
-}
-
-interface Event {
-  id: string
-  title: string
-  description?: string
-  location: string
-  start_time: string
-  host?: Host
-  participants?: Participant[]
-  attendance_yes_count?: number
-  attendance_maybe_count?: number
-  attendance_no_count?: number
-}
+import type { Event } from '@/events/types.ts'
 
 interface Props {
   event: Event

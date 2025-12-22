@@ -3,7 +3,7 @@
     <!-- Back button -->
     <button class="btn btn-lg mb-4" @click="isCreatingNewEvent = false">
       <iconify-icon icon="mdi:arrow-left-thick"></iconify-icon>
-    </button
+    </button>
 
     <!-- Event Creation Component -->
     <div class="card mx-auto p-4 sm:p-6 outline-base-200 outline-3 rounded-md max-w-96">
@@ -126,18 +126,11 @@
 </template>
 
 <script lang="ts" setup>
-import {onMounted, ref, watch} from 'vue'
-import {createEventApiCall} from './services/event-creation-service'
-import {useEventStore} from '../stores/event-store.ts'
-import {storeToRefs} from 'pinia'
-
-interface FormData {
-  title: string
-  description: string
-  location: string
-  startTime: string
-  endTime: string
-}
+import { onMounted, ref, watch } from 'vue'
+import { createEventApiCall } from './services/event-creation-service'
+import { useEventStore } from '../stores/event-store.ts'
+import { storeToRefs } from 'pinia'
+import type { FormData } from '@/events/types.ts'
 
 interface Emits {
   (e: 'cancelEventCreation'): void

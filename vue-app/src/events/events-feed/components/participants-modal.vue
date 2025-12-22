@@ -98,20 +98,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-
-interface Participant {
-  user_id: string
-  profile_photo_url?: string
-  first_name?: string
-  last_name?: string
-  username?: string
-  attendance_answer?: 'yes' | 'maybe' | 'no' | 'invited'
-}
-
-interface Event {
-  id: string
-  participants?: Participant[]
-}
+import type { Event } from '@/events/types.ts'
 
 interface Props {
   show: boolean

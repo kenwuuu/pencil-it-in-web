@@ -1,16 +1,5 @@
 import { supabase } from '../../../../../src/supabase-client/supabase-client.ts'
-
-interface FormData {
-  title: string
-  description: string
-  location: string
-  startTime: string
-  endTime: string
-}
-
-interface CreateEventContext {
-  formData: FormData
-}
+import type { CreateEventContext } from '@/events/types.ts'
 
 export async function createEventApiCall(context: CreateEventContext): Promise<any> {
   // Convert local datetime strings to UTC ISO strings

@@ -19,15 +19,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { deleteEvent } from '../../../../../src/events/events-feed/services/delete-event.js'
-
-interface Event {
-  id: string
-  title?: string
-  description?: string
-  location?: string
-  start_time?: string
-  end_time?: string
-}
+import type { Event } from '@/events/types.ts'
 
 interface Props {
   event: Event

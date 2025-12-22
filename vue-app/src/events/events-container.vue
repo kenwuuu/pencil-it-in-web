@@ -94,12 +94,12 @@ import ParticipantsModal from './events-feed/components/participants-modal.vue'
 import EventDetailsModal from './events-feed/components/event-details-modal.vue'
 import EventsActionMenu from './events-action-menu.vue'
 import EventCreationComponent from './event-creator/event-creation-component.vue'
-import type { Event, Participant } from './stores/event-store'
 import { useEventStore } from './stores/event-store'
 import { getUpcomingEvents } from '../../../src/events/events-feed/services/get-upcoming-events.js'
 import { downloadICS } from '../../../src/events/events-feed/services/calendar.js'
 import { updateAttendanceStatus as updateAttendanceStatusAPI } from '../../../src/events/events-feed/services/update-attendance-status.js'
 import { supabase } from '../../../src/supabase-client/supabase-client.ts'
+import type { Event, Participant } from '@/events/types.ts'
 
 // Use Pinia store
 const eventStore = useEventStore()

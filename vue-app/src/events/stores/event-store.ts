@@ -1,32 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-
-export interface Participant {
-  user_id: string
-  profile_photo_url?: string
-  first_name?: string
-  last_name?: string
-  username?: string
-  attendance_answer?: 'yes' | 'maybe' | 'no' | 'invited'
-}
-
-export interface Event {
-  id: string
-  title: string
-  description?: string
-  location: string
-  start_time: string
-  end_time?: string
-  host?: {
-    first_name: string
-    user_id?: string
-  }
-  participants?: Participant[]
-  attendance_yes_count?: number
-  attendance_maybe_count?: number
-  attendance_no_count?: number
-  attendance_invited_count?: number
-}
+import type { Event } from '@/events/types.ts'
 
 export const useEventStore = defineStore('events', () => {
   // State

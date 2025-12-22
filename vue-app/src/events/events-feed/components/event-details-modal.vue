@@ -40,21 +40,7 @@ import { onMounted, ref } from 'vue'
 import { format, parseISO } from 'date-fns'
 import { supabase } from '../../../../../src/supabase-client/supabase-client.ts'
 import DeleteEventButton from './delete-event-button.vue'
-
-interface Host {
-  first_name: string
-  user_id?: string
-}
-
-interface Event {
-  id: string
-  title: string
-  description?: string
-  location: string
-  start_time: string
-  end_time?: string
-  host?: Host
-}
+import type { Event } from '@/events/types.ts'
 
 interface Props {
   show: boolean
