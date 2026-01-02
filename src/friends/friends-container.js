@@ -8,9 +8,9 @@ class FriendsContainer extends HTMLElement {
     this.innerHTML = `
         <main class="flex">
             <div class="page-container flex-1" x-data="friendsData()">
+                <!-- Header -->
                 <header class="space-y-4 my-4 sm:flex">
-<!--                title row-->
-
+                    <!-- Title Row-->
                     <div class="flex">  
                         <div class="prose flex-1 mb-4">
                             <h1 x-text="capitalize(page)"></h1>
@@ -36,7 +36,7 @@ class FriendsContainer extends HTMLElement {
                     </div>
                     <!--   End Friend Search Bar   -->
                 </header>
-
+                <!-- Friends List-->
                 <div> 
                     <ul id="friends-list" class="list bg-base-100 rounded-box mt-4 outline-3 outline-base-300 dark:outline-slate-700">
                         <li class="flex p-4 pb-2 text-xs opacity-60 tracking-wide">
