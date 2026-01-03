@@ -1,1 +1,1 @@
-playwright test
+playwright test --project="Mobile Chrome on Galaxy S20"
