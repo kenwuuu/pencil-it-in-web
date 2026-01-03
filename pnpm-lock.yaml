@@ -95,7 +95,7 @@ importers:
         version: 0.5.16(tailwindcss@4.1.10)
       '@tailwindcss/vite':
         specifier: ^4.1.7
-        version: 4.1.10(vite@6.3.5(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0))
+        version: 4.1.10(vite@7.1.11(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0))
       '@tsconfig/node22':
         specifier: ^22.0.2
         version: 22.0.2
@@ -104,7 +104,7 @@ importers:
         version: 22.15.32
       '@vitejs/plugin-vue':
         specifier: ^6.0.0
-        version: 6.0.0(vite@6.3.5(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0))(vue@3.5.17(typescript@5.7.3))
+        version: 6.0.0(vite@7.1.11(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0))(vue@3.5.17(typescript@5.7.3))
       daisyui:
         specifier: ^5.0.40
         version: 5.0.43
@@ -139,20 +139,14 @@ importers:
         specifier: ~5.7.2
         version: 5.7.3
       vite:
-        specifier: ^6.3.1
-        version: 6.3.5(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0)
+        specifier: ^7.1.11
+        version: 7.1.11(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0)
       vite-plugin-pwa:
         specifier: ^1.2.0
-        version: 1.2.0(vite@6.3.5(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0))(workbox-build@7.4.0)(workbox-window@7.4.0)
+        version: 1.2.0(vite@7.1.11(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0))(workbox-build@7.4.0)(workbox-window@7.4.0)
       web-push:
         specifier: ^3.6.7
         version: 3.6.7
-      workbox-build:
-        specifier: ^7.4.0
-        version: 7.4.0
-      workbox-window:
-        specifier: ^7.4.0
-        version: 7.4.0
 
 packages:
 
@@ -2863,6 +2857,15 @@ packages:
       picomatch:
         optional: true
 
+  fdir@6.5.0:
+    resolution: {integrity: sha512-tIbYtZbucOs0BRGqPJkshJUYdL+SDH7dVM8gjy+ERp3WAUjLEFJE+02kanyHtwjWOnwrKYBiwAmM0p4kLJAnXg==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      picomatch: ^3 || ^4
+    peerDependenciesMeta:
+      picomatch:
+        optional: true
+
   file-entry-cache@6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
     engines: {node: ^10.12.0 || >=12.0.0}
@@ -4308,10 +4311,6 @@ packages:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
 
-  picomatch@4.0.2:
-    resolution: {integrity: sha512-M7BAV6Rlcy5u+m6oPhAPFgJTzAioX/6B0DxyvDlo9l8+T3nLKbrczg2WLUyzd45L8RqfUMyGPzekbMvX2Ldkwg==}
-    engines: {node: '>=12'}
-
   picomatch@4.0.3:
     resolution: {integrity: sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q==}
     engines: {node: '>=12'}
@@ -5048,6 +5047,10 @@ packages:
     resolution: {integrity: sha512-tX5e7OM1HnYr2+a2C/4V0htOcSQcoSTH9KgJnVvNm5zm/cyEWKJ7j7YutsH9CxMdtOkkLFy2AHrMci9IM8IPZQ==}
     engines: {node: '>=12.0.0'}
 
+  tinyglobby@0.2.15:
+    resolution: {integrity: sha512-j2Zq4NyQYG5XMST4cbs02Ak8iJUdxRM0XI5QyxXuZOzKOINmWurp3smXu3y5wDcJrptwpSjgXHzIQxR0omXljQ==}
+    engines: {node: '>=12.0.0'}
+
   tmp@0.2.3:
     resolution: {integrity: sha512-nZD7m9iCPC5g0pYmcaxogYKggSfLsdxl8of3Q/oIbqCqLLIO9IAF0GWjX1z9NZRHPiXv8Wex4yDCaZsgEw0Y8w==}
     engines: {node: '>=14.14'}
@@ -5302,19 +5305,19 @@ packages:
       '@vite-pwa/assets-generator':
         optional: true
 
-  vite@6.3.5:
-    resolution: {integrity: sha512-cZn6NDFE7wdTpINgs++ZJ4N49W2vRp8LCKrn3Ob1kYNtOo21vfDoaV5GzBfLU4MovSAB8uNRm4jgzVQZ+mBzPQ==}
-    engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
+  vite@7.1.11:
+    resolution: {integrity: sha512-uzcxnSDVjAopEUjljkWh8EIrg6tlzrjFUfMcR1EVsRDGwf/ccef0qQPRyOrROwhrTDaApueq+ja+KLPlzR/zdg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
-      '@types/node': ^18.0.0 || ^20.0.0 || >=22.0.0
+      '@types/node': ^20.19.0 || >=22.12.0
       jiti: '>=1.21.0'
-      less: '*'
+      less: ^4.0.0
       lightningcss: ^1.21.0
-      sass: '*'
-      sass-embedded: '*'
-      stylus: '*'
-      sugarss: '*'
+      sass: ^1.70.0
+      sass-embedded: ^1.70.0
+      stylus: '>=0.54.8'
+      sugarss: ^5.0.0
       terser: ^5.16.0
       tsx: ^4.8.1
       yaml: ^2.4.2
@@ -7146,12 +7149,12 @@ snapshots:
       postcss-selector-parser: 6.0.10
       tailwindcss: 4.1.10
 
-  '@tailwindcss/vite@4.1.10(vite@6.3.5(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0))':
+  '@tailwindcss/vite@4.1.10(vite@7.1.11(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0))':
     dependencies:
       '@tailwindcss/node': 4.1.10
       '@tailwindcss/oxide': 4.1.10
       tailwindcss: 4.1.10
-      vite: 6.3.5(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0)
+      vite: 7.1.11(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0)
 
   '@thepassle/axobject-query@4.0.0':
     dependencies:
@@ -7249,10 +7252,10 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
-  '@vitejs/plugin-vue@6.0.0(vite@6.3.5(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0))(vue@3.5.17(typescript@5.7.3))':
+  '@vitejs/plugin-vue@6.0.0(vite@7.1.11(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0))(vue@3.5.17(typescript@5.7.3))':
     dependencies:
       '@rolldown/pluginutils': 1.0.0-beta.19
-      vite: 6.3.5(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0)
+      vite: 7.1.11(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0)
       vue: 3.5.17(typescript@5.7.3)
 
   '@vue/compiler-core@3.5.17':
@@ -8861,11 +8864,11 @@ snapshots:
     dependencies:
       pend: 1.2.0
 
-  fdir@6.4.6(picomatch@4.0.2):
-    optionalDependencies:
-      picomatch: 4.0.2
-
   fdir@6.4.6(picomatch@4.0.3):
+    optionalDependencies:
+      picomatch: 4.0.3
+
+  fdir@6.5.0(picomatch@4.0.3):
     optionalDependencies:
       picomatch: 4.0.3
 
@@ -10293,8 +10296,6 @@ snapshots:
 
   picomatch@2.3.1: {}
 
-  picomatch@4.0.2: {}
-
   picomatch@4.0.3: {}
 
   pidtree@0.6.0: {}
@@ -11191,6 +11192,11 @@ snapshots:
       fdir: 6.4.6(picomatch@4.0.3)
       picomatch: 4.0.3
 
+  tinyglobby@0.2.15:
+    dependencies:
+      fdir: 6.5.0(picomatch@4.0.3)
+      picomatch: 4.0.3
+
   tmp@0.2.3: {}
 
   to-regex-range@5.0.1:
@@ -11413,25 +11419,25 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vite-plugin-pwa@1.2.0(vite@6.3.5(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0))(workbox-build@7.4.0)(workbox-window@7.4.0):
+  vite-plugin-pwa@1.2.0(vite@7.1.11(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0))(workbox-build@7.4.0)(workbox-window@7.4.0):
     dependencies:
       debug: 4.4.3
       pretty-bytes: 6.1.1
       tinyglobby: 0.2.14
-      vite: 6.3.5(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0)
+      vite: 7.1.11(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0)
       workbox-build: 7.4.0
       workbox-window: 7.4.0
     transitivePeerDependencies:
       - supports-color
 
-  vite@6.3.5(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0):
+  vite@7.1.11(@types/node@22.15.32)(jiti@2.4.2)(lightningcss@1.30.1)(terser@5.44.1)(yaml@2.8.0):
     dependencies:
       esbuild: 0.25.5
-      fdir: 6.4.6(picomatch@4.0.2)
-      picomatch: 4.0.2
+      fdir: 6.5.0(picomatch@4.0.3)
+      picomatch: 4.0.3
       postcss: 8.5.6
       rollup: 4.44.0
-      tinyglobby: 0.2.14
+      tinyglobby: 0.2.15
     optionalDependencies:
       '@types/node': 22.15.32
       fsevents: 2.3.3
