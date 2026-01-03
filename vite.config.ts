@@ -1,33 +1,10 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import tailwindcss from '@tailwindcss/vite';
-import { VitePWA } from 'vite-plugin-pwa';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
-  plugins: [
-    vue(),
-    tailwindcss(),
-    VitePWA({
-      manifest: {
-        name: 'pencil it in',
-        short_name: 'pencil it in',
-        description: 'your new social calendar',
-        // theme_color: "#007bff",
-        icons: [
-          {
-            src: '/assets/logo.jpg',
-            sizes: '1172x1172',
-            type: 'image/jpg',
-          },
-        ],
-      },
-      registerType: 'autoUpdate',
-      devOptions: {
-        enabled: false,
-      },
-    }),
-  ],
+  plugins: [vue(), tailwindcss()],
   build: {
     rollupOptions: {
       input: {
