@@ -12,7 +12,7 @@ export async function createEventApiCall() {
 
     const session = await supabase.auth.getSession();
     const response = await fetch(
-      'https://mpounklnfrcfpkefidfn.supabase.co/functions/v1/create-event',
+      'https://dkpmplrfgmpmlrjksgsb.supabase.co/functions/v1/create-event',
       {
         method: 'POST',
         headers: {

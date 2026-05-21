@@ -4,8 +4,10 @@ const edgeFunctionName = 'accept-friend-request';
 
 // Function to call the edge function
 export async function acceptFriendRequest(friendId: string) {
-
-  const { data: {}, error: userError } = await supabase.auth.getUser();
+  const {
+    data: {},
+    error: userError,
+  } = await supabase.auth.getUser();
   if (userError) {
     console.error('Error fetching user:', userError);
     return;
@@ -18,14 +20,17 @@ export async function acceptFriendRequest(friendId: string) {
     console.error('Error fetching session:', error);
   }
 
-  const response = await fetch(`https://mpounklnfrcfpkefidfn.supabase.co/functions/v1/${edgeFunctionName}`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
+  const response = await fetch(
+    `https://dkpmplrfgmpmlrjksgsb.supabase.co/functions/v1/${edgeFunctionName}`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ friendId: friendId }),
     },
-    body: JSON.stringify({ friendId: friendId })
-  });
+  );
 
   const result = await response.json();
   if (response.ok) {

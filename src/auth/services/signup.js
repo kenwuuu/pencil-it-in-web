@@ -176,7 +176,7 @@ async function uploadProfilePhoto(photo, uuid, folder) {
 
 function buildBucketUrl(filePath) {
   const bucketUrl =
-    'https://mpounklnfrcfpkefidfn.supabase.co/storage/v1/object/public/profile-photos/';
+    'https://dkpmplrfgmpmlrjksgsb.supabase.co/storage/v1/object/public/profile-photos/';
   return bucketUrl + filePath;
 }
 

@@ -21,7 +21,7 @@ export async function upsertNotificationToken(deviceTokenId, enable) {
   }
 
   const response = await fetch(
-    `https://mpounklnfrcfpkefidfn.supabase.co/functions/v1/${edgeFunctionName}`,
+    `https://dkpmplrfgmpmlrjksgsb.supabase.co/functions/v1/${edgeFunctionName}`,
     {
       method: 'POST',
       headers: {

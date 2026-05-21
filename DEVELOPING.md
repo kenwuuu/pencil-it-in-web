@@ -23,7 +23,7 @@
   without any hassle on our end. We should find a way to just bundle all `mock_data` folders though.
     - Then you just point HTMX to root, like `hx-get="/friends.html"`
 - To test API with Postman:
-    - POST to `https://mpounklnfrcfpkefidfn.supabase.co/auth/v1/token?grant_type=password`
+  - POST to `https://dkpmplrfgmpmlrjksgsb.supabase.co/auth/v1/token?grant_type=password`
     - Headers: `apikey` must be our anon/public key
       `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1wb3Vua2xuZnJjZnBrZWZpZGZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDIxODE0OTcsImV4cCI6MjA1Nzc1NzQ5N30.wZlH6_dd0WtEVC-BtMXEzcTUgSAIlegqSPnr3dyvjyA`
     - Body: {"email": "email@gmail.com","password": "password"}
@@ -36,7 +36,7 @@
 - If you're getting CORS errors, try adding `"Access-Control-Allow-Origin": origin` to the `Response`
   immediately following where the error occurs.
 
-`[Error] Fetch API cannot load https://mpounklnfrcfpkefidfn.supabase.co/functions/v1/retrieve-user-friends due to access control checks.`
+`[Error] Fetch API cannot load https://dkpmplrfgmpmlrjksgsb.supabase.co/functions/v1/retrieve-user-friends due to access control checks.`
 
 - this error occurs when the edge function doesn't handle preflight and CORS. Add the following code block to the
   top of
